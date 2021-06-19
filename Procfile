@@ -1,0 +1,1 @@
+web: gunicorn django-blogchat-tech.wsgi:application
