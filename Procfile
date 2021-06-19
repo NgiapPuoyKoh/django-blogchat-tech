@@ -1,1 +1,1 @@
-web: gunicorn django-blogchat-tech.wsgi:application
+web: gunicorn django_blogchat_tech.wsgi:application
