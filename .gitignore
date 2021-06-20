@@ -5,3 +5,20 @@ env.py
 __pycache__/
 *.py[cod]
 node_modules/
+*.sqlite3
+*.pyc
+.vscode/*
+venv
+.vscode/settings.json
+
+README_secretinfo_fs-hello_django_donotpushtogithub.md
+LOGSVSCODE_django_blogchat_tech.md
+LOGS.md
+READMEWIPVSCode.md
+
+LOGS.md
+README-FS-HELLO-DJANGO.md
+READMEWIP.md
+UserExperienceDesign(UXD)
+db.sqlite3
+django_blogchat_tech/settings copy.py
