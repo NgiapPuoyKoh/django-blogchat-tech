@@ -16,7 +16,7 @@ from pathlib import Path
 from os import path
 
 # Add recommended by anna_ci
-if path.exists("env.py"):
+if os.path.exists("env.py"):
     import env
 
 if os.environ.get('DEVELOPMENT'):
