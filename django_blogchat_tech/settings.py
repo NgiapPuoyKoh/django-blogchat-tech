@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'home',
-    # 'donate',
+    'donate',
     # 'blog',
     # 'contact',
     # 'postmanagement',
