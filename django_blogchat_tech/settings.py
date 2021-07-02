@@ -14,6 +14,8 @@ import os
 import dj_database_url
 from pathlib import Path
 from os import path
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
 
 # Add recommended by anna_ci
 if os.path.exists("env.py"):
@@ -185,9 +187,10 @@ STATIC_URL = '/static/'
 if 'DEVELOPMENT' in os.environ:
     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 else : 
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Extra places for collectstatic to find static files.
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # Media files
 # https://docs.djangoproject.com/en/3.2/topics/files/
