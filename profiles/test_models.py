@@ -7,10 +7,11 @@ class TestModels(TestCase):
     
     @classmethod
     def setup(cls):
+        # Set up non-modified objects used by all test methods
         user = get_user_model().objects.create_user(
                 username='testuser', email='testemail@example.com',
                 password='secret')
-        UserProfile.objects.create( name='testuser',email='testemail@example.com' )
+        UserProfile.objects.create( user= user, name='testuser',email='testemail@example.com' )
 
 
     def test_name_label(self):
