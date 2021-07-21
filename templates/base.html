@@ -57,8 +57,14 @@
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li><a href="{% url 'home' %}" class="nav-link px-2 text-secondary">Home</a></li>
             {% comment %} <li><a href="{% url 'blog' %}" class="nav-link px-2 text-white">Blog</a></li> {% endcomment %}
-            <li><a href="{% url 'account_login' %}" class="nav-link px-2 text-white">Sign In</a></li>
+            {% if request.user.is_authenticated %}
+              <li><a href="{% url 'user_profile' user %}" class="nav-link px-2 text-white">My Profile</a></li>
+            {% else %}
+              <li><a href="{% url 'account_login' %}" class="nav-link px-2 text-white">Sign In</a></li>
+            {% endif %}
+            {% if request.user.issuperuser %}
             <li><a href="#" class="nav-link px-2 text-white">Blog Admin</a></li>
+            {% endif %}
           </ul>
   
           <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -66,9 +72,11 @@
           </form>
   
           <div class="text-end">
+            {% if request.user.is_authenticated %}
             <button type="button" class="btn btn-outline-light me-2">
               <a href="{% url 'account_logout' %}">Sign Out</a>
             </button>
+            {% endif %}
             <button type="button" class="btn btn-warning">
                   {% comment %} <a href="{% url 'donate' %}">Donate</a> {% endcomment %}
             </button>

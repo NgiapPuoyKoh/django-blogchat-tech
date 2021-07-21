@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'profiles/css/profiles.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <h1 class="display-4 text-success"> {{ user.username }}'s User Profile</h1>
+    </div>
+    <hr
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container h-100">
+<h2>Edit Your User Profile</h2>
+</div>
+<!-- Edit Profile Form --> 
+<div class="col-10 offset-1 col-md-6 offset-md-3" id="form-styling">
+    <form method="POST" action="{% url 'edit_profile' request.user %}" class="form mb-2" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% comment %} {{ form.as_p }} {% endcomment %}
+        {% for field in form %}
+            {{ field | as_crispy_field }}
+        {% endfor %}
+        <div class="text-center">
+            <button class="btn btn-outline-black rounded-0 submit-btn" type="submit">Confirm</button>
+            <button class="btn btn-outline-black rounded-0 submit-btn" type="submit" name="cancel" value="Cancel" />Cancel</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

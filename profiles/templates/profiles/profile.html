@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'profiles/css/profiles.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <h1 class="display-4 text-success"> {{ user.username }}'s User Profile</h1>
+    </div>
+    <hr>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container h-100">
+<h2>Your User Profile</h2>
+</div>
+
+<!-- Display Profile Info -->
+<div class="col-10 offset-1 col-md-6 offset-md-3">
+    <h3>Name: </h3>
+    <p class="main-text">{{ user_profile.name }}</p>
+    <hr>
+    <h3>Email: </h3>
+    <p class="main-text">{{ user_profile.email}}</p>
+</div>
+
+<div class="text-center">
+    <a href="{% url 'home' %}">
+        <button class="btn btn-outline-black rounded-0 submit-btn" type="submit">Home
+    </button></a>
+    <a href="{% url 'edit_profile' request.user %}">
+        <button class="btn btn-outline-black rounded-0 submit-btn" type="submit">Edit
+    </button></a>
+</div>
+
+{% endblock %}
