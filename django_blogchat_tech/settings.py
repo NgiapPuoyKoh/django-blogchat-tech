@@ -60,11 +60,16 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'home',
-    'donate',
+    'profiles',
+    # 'donate',
     # 'blog',
     # 'contact',
     # 'postmanagement',
     # 'chat'
+
+    # Other
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +84,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'django_blogchat_tech.urls'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 TEMPLATES = [
     {
@@ -95,6 +103,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
@@ -219,3 +231,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 #     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
 #     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+
+# Stripe
+# STRIPE_CURRENCY = 'usd'
+# STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+# STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+# STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
+# STRIPE_PRICE_ID = os.getenv('STRIPE_PRICE_ID', '')
