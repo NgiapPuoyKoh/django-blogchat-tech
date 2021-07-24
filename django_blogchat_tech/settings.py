@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'home',
     'profiles',
-    # 'donate',
+    'donate',
     # 'blog',
     # 'contact',
     # 'postmanagement',
@@ -233,8 +233,7 @@ else:
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 
 # Stripe
-# STRIPE_CURRENCY = 'usd'
-# STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
-# STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
-# STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
-# STRIPE_PRICE_ID = os.getenv('STRIPE_PRICE_ID', '')
+STRIPE_CURRENCY = 'usd'
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
+# STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
