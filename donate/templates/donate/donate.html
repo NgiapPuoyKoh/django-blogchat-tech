@@ -8,30 +8,62 @@
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
-        <h1 class="display-4 text-success">Pomodoro Donate</h1>
+        <h1 class="display-4 text-success">Donate</h1>
     </div>
+    <hr>
 </div>
 {% endblock %}
 
 {% block content %}
 
-    <main class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
-                <h3>Support Us</h3>
-                <p class="main-text">
-                    Make Donation of Any Amount<br>
-                </p>
-                <button type="submit" class="btn btn-warning" id="submitBtn">Donate</button>
-            </div>
+<div class="container h-100">
+<h2>Your Support Counts</h2>
+</div>
+
+<main class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
+            <h3>Support Us</h3>
+            <p class="main-text">
+                Make Donation of Any Amount<br>
+            </p>
         </div>
-    </main>
+    </div>
+
+    <form action="{% url 'charge' %}"  method="post" id="payment-form">
+    {% csrf_token %}
+
+    <label for="Username">Name</label>
+    <input required type="text" id = "username" name = "username" placeholder="Your Name">
+    <label for="email">Email</label>
+    <input required type="email" id = "email" name = "email" placeholder="Email">
+    <label for="amount">Amount</label>
+    <input required type="number" id = "amount" name = "amount" required placeholder="Amount">
+
+    <div class="form-row">
+        <label for="card-element">
+        Credit or debit card
+        </label>
+        <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+        </div>
+
+        <!-- Used to display Element errors. -->
+        <div id="card-errors" role="alert"></div>
+    </div>
+
+    <div class="form-row">
+        <button type="submit" class="btn btn-warning" id="submitBtn">Donate</button>
+        <button type="submit" class="btn cancelBtn" id="cancelBtn"><a href="{% url 'home' %}"> Cancel</a></button>
+    </div>
+    </form>
+
+</main>
 
 {% endblock %}
 
-{% comment %} 
 {% block postloadjs %}
-{{ block.super }}
+    {{ block.super }}
     <script src="{% static 'donate/js/stripe.js' %}"></script>
-{% endblock %}
-{% endcomment %}
+    {% endblock %}
+
