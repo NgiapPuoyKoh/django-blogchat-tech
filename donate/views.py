@@ -3,12 +3,13 @@ from django_blogchat_tech.settings import STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import JsonResponse, HttpRequest
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 # from .models import Donation
 import datetime
 import stripe
 
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY') 
+# stripe_public_key = os.environ.get('STRIPE_PUBLIC_KEY')
 
 
 # Create your views here.
@@ -16,6 +17,11 @@ def donate(request):
     """ A view to return the donate page """
     return render(request, "donate/donate.html")
 
+@csrf_exempt
+def stripe_config(request):
+    if request.method == 'GET':
+        stripe_config = {'publicKey': os.environ.get('STRIPE_PUBLIC_KEY') }
+        return JsonResponse(stripe_config, safe=False)
 
 @csrf_protect
 def charge(request):
@@ -52,6 +58,10 @@ def successMsg(request, args):
     """A view to notify donation successful """
     amount = args
     return render(request, 'donate/success.html', {'amount':amount})
+
+# def cancelMsg(request):
+#     """A view to notify donation has been cancelled """
+#     return render(request, 'donate/cancel.html')
 
 
 # def donations(request):

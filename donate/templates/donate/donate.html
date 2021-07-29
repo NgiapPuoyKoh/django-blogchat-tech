@@ -33,28 +33,32 @@
     <form action="{% url 'charge' %}"  method="post" id="payment-form">
     {% csrf_token %}
 
-    <label for="Username">Name</label>
-    <input required type="text" id = "username" name = "username" placeholder="Your Name">
-    <label for="email">Email</label>
-    <input required type="email" id = "email" name = "email" placeholder="Email">
-    <label for="amount">Amount</label>
-    <input required type="number" id = "amount" name = "amount" required placeholder="Amount">
+    <div>
+        <label for="Username">Name</label>
+        <input required type="text" id = "username" name = "username" placeholder="Your Name">
+        <label for="email">Email</label>
+        <input required type="email" id = "email" name = "email" placeholder="Email">
+        <label for="amount">Amount</label>
+        <input required type="number" id = "amount" name = "amount" required placeholder="Amount">
+    </div>
 
     <div class="form-row">
+        <span><br></span>
         <label for="card-element">
         Credit or debit card
         </label>
         <div id="card-element">
         <!-- A Stripe Element will be inserted here. -->
         </div>
-
+        
         <!-- Used to display Element errors. -->
         <div id="card-errors" role="alert"></div>
     </div>
-
+    <br>
+        
     <div class="form-row">
         <button type="submit" class="btn btn-warning" id="submitBtn">Donate</button>
-        <button type="submit" class="btn cancelBtn" id="cancelBtn"><a href="{% url 'home' %}"> Cancel</a></button>
+        {% comment %} <button type="submit" class="btn cancelBtn" id="cancelBtn"><a href="{% url 'cancel' %}"> Cancel</a></button> {% endcomment %}
     </div>
     </form>
 
@@ -65,5 +69,5 @@
 {% block postloadjs %}
     {{ block.super }}
     <script src="{% static 'donate/js/stripe.js' %}"></script>
-    {% endblock %}
+{% endblock %}
 
