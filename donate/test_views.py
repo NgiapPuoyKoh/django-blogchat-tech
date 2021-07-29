@@ -1,4 +1,6 @@
 from django.test import TestCase
+from django.urls import reverse
+
 
 # Create your tests here.
 class TestViews(TestCase):
@@ -13,7 +15,7 @@ class TestViews(TestCase):
     # html page amount will be updated to donated amount
     # back to donation page link
     # def test_charge(self):
-        """Test charge stripe """
+    # """Test charge stripe """
 
 
     def test_donate_page(self):
@@ -31,6 +33,12 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'donate/success.html')
 
+
+    def test_cancelMsg(self):
+        """Test donate cancel renders cancel.html """
+        response = self.client.get(f'/donate/cancel/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'donate/cancel.html')
 
     # def test_donate_link
 
