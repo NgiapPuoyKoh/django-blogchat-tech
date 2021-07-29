@@ -6,6 +6,6 @@ urlpatterns = [
     path('config/', views.stripe_config),
     path('charge/', views.charge, name="charge"),
     path('success/<str:args>/', views.successMsg, name="success"),
-    # path('cancel/', views.cancelMsg, name="cancel"),
+    path('cancel/', views.cancelMsg, name="cancel"),
     # path('donations/<str:args>/', views.donations, name="donations"),
 ]

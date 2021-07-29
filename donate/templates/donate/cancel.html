@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'donate/css/donate.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <h1 class="display-4 text-success">Pomodoro Donate Cancelled</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+    <main class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
+                <h3>Transaction Cancelled</h3>
+                <a href="{% url 'home' %}">Click here to return to Home page</a>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% endblock %}

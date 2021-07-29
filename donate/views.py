@@ -59,9 +59,9 @@ def successMsg(request, args):
     amount = args
     return render(request, 'donate/success.html', {'amount':amount})
 
-# def cancelMsg(request):
-#     """A view to notify donation has been cancelled """
-#     return render(request, 'donate/cancel.html')
+def cancelMsg(request):
+    """A view to notify donation has been cancelled """
+    return render(request, 'donate/cancel.html')
 
 
 # def donations(request):
