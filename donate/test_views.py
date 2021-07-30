@@ -40,6 +40,9 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'donate/cancel.html')
 
-    # def test_donate_link
 
-    
+    def test_donation_page(self):
+        """ Test donation page renders donations.html """
+        response = self.client.get('/donate/donations')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'donate/donations.html')
