@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'donate/css/donate.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <h1 class="display-4 text-success">Donation List</h1>
+    </div>
+    <hr>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container h-100">
+<h2>Our Generous Donors</h2>
+</div>
+
+<main class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
+            <h3>Donations Received</h3>
+            <p class="main-text">
+                Donation Details<br>
+            </p>
+            <button type="submit" class="btn btn-warning" id="submitBtn"><a href="{% url 'home' %}">Home</a></button>
+            {% comment %} <button type="submit" class="btn btn-warning" id="cancelBtn"><a href="{% url 'cancel' %}">Search</a></button> {% endcomment %}
+        </div>
+    </div>
+
+    <table>
+    {% for donation in donations %}
+        <tr>
+            <td> {{ donation.donor_name}} </td>
+            <td> {{ donation.donor_email}} </td>
+            <td> {{ donation.donate_date}} </td>
+            <td> {{ donation.amount}} </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td></td>
+        </tr>
+    {% endfor %}
+    </table>
+</main>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% endblock %}
+

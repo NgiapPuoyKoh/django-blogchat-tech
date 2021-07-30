@@ -7,5 +7,6 @@ urlpatterns = [
     path('charge/', views.charge, name="charge"),
     path('success/<str:args>/', views.successMsg, name="success"),
     path('cancel/', views.cancelMsg, name="cancel"),
-    # path('donations/<str:args>/', views.donations, name="donations"),
+    path('donations/', views.donations, name="donations"),
+    # path('donations/<str:args>/', views.donation, name="donation"),
 ]
