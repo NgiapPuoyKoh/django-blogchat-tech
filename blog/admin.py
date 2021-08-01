@@ -14,7 +14,7 @@ class TopicAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     list_display = (
         'title',
-        'published_date',
+        'publish',
         'author',
         'content',
         'topic',
