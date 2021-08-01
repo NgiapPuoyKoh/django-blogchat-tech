@@ -47,7 +47,7 @@ class TestModels(TestCase):
         self.assertEqual(max_length, 254)
     
     
-    # def test_get_absolute_url(self):
-    #     post1 = Post.objects.get(id=1)
-    #     # This will also fail if the urlconf is not defined.
-    #     self.assertEqual(post1.get_absolute_url(), '/blog/How-to-test-model/')
+    def test_get_absolute_url(self):
+        post1 = Post.objects.get(id=1)
+        # This will also fail if the urlconf is not defined.
+        self.assertEqual(post1.get_absolute_url(), '/blog/How-to-test-model/')
