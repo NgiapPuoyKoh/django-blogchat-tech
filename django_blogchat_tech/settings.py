@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'home',
     'profiles',
     'donate',
-    # 'blog',
+    'blog',
     # 'contact',
     # 'postmanagement',
     # 'chat'
