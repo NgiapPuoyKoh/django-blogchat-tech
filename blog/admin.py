@@ -22,6 +22,7 @@ class PostAdmin(admin.ModelAdmin):
         'status',
     )
 
+    prepopulated_fields = {'slug':('title',)}
     ordering = ('author','topic',)
 
 admin.site.register(Topic, TopicAdmin)
