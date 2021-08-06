@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block extra_css %}
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'blog/css/blog.css' %}"> {% endcomment %}
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <h1 class="display-4 text-success"> {{ user.username }}'s Add Post</h1>
+    </div>
+    <hr
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container h-100">
+<h2>Add Post</h2>
+</div>
+<div class="col-10 offset-1 col-md-6 offset-md-3" id="form-styling">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-black rounded-0 submit-btn" type="submit">Post</button>
+            <button class="btn btn-outline-black rounded-0 submit-btn" type="submit" name="cancel" value="Cancel" />Cancel</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
