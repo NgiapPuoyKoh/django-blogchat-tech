@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.shortcuts import render, get_object_or_404, redirect
 # from blog.models import Post 
 from .models import Post
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse
 
@@ -38,7 +39,7 @@ def post_detail(request, slug):
     return render(request, 'blog/post_detail.html', context)
 
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
 
     fields = [
@@ -58,7 +59,7 @@ class PostCreateView(CreateView):
     # def get_success_url(self):
     #     return reverse('post_detail', kwargs={'slug': self.post})
 
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
 
     fields = [
@@ -74,6 +75,13 @@ class PostUpdateView(UpdateView):
         form.instance.author = self.request.user
         # form.instance.slug = slugify(self.post.title)
         return super().form_valid(form)
+
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user  == post.author:
+            return True
+        return False
 
 # def add_post(request, user):
 #     """ A function to create a blog post and 
