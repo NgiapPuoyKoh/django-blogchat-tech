@@ -20,6 +20,7 @@ class PostAdmin(admin.ModelAdmin):
         'content',
         'topic',
         'status',
+        'slug',
     )
 
     prepopulated_fields = {'slug':('title',)}

@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.shortcuts import render, get_object_or_404, redirect
 # from blog.models import Post 
 from .models import Post
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView,UpdateView
 from django.urls import reverse
 
 
@@ -26,10 +26,10 @@ def all_posts(request):
 
 
 
-def post_detail(request, post):
+def post_detail(request, slug):
     """ A view to show individual post details """
 
-    post = get_object_or_404(Post, slug=post, status='published')
+    post = get_object_or_404(Post, slug=slug, status='published')
 
     context = {
         'post': post,

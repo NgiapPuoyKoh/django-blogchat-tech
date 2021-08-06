@@ -9,7 +9,7 @@ urlpatterns = [
     path('', views.blog, name='blog'),
     path('posts/', views.all_posts, name='posts'),
     # path('<post_id>/', views.post_detail, name='post_detail')
-    path('<slug:post>/', views.post_detail, name='post_detail'),
+    path('<slug:slug>/', views.post_detail, name='post_detail'),
     # path('post/', PostDetailView.as_view(), name='post_detail')
     path('post/new/', PostCreateView.as_view(), name='post-create'),
 ]
