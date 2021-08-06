@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.shortcuts import render, get_object_or_404, redirect
 # from blog.models import Post 
 from .models import Post
-from django.views.generic.edit import CreateView,UpdateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse
 
 
@@ -57,6 +57,23 @@ class PostCreateView(CreateView):
 
     # def get_success_url(self):
     #     return reverse('post_detail', kwargs={'slug': self.post})
+
+class PostUpdateView(UpdateView):
+    model = Post
+
+    fields = [
+        'title',
+        'excerpt',
+        'content',
+        'topic',
+        'status'
+        # 'slug'
+    ]
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        # form.instance.slug = slugify(self.post.title)
+        return super().form_valid(form)
 
 # def add_post(request, user):
 #     """ A function to create a blog post and 
