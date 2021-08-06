@@ -4,6 +4,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from .models import UserProfile
 from django.urls import reverse
+from django.db.models.signals import pre_save
+from django.utils.text import slugify
 
 # settings.py 'blog'
 # python manage.py makemigrations
@@ -57,7 +59,9 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
     content = models.TextField()
     status = models.CharField(max_length=10, choices=options, default='draft')
-    topic = models.CharField(max_length=254, null=True, blank=True)
+    topic = models.ForeignKey('Topic', null=True, blank=True, on_delete=models.SET_NULL)
+
+    # topic = models.CharField(max_length=254, null=True, blank=True)
 
     # topic = models.ForeignKey(Topic, null=True, blank=True, on_delete=models.SET_NULL)
     # topic = models.ForeignKey('Topic', null=True, blank=True, on_delete=models.SET_NULL)
@@ -77,3 +81,27 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+# Code Source: Try Django 1.9 - 29 of 38 - SlugField
+def create_slug(instance, new_slug=None):
+    slug = slugify(instance.title)
+    if new_slug is not None:
+        slug = new_slug
+    qs = Post.objects.filter(slug=slug).order_by("-id")
+    exists = qs.exists()
+    if exists:
+        new_slug = "%s-%s" %(slug, qs.first().id)
+        return create_slug(instance, new_slug=new_slug)
+    return slug
+
+
+def pre_save_post_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = create_slug(instance)
+    slug = slugify(instance.title)
+    # exists = Post.objects.filter(slug=slug).exists()
+    # if exists:
+    #     slug = "%s-%s" %(slug, instance_id)
+    # instance.slug = slug
+
+pre_save.connect(pre_save_post_receiver, sender=Post)

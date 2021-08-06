@@ -46,8 +46,8 @@ class PostCreateView(CreateView):
         'excerpt',
         'content',
         'topic',
-        'status',
-        'slug'
+        'status'
+        # 'slug'
     ]
 
     def form_valid(self, form):
