@@ -87,6 +87,7 @@
             <li><a href="{% url 'posts' %}" class="nav-link px-2 text-white">Blogs</a></li>
             {% comment %} <li><a href="{% url 'blog' %}" class="nav-link px-2 text-white">Blog</a></li> {% endcomment %}
             {% if request.user.is_authenticated %}
+              <li><a href="{% url 'post-create' %}" class="nav-link px-2 text-white">Create Post</a></li>
               <li><a href="{% url 'user_profile' user %}" class="nav-link px-2 text-white">My Profile</a></li>
             {% else %}
               <li><a href="{% url 'account_login' %}" class="nav-link px-2 text-white">Sign In</a></li>
