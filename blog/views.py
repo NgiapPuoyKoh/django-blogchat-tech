@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 # from blog.models import Post 
 from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 
 
@@ -82,6 +82,19 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if self.request.user  == post.author:
             return True
         return False
+
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = '/'
+
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user  == post.author:
+            return True
+        return False
+
 
 # def add_post(request, user):
 #     """ A function to create a blog post and 
