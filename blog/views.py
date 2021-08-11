@@ -107,12 +107,9 @@ class TopicListView(ListView):
         }
         return content
 
-# def add_post(request, user):
-#     """ A function to create a blog post and 
-#     render the add_blog page "
-    
-# def PostDetailView(DetailView):
-#     model = Post
-
-
-#<app>/<model>_<viewtype>.html
+def topic_list(request):
+    topic_list = Topic.objects.exclude(name='No Topic')
+    context = {
+        "topic_list": topic_list,
+    }
+    return context
