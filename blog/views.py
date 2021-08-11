@@ -1,9 +1,10 @@
 from django.conf.urls import url
 from django.shortcuts import render, get_object_or_404, redirect
 # from blog.models import Post 
-from .models import Post
+from .models import Post, Topic
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView
 from django.urls import reverse
 
 
@@ -95,6 +96,16 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+class TopicListView(ListView):
+    template_name = 'blog/post_list.html'
+    context_object_name = 'topiclist'
+
+    def get_queryset(self):
+        content = {
+            'topic': self.kwargs['topic'],
+            'posts': Post.objects.filter(topic__name=self.kwargs['topic']).filter(status='published')
+        }
+        return content
 
 # def add_post(request, user):
 #     """ A function to create a blog post and 
