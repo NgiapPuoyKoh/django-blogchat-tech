@@ -17,10 +17,6 @@
         <div class="col-12 col-md-6 col-lg-4">
             <div class="post-details-container mb-5 mt-md-5">
                 <p>Display Blog Post Detail</p>
-                <!-- note: to reference django object use post.id not post_it -->
-                <!-- <a href="{% url 'post_detail' post.id %}"></a> -->
-                <!-- <p class="mb-0">{{ post.title }}</p> -->
-                <!-- <p class="mt-3">{{ post.content }}</p> -->
             </div>
         </div>
     </div>
@@ -31,11 +27,51 @@
 <div class="container">
     <div class="row justify-content-md-center pt-5">
         <div class="col-md-8">
-        <h1>{{post.title}}</h1><br>
-        {{post.content|safe}}
-        </div>   
+
+        <div class="col-12">
+            <h1>{{post.title}}</h1><br>
+            <h2>by {{post.author}}</h2><br>
+        </div>
+        <div class="col-md-12">
+            <p>{{post.content|safe}}</p>
+        </div>
+
+        <div class="colmd-12">
+            <!-- Existing Comments -->
+            {% with comments.count as total_comments %}
+            <h2>
+                {{ total_comments }} comment{{ total_comments|pluralize }}
+            </h2>
+            {% endwith %}
+            {% for comment in comments %}
+                Comment {{ forloop.counter }} by {{comment.name}}
+                on {{ comment.publish }}
+                {{ comment.content|linebreaks }}
+            {% empty %}
+                <p>There are no comments for this post.</p>
+            {% endfor %}
+            <!-- Existing Comments -->
+
+            <!-- Comment Form -->
+            <h2>Make a new comment</h2>
+
+            <form id ="commentForm" method="post">
+                {{ comment_form.as_p }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+            </form>
+            <!-- Comment form -->
+
+
+            
+        </div>
     </div>
 </div>
 
-</body>    
+</body>
+<script>
+    function newFunction() {
+    document.getElementById("commentForm").reset();
+    }
+</script>
 {% endblock %}
