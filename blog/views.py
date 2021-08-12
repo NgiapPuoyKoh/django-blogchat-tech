@@ -1,14 +1,16 @@
 from django.conf.urls import url
 from django.shortcuts import render, get_object_or_404, redirect
-# from blog.models import Post 
-from .models import Post, Topic
+from django.urls import reverse
+
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
-from django.urls import reverse
+
+from .models import Post, Topic, Comment
+from blog.forms import NewCommentForm
 
 
-# Create your views here.
+# Create your views here.q
 
 def blog(request):
     """ A view to return the Blog Page """
@@ -27,20 +29,36 @@ def all_posts(request):
     return render(request, 'blog/posts.html', context)
 
 
-
 def post_detail(request, slug):
-    """ A view to show individual post details """
+    """ A view to display individual post details with comments and comment form """
 
     post = get_object_or_404(Post, slug=slug, status='published')
 
-    context = {
-        'post': post,
-    }
+    comments = post.comments.filter(status=True)
 
-    return render(request, 'blog/post_detail.html', context)
+    user_comment = None
 
+    if request.method == 'POST':
+        comment_form = NewCommentForm(request.POST)
+        if comment_form.is_valid():
+            user_comment = comment_form.save(commit=False)
+            user_comment.post = post
+            user_comment.save()
+            return redirect(reverse('post_detail', args=[slug]))
+    else:
+        comment_form = NewCommentForm()
+
+        context = {
+            'post': post, 
+            'comments':  user_comment, 
+            'comments': comments, 
+            'comment_form': comment_form
+        }
+        return render(request, 'blog/post_detail.html', context )
+ 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
+    """ A view to create a blog post """
     model = Post
 
     fields = [
@@ -49,18 +67,15 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         'content',
         'topic',
         'status'
-        # 'slug'
     ]
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        # form.instance.slug = slugify(self.post.title)
         return super().form_valid(form)
 
-    # def get_success_url(self):
-    #     return reverse('post_detail', kwargs={'slug': self.post})
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """ A view to update a blog post """
     model = Post
 
     fields = [
@@ -69,12 +84,10 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         'content',
         'topic',
         'status'
-        # 'slug'
     ]
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        # form.instance.slug = slugify(self.post.title)
         return super().form_valid(form)
 
 
@@ -86,6 +99,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """ A view to Delete a blog post """
     model = Post
     success_url = '/'
 
@@ -96,7 +110,10 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+
 class TopicListView(ListView):
+    """ A view to list topics """
+
     template_name = 'blog/post_list.html'
     context_object_name = 'topiclist'
 
@@ -108,8 +125,10 @@ class TopicListView(ListView):
         return content
 
 def topic_list(request):
+    ''' Topic list for dynamic dropdown nav item '''
     topic_list = Topic.objects.exclude(name='No Topic')
     context = {
         "topic_list": topic_list,
     }
     return context
+
