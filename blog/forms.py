@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment
+from .models import Comment, Post
 
 class NewCommentForm(forms.ModelForm):
     """ For for use to add a comment to blog post """
@@ -12,3 +12,6 @@ class NewCommentForm(forms.ModelForm):
             "content": forms.Textarea(attrs={"class": "form-control"}),
         }
 
+class PostSearchForm(forms.Form):
+    q = forms.CharField()
+    
