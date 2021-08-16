@@ -1,5 +1,5 @@
 from django.test import TestCase
-from blog.forms import NewCommentForm
+from blog.forms import NewCommentForm, PostSearchForm
 
 
 class NewCommentFormTest(TestCase):
@@ -18,3 +18,16 @@ class NewCommentFormTest(TestCase):
 
         self.assertFalse(form.is_valid())
         self.assertEquals(len(form.errors), 3)
+
+
+class PostSearchFormTest(TestCase):
+
+    def test_post_search_data(self):
+        form = PostSearchForm({"q": "Django"})
+        self.assertTrue(form.is_valid())
+
+    def test_comment_form_no_data(self):
+        form = PostSearchForm({"q": ""})
+
+        self.assertFalse(form.is_valid())
+        self.assertEquals(len(form.errors), 1)
