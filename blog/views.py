@@ -7,10 +7,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 
 from .models import Post, Topic, Comment
-from blog.forms import NewCommentForm
+from blog.forms import NewCommentForm, PostSearchForm
 
-
-# Create your views here.q
+# Create your views here
 
 def blog(request):
     """ A view to return the Blog Page """
@@ -32,7 +31,7 @@ def all_posts(request):
 def post_detail(request, slug):
     """ A view to display individual post details with comments and comment form """
 
-    post = get_object_or_404(Post, slug=slug, status='published')
+    post = get_object_or_404(Post, slug=slug)
 
     comments = post.comments.filter(status=True)
 
@@ -54,7 +53,8 @@ def post_detail(request, slug):
             'comments': comments, 
             'comment_form': comment_form
         }
-        return render(request, 'blog/post_detail.html', context )
+    
+    return render(request, 'blog/post_detail.html', context )
  
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -124,6 +124,7 @@ class TopicListView(ListView):
         }
         return content
 
+
 def topic_list(request):
     ''' Topic list for dynamic dropdown nav item '''
     topic_list = Topic.objects.exclude(name='No Topic')
@@ -132,3 +133,21 @@ def topic_list(request):
     }
     return context
 
+
+def posts_search(request):
+    ''' Post Search Title, Content and Excerpt'''
+    form = PostSearchForm()
+    q = ''
+    results = []
+
+    if 'q' in request.GET:
+        form = PostSearchForm(request.GET)
+        if form.is_valid():
+            q = form.cleaned_data['q']
+            results = Post.objects.filter(title__contains=q) | Post.objects.filter(content__contains=q) | Post.objects.filter(excerpt__contains=q )
+        
+    return render(request, 'blog/search.html',
+        {'form': form,
+        'q': q,
+        'results': results })
+    

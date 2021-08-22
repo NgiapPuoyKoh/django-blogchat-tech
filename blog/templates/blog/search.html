@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <h1 class="display-4 text-success"> Search Posts</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
+            <h3>Search Published Posts</h3>
+        </div>
+    </div>
+    <body>
+
+    {% if q %}
+        <h1>Blog Posts results from search</h1>
+        <p>
+            {% with results.count as total_results %}
+            Found {{ total_results }} result{{ total_results|pluralize}}
+            {% endwith %}
+
+        </p>
+        
+        {% for post in results %}
+            <h5><a href="{{ post.get_absolute_url}}">{{post.title}}</a></h5>
+        {% empty %}
+            <p>There are no post for your search</p>    
+        {% endfor %}
+
+        <p><a href="{% url 'posts_search' %}" class="btn btn-primary mt-5" role="button" aria-disabled="true">New Search</a></p>
+
+    {% else %}
+        <form method="get">
+            {{ form.as_p }} 
+            <input type="submit" value="Submit" class="btn btn-primary" >
+        </form>
+    {% endif %}   
+    </body>
+</main>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% endblock %}
+
