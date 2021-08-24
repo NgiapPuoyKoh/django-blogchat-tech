@@ -144,7 +144,7 @@ def posts_search(request):
         form = PostSearchForm(request.GET)
         if form.is_valid():
             q = form.cleaned_data['q']
-            results = Post.objects.filter(title__contains=q) | Post.objects.filter(content__contains=q) | Post.objects.filter(excerpt__contains=q )
+            results = (Post.objects.filter(title__icontains=q) | Post.objects.filter(content__icontains=q) | Post.objects.filter(excerpt__contains=q )) & Post.objects.filter(status = "published")
         
     return render(request, 'blog/search.html',
         {'form': form,
