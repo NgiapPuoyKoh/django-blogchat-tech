@@ -17,29 +17,43 @@
             <h3>Search Published Posts</h3>
         </div>
     </div>
-    <body>
 
+    <body>
     {% if q %}
         <h1>Blog Posts results from search</h1>
         <p>
             {% with results.count as total_results %}
             Found {{ total_results }} result{{ total_results|pluralize}}
             {% endwith %}
-
         </p>
-        
-        {% for post in results %}
-            <h5><a href="{{ post.get_absolute_url}}">{{post.title}}</a></h5>
-        {% empty %}
-            <p>There are no post for your search</p>    
-        {% endfor %}
+
+            <div class="album py-5 bg-light">
+                <div class="container">
+                    <div class="row gy-2">
+                    {% for post in results %}
+                        <div class="col-md-4">
+                            <div class="card h-100 md-4 shadow">                            
+                                <div class="card-body">
+                                    <h2 ><a  class="text-decoration-none " href="{{ post.get_absolute_url}}">{{post.title}}</a></h2>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">{{post.author}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p>There are no post for your search</p>    
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
 
         <p><a href="{% url 'posts_search' %}" class="btn btn-primary mt-5" role="button" aria-disabled="true">New Search</a></p>
 
     {% else %}
         <form method="get">
             {{ form.as_p }} 
-            <input type="submit" value="Submit" class="btn btn-primary" >
+            <input type="submit" value="Search" class="btn btn-primary" >
         </form>
     {% endif %}   
     </body>
