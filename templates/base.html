@@ -90,7 +90,7 @@
               </a>
               <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for topic in topic_list %}
-                  <a href="/blog/topic/{{ topic.name }}/" class="dropdown-item">
+                  <a href="{% url 'topic' topic.name %}" class="dropdown-item">
                   {{ topic.name|title }}
                   </a>
                 {% endfor %}
