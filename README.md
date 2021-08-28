@@ -1,59 +1,46 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Pomodoro Blog
 
-Welcome USER_NAME,
+[Click here access Pomodoro Blog](https://django-blogchat-tech.herokuapp.com/)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+"Reading maketh a full man; conference a ready man; and writing an exact man." Francis Bacon
 
-## Gitpod Reminders
+Pomodoro BlogChat is a site for users to read, converse and write about topics. Each blog entry focuses on a single concept.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+The brain operates in two fundamental modes focus diffuse mode. Work with focus attention for 24 minutes and relax for 5 minutes. Practice slow thinking and exercise to increase the ability to learn and recall. Understanding combined with practice and repetition in a variety of circumstances to truly gain mastery.
 
-`python3 -m http.server`
+The inspiration for this application came from Francis Bacon's quote and  [Barbara Oakley: Learning How to Learn](https://tedsummaries.com/2015/03/04/barbara-oakley-learning-how-to-learn/).
 
-A blue button should appear to click: _Make Public_,
+## User Experience Design (UX)
 
-Another blue button should appear to click: _Open Browser_.
+## Strategy Plane
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+### Purpose
 
-A blue button should appear to click: _Make Public_,
+This site provides a community platform where learners can apply the approach by reading(focus-mode) a blog to learn, have a conversation(diffuse-mode) to understand, and posting a blog(practice to master) to share their understanding. Users will help each other learn.
 
-Another blue button should appear to click: _Open Browser_.
+A blog post will typically be an explanation of a concept or a how-to tip or trick. The idea is to apply the Pomodoro approach to focus the blog post on a small chunk of information that takes no longer than 25 minutes to digest.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+A blog series in turn will consist of a playlist of blog posts. As coders, one of the most important skills is to break down a problem into components and write code in chunks to solve the problem.
 
-To log into the Heroku toolbelt CLI:
+Readers can ask the blog post author questions and participate in a discussion via comments.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+## Site Goals
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidently make it public then you can create a new one with _Regenerate API Key_.
+### Business Goals
 
-## Updates Since The Instructional Video
+- Free blog platform that can be simply implemented and deployed. It can be easily extended using the Django framework
+- The site follows the minimum viable product (MVP) approach to identify and implement basic features that users to improve their learning outcome
+- The site owner can accept voluntary donations
+- The application can be implemented and configured for their own use
+- The administrator of the blog will have full administrative privileges to control user access and privileges and to audit and remove content that is inappropriate or offensive
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### User Goals
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+- Authenticated users will be able to reinforce learning by publishing post blogs and make comments
+- Non authenticated users will be able to access blog post content and make comments
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+### Content
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
----
-
-Happy coding!
+- The blog content will be categorized by topic
+- The administrator will configure and maintain the list of topics for any subject
+- Authors will use the title associate it with a blog series to build a collection of blogs
