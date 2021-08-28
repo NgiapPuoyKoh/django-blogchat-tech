@@ -47,25 +47,24 @@ Readers can ask the blog post author questions and participate in a discussion v
 
 ### User Stories
 
-| User Case # | As Persona | Want to |
+| Use Case # | As Persona | Want to |
 | --- | --- | --- |
 | 1.1 | As a user | I want to know the purpose and how to use the blog |
 | 1.2 | As a user | I want to view a list of features |
 | 1.3 | As a user | I want to know how to use each feature |
 | 1.4 | As a user | I want to navigate to each feature from the feature page |
-
+| | |
 | 2.1 | As a non-authenticated user | I want to be able to view a list of blog posts |
 | 2.2 | As a non-authenticated user | I want to be able to view blog details |
 | 2.3 | As a non-authenticated user | I can make submit a comment on a post |
 | 2.4 | As an authenticated user | I want to be able to search for blogs|
 | 2.5 | As a non-authenticated user | I want to be able to register an account |
-
+| | |
 | 3.1 | As an authenticated user | I want to be able to create a blog post |
-| 3.2 | As an authenticated user | I want to be | 
-able to update my blog post |
+| 3.2 | As an authenticated user | I want to be able to update my blog post |
 | 3.3 | As an authenticated user | I want to be able to delete my blog post |
 | 3.4 | As an authenticated user | I want to be able to set the status of my blog post |
-
+| | |
 | 4.1 | As a authenticated user | I can make submit a comment on a post |
 | 4.2 | As an authenticated user | I want to be able to comment on a blog post |
 | 4.3 | As an authenticated user | I want to be able to view a blog list
@@ -73,21 +72,21 @@ able to update my blog post |
 | 4.5 | As a non-authenticated user | I want to be able able to view blog details|
 | 4.6 | As an authenticated user | I want to be able to search for blogs|
 | 4.7 | As a non-authenticated user | I can comment on a post |
-
+| | |
 | 5.1 | As an authenticated user | I want to be able to login |
 | 5.2 | As an authenticated user | I Want to be able to create my profile information |
 | 5.3 | As an authenticated user | I want to be able to edit my profile information |
-
+| | |
 | 6.1 | As a user | I want to be able to make voluntary donations of any amount using a credit card |
 | 6.2 | As a user, I want to be able to make secure payments
-
+| | |
 | 7.1 | As an administrator | I want to be able to create a user account |
 | 7.2 | As an administrator | I want to be able to update a user |
 | 7.3 | As an administrator | I want to be able to delete a user |
 | 7.4 | As an administrator | I want to be able to manage the topic list |
 | 7.5 | As an administrator | I want to be able to have CRUD privileges to curate blog posts |
 | 7.5 | As an administrator | I want to be able to have CRUD privileges to curate comments |
-
+| | |
 | 8.1 | As a site owner | I want to accept donations to maintain the site |
 | 8.2 | As a site owner | I want to be able to track donors information and donation amounts
 
@@ -97,3 +96,48 @@ Future Features
 - As a blogger, I want to be able to have a conversation with readers via live chat
 - As a blogger, I want to be able to set a blog to a status draft, publish and unpublish
 - As a blogger, I want to be able to create a blog series playlist
+
+### Wireframes
+
+<details>
+    <summary> Click to expand!</summary>
+- Home Page
+![Home Page](docs\wireframe\homePage.png)
+
+- Sign In 
+![Sign In](docs\wireframe\signInPage.png)
+
+- Register Page
+![Register Page](docs\wireframe\registerPage.png)
+
+- Profile Create
+![Profile Create](docs\wireframe\profileCreate.png)
+
+- Profile Update Delete
+![Profile Update Delete](docs\wireframe\profileUpdateDelete.png)
+
+- Blog View Posts
+ ![Blog View Posts](docs\wireframe\blogViewPosts.png)
+
+- Blog Post Detail
+![Blog Post Detail](docs\wireframe\blogViewPostDetail.png)
+
+- Blog Post Create
+![Blog Post Create](docs\wireframe\blogPostCreatePublish.png)
+
+- Blog Post Edit Delete
+![Blog Post Edit Delete](docs\wireframe\blogPostCreatePublish.png)
+
+- Blog Posts Search
+![Blog Posts Search](docs\wireframe\blogViewPostsSearch.png)
+
+- Blog Posts Comment
+![Blog Posts Comment](docs\wireframe\blogPostComments.png)
+
+- Donate Page
+![Donate Page](docs\wireframe\donatePage.png)
+
+- Donate Success 
+![Donate Success](docs\wireframe\donateSuccessConfirmation.png)
+
+</details>
