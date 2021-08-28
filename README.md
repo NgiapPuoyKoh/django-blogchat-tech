@@ -109,46 +109,53 @@ It consists of a menu navigation button with content stacked in a single column.
 <details>
     <summary> Click to expand!</summary>
 
+Note: 
+
+The respective Mobile wireframes version of each web page listed will be similar to the Home Page Mobile Wireframe. 
+
+It consists of a menu navigation button with content stacked in a single column.
+
 - Home Page
-![Home Page](docs\wireframes\homePage.png)
+![Home Page](docs/wireframes/homePage.png)
 
 - Home Page Mobile
-![Home Page Mobile](docs\wireframes\homePageMobile.png)
+![Home Page Mobile](docs/wireframes/homePageMobile.png)
 
 - Sign In 
-![Sign In](docs\wireframes\signInPage.png)
+![Sign In](docs/wireframes/signInPage.png)
 
 - Register Page
-![Register Page](docs\wireframes\registerPage.png)
+![Register Page](docs/wireframes/registerPage.png)
 
 - Profile Create
-![Profile Create](docs\wireframes\profileCreate.png)
+![Profile Create](docs/wireframes/profileCreate.png)
 
 - Profile Update Delete
-![Profile Update Delete](docs\wireframes\profileUpdateDelete.png)
+![Profile Update Delete](docs/wireframes/profileUpdateDelete.png)
 
 - Blog View Posts
- ![Blog View Posts](docs\wireframes\blogViewPosts.png)
+ ![Blog View Posts](docs/wireframes/blogViewPosts.png)
+
 
 - Blog Post Detail
-![Blog Post Detail](docs\wireframes\blogViewPostDetail.png)
+![Blog Post Detail](docs/wireframes/blogViewPostDetail.png)
 
 - Blog Post Create
-![Blog Post Create](docs\wireframes\blogPostCreatePublish.png)
+![Blog Post Create](docs/wireframes/blogPostCreatePublish.png)
 
 - Blog Post Edit Delete
-![Blog Post Edit Delete](docs\wireframes\blogPostCreatePublish.png)
+![Blog Post Edit Delete](docs/wireframes/blogPostCreatePublish.png)
 
 - Blog Posts Search
-![Blog Posts Search](docs\wireframes\blogViewPostsSearch.png)
+![Blog Posts Search](docs/wireframes/blogViewPostsSearch.png)
 
 - Blog Posts Comment
-![Blog Posts Comment](docs\wireframes\blogPostComments.png)
+![Blog Posts Comment](docs/wireframes/blogPostComments.png)
 
 - Donate Page
-![Donate Page](docs\wireframes\donatePage.png)
+![Donate Page](docs/wireframes/donatePage.png)
 
 - Donate Success 
-![Donate Success](docs\wireframes\donateSuccessConfirmation.png)
+![Donate Success](docs/wireframes/donateSuccessConfirmation.png)
 
 </details>
