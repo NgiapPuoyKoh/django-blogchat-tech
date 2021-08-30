@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block page_header %}
-<div class="container header-container">
+<div class="container header-container h-100 text-center">
     <div class="row">
         <h1 class="display-4 text-success">Pomodoro Donate Success</h1>
     </div>
@@ -22,7 +22,7 @@
                 <p class="main-text">
                     Thank you for your donation of ${{amount}}!<br>
                 </p>
-                <a href="{% url 'donate' %}">Back to donation page</a>
+                <a href="{% url 'posts' %}">Back to posts page</a>
             </div>
         </div>
     </main>

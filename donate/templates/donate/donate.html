@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block page_header %}
-<div class="container header-container">
+<div class="container header-container h-100 text-center">
     <div class="row">
         <h1 class="display-4 text-success">Donate</h1>
     </div>
@@ -16,7 +16,7 @@
 
 {% block content %}
 
-<div class="container h-100">
+<div class="container h-100 text-center">
 <h2>Your Support Counts</h2>
 </div>
 
@@ -25,7 +25,7 @@
         <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
             <h3>Support Us</h3>
             <p class="main-text">
-                Make Donation of Any Amount<br>
+                Make a Donation of Any Amount<br>
             </p>
         </div>
     </div>
@@ -33,14 +33,18 @@
     <form action="{% url 'charge' %}"  method="post" id="payment-form">
     {% csrf_token %}
 
-    <div>
-        <label for="Username">Name</label>
-        <input required type="text" id = "username" name = "username" placeholder="Your Name">
-        <label for="email">Email</label>
-        <input required type="email" id = "email" name = "email" placeholder="Email">
-        <label for="amount">Amount</label>
-        <input required type="number" id = "amount" name = "amount" required placeholder="Amount">
-    </div>
+    <div class="mb-3">
+        <label for="username" class="form-label">Name</label>
+        <input required type="text" class="form-control" name = "username" id="username" placeholder="Name">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input required type="text" class="form-control" name = "email"  id="email" placeholder="Email">
+      </div>
+      <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" class="form-control" id="amount" name = "amount" placeholder="Amount">
+      </div>
 
     <div class="form-row">
         <span><br></span>
