@@ -90,30 +90,16 @@ Readers can ask the blog post author questions and participate in a discussion v
 | 8.1 | As a site owner | I want to accept donations to maintain the site |
 | 8.2 | As a site owner | I want to be able to track donors information and donation amounts
 
-Future Features
-
-- As a user, I want to be able to rate a blog post
-- As a blogger, I want to be able to have a conversation with readers via live chat
-- As a blogger, I want to be able to set a blog to a status draft, publish and unpublish
-- As a blogger, I want to be able to create a blog series playlist
-
 ### Wireframes
-
-**Note:** 
-```
-The respective Mobile wireframes version of each web page listed will be similar to the Home Page Mobile Wireframe. 
-
-It consists of a menu navigation button with content stacked in a single column.
-```
 
 <details>
     <summary> Click to expand!</summary>
 
-Note: 
+**Note:**
 
-The respective Mobile wireframes version of each web page listed will be similar to the Home Page Mobile Wireframe. 
-
-It consists of a menu navigation button with content stacked in a single column.
+```
+The respective Mobile wireframes version of each web page listed will be similar to the Home Page Mobile Wireframe. The content stacked in a single column.
+```
 
 - Home Page
 
@@ -168,8 +154,128 @@ It consists of a menu navigation button with content stacked in a single column.
 
 ![Donate Page](docs/wireframes/donatePage.png)
 
-- Donate Success 
+- Donate Success
 
 ![Donate Success](docs/wireframes/donateSuccessConfirmation.png)
 
 </details>
+
+## Scope Plane
+
+### Planned Features
+
+#### Mobile First responsive on all device sizes
+
+The goal is to design the application to work on small screen sizes. The approach is to focus on what is necessary for rending and navigation.
+
+#### Overview Feature Page
+
+The feature page provides the user with information about the site. The page will render the description and a link to access each feature.
+
+- Overview of the purpose of the application
+- Feature Description
+- Provide User with Instructions
+- Navigation Links to Features
+
+#### Blog Posts Display
+
+The blog post page will render all posts by default. There will be an option to display posts by topic.
+Each post will display the title and a link to navigate to view the details of the post.
+
+All users will be able to view the blog.
+Only authenticated users will be rendered buttons to update and delete posts owned by them.
+
+- Blog List by Date
+- Blog List by Topic
+- Blog Detail
+
+#### Blog Post Management CRUD
+
+Only Authenticated users will be able to create, modify and publish posts that they share.
+
+- Create a post
+- Edit a post
+- Delete a post
+- Publish a post
+- Unpublish a post
+
+#### Blog Posts Search
+
+Users can use the search navigation form on the navigation bar to search for blogs using keywords.
+Posts that contain one or more of the keywords entered will render a search results page.
+
+At the bottom of the results page, there will be an option to perform a new search.
+
+- Search posts using keywords in title, excerpt, and content fields.
+- Users to not need to be authenticated to perform a search.
+
+#### Blog Post Comments
+
+Users will be able to add comments to each post on the post detail page.
+The comments will be rendered below each post on the detail post page.
+
+- A comment form will be rendered below each post for any user to submit a comment
+- Users do not need to be authenticated to post comments
+
+#### User Authentication
+
+Users who wish to create and share posts need to sign up for an account for authenticated access.
+Authenticated users will have the privileges to manage the post that they create.
+
+- Account Sign Up
+- Account Sign In
+- Access to create post link on the navigation bar
+
+#### User Profile
+
+Authenticated users will have the option to enter an alternated name and email.
+This information can be utilized in future enhancements as the user's preferred contact information.
+
+- Create a profile
+- Update a profiles
+
+### Blog Application Administration
+
+The application administrator with superuser privileges have full access to all the data using the Django Administrator panel.
+
+- Manage user access
+- Curate blog post
+- Curate comments
+- Access details of donations received
+  
+### Donation
+
+- Accept donation using stripe payment
+- Simple Accept payment of any amount available only in the US and Canada
+- Record donor name, email, and amount of donations received
+
+## Future Features
+
+### Live Chat Conversations
+
+- As a blogger, I want to be able to have a conversation with readers via live chat
+
+### Contact Form
+
+- Users can submit questions to the site owner
+- Administrator can respond to questions
+
+### Donation Enhancements
+
+- Automated email generation Thank You for Donations
+- Dashboard to track and report donations received
+- Donor information Management
+
+### Blog Post Enhancements
+
+- Blog Topic Category Management
+- Rating and reviews
+- Blog post status management to include draft, publish and unpublish
+- Blog series playlist generation
+
+### Blog Application Configuration, Administration and Data Management
+
+- Application configuration dashboard
+- Blog Topic Management
+- Donation Management
+- Data management dashboard
