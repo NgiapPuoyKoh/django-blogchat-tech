@@ -3,9 +3,11 @@
 
 {% block page_header %}
 <div class="container header-container">
+    <hr>
     <div class="row">
-        <h1 class="display-4 text-success"> Search Posts</h1>
+        <h1 class="display-4 text-success text-center"> Search Posts</h1>
     </div>
+    <hr>
 </div>
 {% endblock %}
 
@@ -53,7 +55,7 @@
     {% else %}
         <form method="get">
             {{ form.as_p }} 
-            <input type="submit" value="Search" class="btn btn-primary" >
+            <input type="submit" value="Search" class="btn btn-primary mb-2" >
         </form>
     {% endif %}   
     </body>

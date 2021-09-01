@@ -7,6 +7,7 @@
 
 {% block page_header %}
 <div class="container header-container h-100 text-center">
+    <hr>
     <div class="row">
         <h1 class="display-4 text-success">Donate</h1>
     </div>
@@ -60,7 +61,7 @@
     </div>
     <br>
         
-    <div class="form-row">
+    <div class="form-row mb-2">
         <button type="submit" class="btn btn-warning" id="submitBtn">Donate</button>
         <button type="submit" class="btn cancelBtn" id="cancelBtn"><a href="{% url 'cancel' %}"> Cancel</a></button>
     </div>
