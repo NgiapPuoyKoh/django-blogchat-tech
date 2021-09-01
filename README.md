@@ -279,3 +279,173 @@ The application administrator with superuser privileges have full access to all 
 - Blog Topic Management
 - Donation Management
 - Data management dashboard
+
+## Structure Plane
+
+### Database Schema
+
+![Pomodoro Blog Database Schema](docs/readme/pomodoroBlogDBSchema.png)
+
+## Donate Apps
+
+- Donation
+
+```
+class Donation(models.Model):
+    """
+    A model to record donations
+    """
+    donor_name = models.CharField(max_length=50)
+    donor_email = models.EmailField(max_length=254)
+    donate_date =  models.DateTimeField(max_length=80,
+                                      null=False, blank=False)
+    amount = models.IntegerField(default=0) 
+    donated =  models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.donor_name
+
+```
+
+## Blog App
+
+- Topic
+
+```
+class Topic(models.Model):
+
+    options = {
+        ('django', 'Django'),
+        ('bootstrap5', 'Bootstrap5'),
+        ('javascript', 'JavaScript'),
+        ('sql', 'SQL'),
+        ('whitenoise', 'Whitenoise'),
+        ('stripe', 'Stripe')
+    }
+
+    class Meta:
+        verbose_name_plural = 'Topics'
+
+    name = models.CharField(max_length=254, choices=options, default='No Topic')
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name
+```
+
+- Post
+
+```
+class Post(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Posts'
+
+    options = {
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+    }
+
+    title = models.CharField(max_length=254)
+    excerpt = models.TextField()
+    slug = models.SlugField(max_length=250, unique_for_date='publish')
+    publish = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
+    content = models.TextField()
+    status = models.CharField(max_length=10, choices=options, default='draft')
+    topic = models.ForeignKey('Topic', null=True, blank=True, on_delete=models.SET_NULL)
+
+
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs={'slug': self.slug})
+
+
+    def __str__(self):
+        return self.title
+
+# Code Source: Try Django 1.9 - 29 of 38 - SlugField
+def create_slug(instance, new_slug=None):
+    slug = slugify(instance.title)
+    if new_slug is not None:
+        slug = new_slug
+    qs = Post.objects.filter(slug=slug).order_by("-id")
+    exists = qs.exists()
+    if exists:
+        new_slug = "%s-%s" %(slug, qs.first().id)
+        return create_slug(instance, new_slug=new_slug)
+    return slug
+
+
+def pre_save_post_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = create_slug(instance)
+
+pre_save.connect(pre_save_post_receiver, sender=Post)
+```
+
+- Comment
+
+```
+
+class Comment(models.Model):
+
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name ="comments")
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    content = models.TextField()
+    publish = models.DateTimeField(auto_now_add = True)
+    status = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ("publish",)
+
+    def __str__(self):
+        return f"Comment by {self.name}"
+    
+```
+
+## Profile App
+
+- UserProfile
+
+```
+class UserProfile(models.Model):
+    """
+    A user profile model for maintaining user profiles
+    """
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=80,
+                            null=True, blank=True)
+    email = models.EmailField(max_length=70, blank=True, null=True, unique= True)
+
+    def __str__(self):
+        return str(self.name)
+    
+@receiver(post_save, sender=User)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+    """
+    Create or update the user profile
+    """
+    if created:
+        UserProfile.objects.create(user=instance)
+    # Existing users: just save the profile
+    instance.userprofile.save()
+
+```
+
+## Django Contrib and Alluth
+
+- allauth socialaccount
+- auth
+- admin
+- sites
+- contenttype
+- sessions
+- Abstract BaseUser
+- Abstract PermmissionsMixin
+
+
+The structure plane: How is the information structured and how is it logically grouped?
