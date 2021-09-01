@@ -6,7 +6,8 @@
 {% endblock %}
 
 {% block page_header %}
-<div class="container header-container">
+<div class="container header-container text-center">
+    <hr>
     <div class="row">
         <h1 class="display-4 text-success"> {{ user.username }}'s User Profile</h1>
     </div>
@@ -16,7 +17,7 @@
 
 {% block content %}
 
-<div class="container h-100">
+<div class="container h-100 text-center">
 <h2>Your User Profile</h2>
 </div>
 
@@ -29,7 +30,7 @@
     <p class="main-text">{{ user_profile.email}}</p>
 </div>
 
-<div class="text-center">
+<div class="text-center mb-2">
     <a href="{% url 'home' %}">
         <button class="btn btn-outline-black rounded-0 submit-btn" type="submit">Home
     </button></a>
