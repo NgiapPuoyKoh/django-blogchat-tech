@@ -70,11 +70,12 @@
             {% if request.user.is_authenticated %}
               <li><a href="{% url 'post-create' %}" class="nav-link px-2 text-white">Create Post</a></li>
               <li><a href="{% url 'user_profile' user %}" class="nav-link px-2 text-white">My Profile</a></li>
+                {% if request.user.is_superuser %}
+                <li><a href="#" class="nav-link px-2 text-white">Blog Admin</a></li>
+                <li><a href="{% url 'donations' %}" class="nav-link px-2 text-white">Donations Received</a></li>
+                {% endif %}
             {% else %}
               <li><a href="{% url 'account_login' %}" class="nav-link px-2 text-white">Sign In</a></li>
-            {% endif %}
-            {% if request.user.issuperuser %}
-            <li><a href="#" class="nav-link px-2 text-white">Blog Admin</a></li>
             {% endif %}
           </ul>
 
@@ -116,11 +117,10 @@
     {% endblock %}
 
   <!-- footer -->
-  <footer class= "p-5 bg-dark text-white text-center position-relative">
+  <footer class= "p-2 bg-dark text-white text-center position-relative mt-2">
     <div class="container">
       <p class="lead">Copyright &copy; NP Koh Systems LLC 2021 </p>
-      <a href="#" class="position-absolute bottom-0 end-0 p-5">
-
+      <a href="#" class="position-absolute bottom-0 end-0 p-2">
         <i class="bi bi-arrow-up-circle h1"></i>
       </a>
     </div>
