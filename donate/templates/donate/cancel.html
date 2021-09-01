@@ -7,9 +7,11 @@
 
 {% block page_header %}
 <div class="container header-container h-100 text-center">
+    <hr>
     <div class="row">
         <h1 class="display-4 text-success">Donation Not Processed</h1>
     </div>
+    <hr>
 </div>
 {% endblock %}
 
@@ -18,8 +20,10 @@
     <main class="container">
         <div class="row">
             <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
-                <h3>Donation Not Processed</h3>
+                <h3>Confirmation: No Donation was Processed</h3>
+                <div class="form-row mb-3">
                 <a href="{% url 'posts' %}">Click here to return to Posts Page</a>
+                </div>
             </div>
         </div>
     </main>
