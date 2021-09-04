@@ -18,12 +18,10 @@
 <main class="container">
     <div class="row">
         <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
-            <h3>Blog Posts</h3>
+            <h1>Blog Posts</h1>
             <p class="main-text">
-                Published Posts<br>
+                Published Posts
             </p>
-            {% comment %} <button type="submit" class="btn btn-warning" id="publishBtn">Publish</button>
-            <button type="submit" class="btn btn-warning" id="unpublishBtn">UnPulish</button> {% endcomment %}
         </div>
     </div>
     <body>
@@ -38,14 +36,17 @@
             <div class="col-md-8 pt-5">
                 {% for post in posts %}
                     {% if post.status == 'published' %}
+                    <hr>
                         <div class="col-12"><h1>
-                            <a class="text-dark" href="{{post.get_absolute_url}}"> {{post.title}}</a>
+                            <a class="link-primary text-decoration-none" href="{{post.get_absolute_url}}"> {{post.title}}</a>
+                        </h1></div>
+                        <div class="col-12"> {{post.excerpt|safe}}</div>
                             {% if post.author == user %}
+                            <div>
                                 <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.slug %}">Update</a>
                                 <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' post.slug %}">Delete</a>
+                            </div>
                             {% endif %}
-                        </h1></div><br>
-                        <div class="col-12"> {{post.excerpt|safe}}</div><br>
                     {% endif %}
                 {% empty %}
                     <div class="row">
