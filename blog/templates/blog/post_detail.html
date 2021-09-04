@@ -11,7 +11,7 @@
 
 {% block content %}
 <div class="overlay"></div>
-<head>
+{% comment %} <head>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4">
@@ -21,8 +21,9 @@
         </div>
     </div>
 </div>
-</head>
+</head> {% endcomment %}
 
+<main class="container">
 <body>
 <div class="container">
     <div class="row justify-content-md-center pt-5">
@@ -36,17 +37,25 @@
             <p>{{post.content|safe}}</p>
         </div>
 
+        <button type="button" class="btn btn-primary">
+            <a class="text-decoration-none text-light" href="{% url 'posts' %}">Return to Posts</a>
+        </button>
+
+        <hr>
+
         <div class="colmd-12">
             <!-- Existing Comments -->
             {% with comments.count as total_comments %}
             <h2>
                 {{ total_comments }} comment{{ total_comments|pluralize }}
             </h2>
+            <hr>
             {% endwith %}
             {% for comment in comments %}
-                Comment {{ forloop.counter }} by {{comment.name}}
-                on {{ comment.publish }}
                 {{ comment.content|linebreaks }}
+                <div class="fw-light fst-italic">Comment {{ forloop.counter }} by {{comment.name}}
+                on {{ comment.publish }} </div> 
+                <hr>
             {% empty %}
                 <p>There are no comments for this post.</p>
             {% endfor %}
@@ -58,7 +67,7 @@
             <form id ="commentForm" method="post">
                 {{ comment_form.as_p }}
                 {% csrf_token %}
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit Comment</button>
             </form>
             <!-- Comment form -->
 
@@ -69,6 +78,11 @@
 </div>
 
 </body>
+</main>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
 <script>
     function newFunction() {
     document.getElementById("commentForm").reset();
