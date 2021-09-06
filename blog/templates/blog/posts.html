@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block extra_css %}
-    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'blog/css/blog.css' %}"> {% endcomment %}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'blog/css/blog.css' %}">  -->
 {% endblock %}
 
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
-        <h1 class="display-4 text-success"> {{post.title}}</h1>
+        <h1 class="display-4 fw-bold text-success text-center ">Blog Posts</h1>
     </div>
 </div>
 {% endblock %}
@@ -18,18 +18,10 @@
 <main class="container">
     <div class="row">
         <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
-            <h1>Blog Posts</h1>
-            <p class="main-text">
-                Published Posts
-            </p>
+            <h2>Published Posts</h2>
         </div>
     </div>
     <body>
-        <div class="row">
-            <div class="col">
-                <!-- {{ posts }} -->
-            </div>
-        </div>     
 
     <div class="container">
         <div class="row justify-content-md-center">
