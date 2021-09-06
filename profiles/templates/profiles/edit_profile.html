@@ -9,7 +9,7 @@
 <div class="container header-container text-center">
     <hr>
     <div class="row">
-        <h1 class="display-4 text-success"> {{ user.username }}'s User Profile</h1>
+        <h1 class="display-4 fw-bold text-success text-center"> Edit {{ user.username }}'s User Profile</h1>
     </div>
     <hr>
 </div>
@@ -17,9 +17,6 @@
 
 {% block content %}
 
-<div class="container h-100 text-center">
-<h2>Edit Your User Profile</h2>
-</div>
 <!-- Edit Profile Form --> 
 <div class="col-10 offset-1 col-md-6 offset-md-3" id="form-styling">
     <form method="POST" action="{% url 'edit_profile' request.user %}" class="form mb-2" enctype="multipart/form-data">
@@ -29,7 +26,7 @@
             {{ field | as_crispy_field }}
         {% endfor %}
         <div class="text-center">
-            <button class="btn btn-outline-black rounded-0 submit-btn" type="submit">Confirm</button>
+            <button class="btn btn-outline-black rounded-0 submit-btn" type="submit">Save</button>
             <button class="btn btn-outline-black rounded-0 submit-btn" type="submit" name="cancel" value="Cancel" />Cancel</button>
         </div>
     </form>
