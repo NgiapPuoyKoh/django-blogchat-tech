@@ -120,7 +120,7 @@ class TopicListView(ListView):
     def get_queryset(self):
         content = {
             'topic': self.kwargs['topic'],
-            'posts': Post.objects.filter(topic__name=self.kwargs['topic']).filter(status='published')
+            'posts': Post.objects.filter(topic__name=self.kwargs['topic'])
         }
         return content
 
