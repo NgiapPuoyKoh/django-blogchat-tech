@@ -8,7 +8,7 @@
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
-        <h1 class="display-4 text-success"> {{ user.username }}'s Delete Post {{object.title}}</h1>
+        <h1 class="display-4 fw-bold text-success text-center">Delete {{ user.username }}'s Post</h1>
     </div>
     <hr
 </div>
@@ -17,15 +17,20 @@
 {% block content %}
 
 <div class="container h-100">
-<h2>Delete Post</h2>
+    <div class="row">
+        <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
+            <h2>Confirm Delete Post</h2>
+        </div>
+    </div>
 </div>
 <div class="col-10 offset-1 col-md-6 offset-md-3" id="form-styling">
     <form method="POST">
         {% csrf_token %}
         <fieldset>
-            <legend class="border-bottom mb-4">Delete Post</legend>
-            <h2>Confirm that you want to delete the post "{{ object.title }}"</h2>
+            <legend class="border-bottom mb-4 text-center"></legend>
+            <h4 class="text-center fw-normal">{{ object.title }}</h4>
         </fieldset>
+        <hr>
         <div class="form-group">
             <button class="btn btn-outline-danger rounded-0 submit-btn" type="submit">Yes Delete</button>
             <button class="btn btn-outline-black rounded-0 submit-btn" type="submit" name="cancel" value="Cancel">
