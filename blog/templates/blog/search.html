@@ -5,7 +5,7 @@
 <div class="container header-container">
     <hr>
     <div class="row">
-        <h1 class="display-4 text-success text-center"> Search Posts</h1>
+        <h1 class="display-4 fw-bold text-success text-center"> Search Posts</h1>
     </div>
     <hr>
 </div>
@@ -16,14 +16,14 @@
 <main class="container">
     <div class="row">
         <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
-            <h3>Search Published Posts</h3>
+            <h3>Blog Posts results from search</h3>
         </div>
     </div>
 
     <body>
     {% if q %}
-        <h1>Blog Posts results from search</h1>
-        <p>
+        <!-- <h3>Blog Posts results from search</h3> -->
+        <p class ="text-center" >
             {% with results.count as total_results %}
             Found {{ total_results }} result{{ total_results|pluralize}}
             {% endwith %}
