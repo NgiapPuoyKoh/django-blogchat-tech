@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block extra_css %}
-    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'blog/css/blog.css' %}"> {% endcomment %}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'blog/css/blog.css' %}"> -->
 {% endblock %}
 
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
-        <h1 class="display-4 text-success"> {{ topiclist.topic }}</h1>
+        <h1 class="display-4 fw-bold text-success text-center "> {{ topiclist.topic }}</h1>
     </div>
 </div>
 {% endblock %}
@@ -18,51 +18,58 @@
 <main class="container">
     <div class="row">
         <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
-            <h3>{{ topiclist.topic }} Blog Posts </h3>
-            <p class="main-text">
-                Published Posts<br>
-            </p>
-            {% comment %} <button type="submit" class="btn btn-warning" id="publishBtn">Publish</button>
-            <button type="submit" class="btn btn-warning" id="unpublishBtn">UnPulish</button> {% endcomment %}
+            <h2>Blog Posts </h2>
         </div>
     </div>
+    
     <body>
-        <div class="row">
-            <div class="col">
-                <!-- {{ posts }} -->
-            </div>
-        </div>     
-
-    <div class="container">
+    <div class="container">   
         <div class="row justify-content-md-center">
-            <div class="col-md-8 pt-5">
-                {% for post in topiclist.posts %}
-                <div class="col-md-4">
-                    <a class="text-dark" href="{{post.get_absolute_url}}"> {{post.title}}
-                    {% if post.status == 'published' %}
-                    <div class="class card mb-4 box-shadow">  
-                        <div class="card-body">
-                            <div class="col-12"> {{post.excerpt|safe}}</div><br>
-                        </div>
-                        <div class="col-12"><h1>
-                            {% if post.author == user %}
-                                <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.slug %}">Update</a>
-                                <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' post.slug %}">Delete</a>
-                            {% endif %}
-                        </h1></div><br>
-                        </a>
+            <div class="list-group col-md-8 pt-5">
+            <!-- Render published posts by topic -->
+            {% for post in topiclist.posts %}
+            <div class="list-group">
+                {% if post.status == 'published' %}
+                <hr>
+                <a href="{{post.get_absolute_url}}" class="list-group-item list-group-item-action border-0 p-0" aria-current="true">
+                    <h3 class = "text-primary">{{post.title}}</h3>
+                    <div class="d-flex w-100 justify-content-between">
+                        <p>{{post.excerpt|safe}}</p>
+                    </div>
+                    <!-- Allow Authenticated user to edit their published posts -->
+                    {% if post.author == user %}
+                    <div class="flex-row justify-content-start align-items-start">
+                        <a class = "btn btn-secondary btn-sm mt-2 mb-2" href="{% url 'post-update' post.slug %}">Update</a>
+                        <a class = "btn btn-danger btn-sm mt-2 mb-2" href="{% url 'post-delete' post.slug %}">Delete</a>
                     </div>
                     {% endif %}
-                </div>
-                {% empty %}
-                    <div class="row">
-                        There are no available posts
-                    </div>
-                {% endfor %}
-            </div>   
+                </a>
+                <!-- Allow Authenticated users to manage their post in "draft' status -->
+                {% elif post.status != 'published' %}
+                    {% if post.author == user %}
+                    <hr>
+                    <a href="{{post.get_absolute_url}}" class="list-group-item list-group-item-action border-0 p-0" aria-current="true">
+                            <h3 class = "text-primary">{{post.title}}</h3>
+                            <div class="d-flex w-100 justify-content-between">
+                                <p>{{post.excerpt|safe}}</p>
+                            </div>
+                            <div class="flex-row justify-content-start align-items-start">
+                                <a class = "btn btn-secondary btn-sm mt-2 mb-2" href="{% url 'post-update' post.slug %}">Update</a>
+                                <a class = "btn btn-danger btn-sm mt-2 mb-2" href="{% url 'post-delete' post.slug %}">Delete</a>
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endif %}
+            {% empty %}
+            <div class="row">
+                There are no available posts
+            </div>
+            {% endfor %}
+            </div>
         </div>
     </div>
-   </body>
+
+    </body>
 </main>
 
 {% endblock %}
