@@ -7,16 +7,6 @@ from django.urls import reverse
 from django.db.models.signals import pre_save
 from django.utils.text import slugify
 
-# settings.py 'blog'
-# python manage.py makemigrations
-# python manage.py migrate
-# [How to Use the Related Name Attribute in Django](https://www.youtube.com/watch?v=YIJI5U0BWr0)
-# python manage.py makemigrations --dry-run
-# python -m pip install Pillow to use the image field
-# python manage.py makemigrations
-# python manage.py migrate --plan
-# python manage.py migrate blog
-
 # Create your models here.
 
 class Topic(models.Model):
@@ -61,19 +51,6 @@ class Post(models.Model):
     status = models.CharField(max_length=10, choices=options, default='draft')
     topic = models.ForeignKey('Topic', null=True, blank=True, on_delete=models.SET_NULL)
 
-    # topic = models.CharField(max_length=254, null=True, blank=True)
-
-    # topic = models.ForeignKey(Topic, null=True, blank=True, on_delete=models.SET_NULL)
-    # topic = models.ForeignKey('Topic', null=True, blank=True, on_delete=models.SET_NULL)
-    # user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, 
-    #                                 null=True, blank=True, related_name='profile')
-    # image_url = models.URLField(max_length=1024, null=True, blank=True)
-    # image = models.ImageField(null=True, blank=True)
-    # series = models.CharField(max_length=254)
-    # discussion= models.ForeignKey('Chat', null=True, blank=True, on_delete=models.SET_NULL)
-    # media
-    # reference(article/video)
-    # type (tip/concept)
 
     def get_absolute_url(self):
         return reverse('post_detail', kwargs={'slug': self.slug})
@@ -98,13 +75,9 @@ def create_slug(instance, new_slug=None):
 def pre_save_post_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = create_slug(instance)
-    slug = slugify(instance.title)
-    # exists = Post.objects.filter(slug=slug).exists()
-    # if exists:
-    #     slug = "%s-%s" %(slug, instance_id)
-    # instance.slug = slug
 
 pre_save.connect(pre_save_post_receiver, sender=Post)
+
 
 class Comment(models.Model):
 
