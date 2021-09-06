@@ -79,7 +79,6 @@
               <li><a href="{% url 'post-create' %}" class="nav-link px-2 text-white">Create Post</a></li>
               <li><a href="{% url 'user_profile' user %}" class="nav-link px-2 text-white">My Profile</a></li>
                 {% if request.user.is_superuser %}
-                <li><a href="#" class="nav-link px-2 text-white">Blog Admin</a></li>
                 <li><a href="{% url 'donations' %}" class="nav-link px-2 text-white">Donations Received</a></li>
                 {% endif %}
             {% else %}
