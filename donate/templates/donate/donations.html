@@ -9,7 +9,7 @@
 <div class="container header-container text-center">
     <hr>
     <div class="row">
-        <h1 class="display-4 text-success">Donation List</h1>
+        <h1 class="display-4 fw-bold text-success">Donations Received</h1>
     </div>
     <hr>
 </div>
@@ -24,7 +24,6 @@
 <main class="container mb-2">
     <div class="row">
         <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
-            <h3>Donations Received</h3>
             <p class="main-text">
                 Donation Details<br>
             </p>
@@ -32,6 +31,7 @@
     </div>
 
     <hr>
+    <div class="table-responsive-sm">
     <table class="table table-boardered table-center">
     {% for donation in donations %}
         <tr>
@@ -46,9 +46,11 @@
         </tr>
     {% endfor %}
     </table>
+    </div>
 
-        <button type="submit" class="btn btn-warning mb-2" id="submitBtn"><a href="{% url 'home' %}">Home</a></button>
-
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button type="submit" class="btn btn-primary mb-2" id="submitBtn"><a class = "text-light"href="{% url 'home' %}">Home</a></button>
+    </div>
 </main>
 
 {% endblock %}
