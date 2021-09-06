@@ -9,9 +9,6 @@ class Donation(models.Model):
     """
     A model to record donations
     """
-    # donor_username = models.OneToOneField(User, on_delete=models.CASCADE, related_name='donation')
-    # user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-    #                                  null=True, blank=False)
     donor_name = models.CharField(max_length=50)
     donor_email = models.EmailField(max_length=254)
     donate_date =  models.DateTimeField(max_length=80,
