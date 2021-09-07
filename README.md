@@ -39,13 +39,20 @@ Readers can ask the blog post author questions and participate in a discussion v
 - Authenticated users will be able to reinforce learning by publishing post blogs and make comments
 - Non authenticated users will be able to access blog post content and make comments
 
-#### Content
+#### Blog Content
 
 - The blog content will be categorized by topic
 - The administrator will configure and maintain the list of topics for any subject
 - Authors will use the title associate it with a blog series to build a collection of blogs
 
 ### User Stories
+
+#### Personas
+
+- Non-Authenticated User (Reader)
+- Authenticated User (Post Author)
+- Content Curator and Application Administrator
+- Donor
 
 | Use Case # | As Persona | Want to |
 | --- | --- | --- |
@@ -88,77 +95,10 @@ Readers can ask the blog post author questions and participate in a discussion v
 | 7.5 | As an administrator | I want to be able to have CRUD privileges to curate comments |
 | | |
 | 8.1 | As a site owner | I want to accept donations to maintain the site |
-| 8.2 | As a site owner | I want to be able to track donors information and donation amounts
-
-### Wireframes
-
-<details>
-    <summary> Click to expand!</summary>
-
-**Note:**
-
-```
-The respective Mobile wireframes version of each web page listed will be similar to the Home Page Mobile Wireframe. The content stacked in a single column.
-```
-
-- Home Page
-
-![Home Page](docs/wireframes/homePage.png)
-
-- Home Page Mobile
-
-![Home Page Mobile](docs/wireframes/homePageMobile.png)
-
-- Sign In 
-
-![Sign In](docs/wireframes/signInPage.png)
-
-- Register Page
-
-![Register Page](docs/wireframes/registerPage.png)
-
-- Profile Create
-
-![Profile Create](docs/wireframes/profileCreate.png)
-
-- Profile Update Delete
-
-![Profile Update Delete](docs/wireframes/profileUpdateDelete.png)
-
-- Blog View Posts
-
- ![Blog View Posts](docs/wireframes/blogViewPosts.png)
-
-
-- Blog Post Detail
-
-![Blog Post Detail](docs/wireframes/blogViewPostDetail.png)
-
-- Blog Post Create
-
-![Blog Post Create](docs/wireframes/blogPostCreatePublish.png)
-
-- Blog Post Edit Delete
-
-![Blog Post Edit Delete](docs/wireframes/blogPostCreatePublish.png)
-
-- Blog Posts Search
-
-![Blog Posts Search](docs/wireframes/blogViewPostsSearch.png)
-
-- Blog Posts Comment
-
-![Blog Posts Comment](docs/wireframes/blogPostComments.png)
-
-- Donate Page
-
-![Donate Page](docs/wireframes/donatePage.png)
-
-- Donate Success
-
-![Donate Success](docs/wireframes/donateSuccessConfirmation.png)
-
-</details>
+| 8.2 | As a site owner | I want to be able to review donors information and donation amounts
+| | |
+| 9.1 | As a non-authenticated user | I cannot bypass the site's mechanisms to create and edit a blog |
+| 9.2 | As a non-authenticated user | I cannot bypass site's mechanisms to view donation information |
 
 ## Scope Plane
 
@@ -197,7 +137,7 @@ Only Authenticated users will be able to create, modify and publish posts that t
 - Edit a post
 - Delete a post
 - Publish a post
-- Unpublish a post
+- Unpublish a post - set status to "Draft"
 
 #### Blog Posts Search
 
@@ -207,7 +147,7 @@ Posts that contain one or more of the keywords entered will render a search resu
 At the bottom of the results page, there will be an option to perform a new search.
 
 - Search posts using keywords in title, excerpt, and content fields.
-- Users to not need to be authenticated to perform a search.
+- Users do not need to be authenticated to perform a search.
 
 #### Blog Post Comments
 
@@ -253,40 +193,44 @@ The application administrator with superuser privileges have full access to all 
 
 ### Live Chat Conversations
 
-- As a blogger, I want to be able to have a conversation with readers via live chat
+- As an author, I want to be able to have a conversation with readers via live chat
+- As a user, I want to be able to have group conversations with other readers and authors
+
 
 ### Contact Form
 
 - Users can submit questions to the site owner
-- Administrator can respond to questions
+- Administrator can respond to questions submitted
 
 ### Donation Enhancements
 
 - Automated email generation Thank You for Donations
 - Dashboard to track and report donations received
-- Donor information Management
+- Donor Information Management
 
 ### Blog Post Enhancements
 
 - Blog Topic Category Management
 - Rating and reviews
-- Blog post status management to include draft, publish and unpublish
+- Blog post status management to include draft, publish and unpublish (status ="draft")
 - Blog series playlist generation
+- Blog Metrics Dashboard for author number of blogs and blog ratings by topic
 
 ### Blog Application Configuration, Administration and Data Management
 
 - Application configuration dashboard
-- Blog Topic Management
 - Donation Management
 - Data management dashboard
 
 ## Structure Plane
 
+The structure plane: How is the information structured and how is it logically grouped
+
 ### Database Schema
 
 ![Pomodoro Blog Database Schema](docs/readme/pomodoroBlogDBSchema.png)
 
-## Donate Apps
+### Donate Apps
 
 - Donation
 
@@ -296,7 +240,8 @@ class Donation(models.Model):
     A model to record donations
     """
     donor_name = models.CharField(max_length=50)
-    donor_email = models.EmailField(max_length=254)
+    donor_email = models.EmailField(max_length=2gi log --oneline
+    54)
     donate_date =  models.DateTimeField(max_length=80,
                                       null=False, blank=False)
     amount = models.IntegerField(default=0) 
@@ -307,7 +252,7 @@ class Donation(models.Model):
 
 ```
 
-## Blog App
+### Blog App
 
 - Topic
 
@@ -407,7 +352,7 @@ class Comment(models.Model):
     
 ```
 
-## Profile App
+### Profile App
 
 - UserProfile
 
@@ -436,7 +381,13 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 ```
 
-## Django Contrib and Alluth
+## Security and Access Management
+
+### Django Contrib and Alluth
+
+```
+Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication
+```
 
 - allauth socialaccount
 - auth
@@ -447,5 +398,318 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 - Abstract BaseUser
 - Abstract PermmissionsMixin
 
+## Wireframes
 
-The structure plane: How is the information structured and how is it logically grouped?
+<details>
+    <summary> Click to expand!</summary>
+
+**Note:**
+
+```
+The respective Mobile wireframes version of each web page listed will be similar in content to the Home Page Mobile Wireframe. The content stacked in a single column.
+```
+
+- Home Page
+
+![Home Page](docs/wireframes/homePage.png)
+
+- Home Page Mobile
+
+![Home Page Mobile](docs/wireframes/homePageMobile.png)
+
+- Sign In 
+
+![Sign In](docs/wireframes/signInPage.png)
+
+- Register Page
+
+![Register Page](docs/wireframes/registerPage.png)
+
+- Profile Create
+
+![Profile Create](docs/wireframes/profileCreate.png)
+
+- Profile Update Delete
+
+![Profile Update Delete](docs/wireframes/profileUpdateDelete.png)
+
+- Blog View Posts
+
+ ![Blog View Posts](docs/wireframes/blogViewPosts.png)
+
+
+- Blog Post Detail
+
+![Blog Post Detail](docs/wireframes/blogViewPostDetail.png)
+
+- Blog Post Create
+
+![Blog Post Create](docs/wireframes/blogPostCreatePublish.png)
+
+- Blog Post Edit Delete
+
+![Blog Post Edit Delete](docs/wireframes/blogPostCreatePublish.png)
+
+- Blog Posts Search
+
+![Blog Posts Search](docs/wireframes/blogViewPostsSearch.png)
+
+- Blog Posts Comment
+
+![Blog Posts Comment](docs/wireframes/blogPostComments.png)
+
+- Donate Page
+
+![Donate Page](docs/wireframes/donatePage.png)
+
+- Donate Success
+
+![Donate Success](docs/wireframes/donateSuccessConfirmation.png)
+
+</details>
+
+## Skeletal Plane
+
+The skeleton plane: How will our information be represented, and how will the user navigate to the information and the features?
+
+### Navigation and Access
+
+Navigation links will be rendered base on user authentication and user privileges
+
+#### All User
+
+- Blogs
+- Topics
+- Search
+- Comment
+- Donate
+
+#### Authenticated user
+
+- Create, Update and Delete Posts associated with the user
+- Create, Update and Delete user profile
+
+#### Authenticated user with super user privileges
+
+- View Donation List
+
+## Surface Plane
+
+the surface plane: What will the finished product look like?
+
+### Payments
+
+Stripe
+
+Stripe ensures Payment Card Industry compliance and secure communications which means never have store credit card and is tokenized and handled by Stript
+
+Utilize Charges API since donations are a simple charge not requiring custom payment flows and experiences.
+Used by customers primarily in US/Canada not requiring SCA (Strong Customer Authentication)
+
+#### Stripe
+
+- [Django Stripe Payments Simplified with Donation Page](https://www.youtube.com/watch?v=oZwyA9lUwRk)
+- [Accept a payment using Stripe Elements](https://stripe.com/docs/payments/accept-a-payment-charges)
+- [Basic Test Card Numbers](https://stripe.com/docs/testing)
+- [Accept a card payment with Stripe.js](https://www.youtube.com/watch?v=0oHjwz-WHcc)
+- [Accept a payment - Create a PaymentIntent with Python](https://www.youtube.com/watch?v=Tgjwx-38Dic&t=0s)
+- ![Stripe Payment Intent](docs\readme\stripePaymentIntent.png)
+
+## Technologies Used
+
+### Languages Used
+
+- HTML5
+- CSS
+- Python
+- Javascript
+
+## Frameworks, Libraries & Programs Used
+
+- Django
+- Bootstrap5
+- Git
+- GitHub
+- Heroku
+- Whitenoise
+- Gitpod
+- VSCode
+- Stripe
+- Balsamiq
+
+- [django-allauth](https://django-allauth.readthedocs.io/en/latest/)
+
+## Testing
+
+## Known Issues
+
+You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed.
+
+## Deployment
+
+## Credits
+
+### Code
+
+### Content
+
+### Acknowledgements
+
+### References
+
+<details>
+    <summary> Click to expand!</summary>
+
+## Django
+
+#### Django Framework
+
+- [Python Django Crash Course 2021](https://www.youtube.com/watch?v=IHTP8-KskcQ&list=PLOLrQ9Pn6cax6x4UhfCGb24JqZOUl9qLL)
+- [Django -Ecommerce Project](https://www.youtube.com/playlist?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_)
+- [Static vs. Media files in Django](https://browniebroke.com/blog/static-vs-media-in-django/)
+
+#### Django Models
+
+- [Django Model Inheritance Options Introduction - ORM Part-9](https://www.youtube.com/watch?v=4Xag2FzmN60&list=PLOLrQ9Pn6cayWzj2P3eQvnLxuPz1Q4R84&index=2)
+- [Learn Django - Build a Custom User Model with Extended Fields](https://www.youtube.com/watch?v=Ae7nc1EGv-A&list=PLOLrQ9Pn6cayWzj2P3eQvnLxuPz1Q4R84)
+
+#### Django Packages
+
+- [django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html#django)
+
+#### Django Testing
+
+- [Learn Django - Testing Series](https://www.youtube.com/playlist?list=PLOLrQ9Pn6cay7t8VZ3wmn6QdAxzTx60F3)
+- [Writing and running tests¶](https://docs.djangoproject.com/en/3.2/topics/testing/overview/)
+- [Django Tutorial Part 10: Testing a Django web application](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing)
+- [Django Testing](https://www.youtube.com/watch?v=swEjbCW9XDY&list=PLOLrQ9Pn6cay7t8VZ3wmn6QdAxzTx60F3)
+- [Django automated testing with GitHub Actions](https://www.youtube.com/watch?v=qJPLFDtEi1I)
+- [Django Testing Tutorial - How To Set Up Tests And Testing URLs #1](https://www.youtube.com/watch?v=qwypH3YvMKc&list=PLbpAWbHbi5rMF2j5n6imm0enrSD9eQUaM)
+
+#### Django Middleware
+
+- [Django Middleware](https://www.youtube.com/watch?v=EpZOVmEw9Qg)
+
+#### Django Transaction Atomicity
+
+- [Django Transaction Atomicity](https://www.youtube.com/watch?v=BchP5Mn1IYg)
+
+#### Django Blog
+
+- [Django Project - Simple Blog App](https://www.youtube.com/watch?v=AF4ji8bb1M8&list=PLOLrQ9Pn6cawWd-5UZM6CIm0uqFXeBcTd&index=6)
+
+#### Django Chat Rooms
+
+- [Learn Django - Build an Asynchronous Chatroom with Django and Channels](https://www.youtube.com/watch?v=F4nwRQPXD8w)
+- [Channels](https://channels.readthedocs.io/en/latest/tutorial/index.html)
+- [Deploy Django + Channels + Redis + Heroku + Daphne](https://www.youtube.com/watch?v=zizzeE4Obc0)
+- [Learn Django - Project Chatrooms](https://www.youtube.com/playlist?list=PLOLrQ9Pn6cazStWmb0DpaNgFz_RzKawo8)
+- [Very Academy](https://www.youtube.com/channel/UC1mxuk7tuQT2D0qTMgKji3w)
+
+#### Django Import CSV
+
+- [Django Import CSV into Model](https://www.youtube.com/watch?v=vs6dXL9Wp7s)
+- [Django Admin CSV file upload](https://www.youtube.com/watch?v=BLxCnD5-Uvc)
+
+#### Django REST API
+
+- [Building a REST API With Django REST Framework](https://www.digitalocean.com/community/tech_talks/building-a-rest-api-with-django-rest-framework?utm_medium=email&utm_source=webinar&utm_campaign=invite&mkt_tok=MTEzLURUTi0yNjYAAAF85bZZ8wSNtFocbKR05IVX1Bl8nXIYtU6og4yJUgFPeitI5vSTDpD0TxQ5jDkv_gXL-dDmi5l-0_HQ-AZEX90Xj1SRZqAAEg4VIosWW0Nu)
+
+## Python
+
+- [PEP 8 -- Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/#indentation)
+
+## Bootstrap5
+
+- [Bootstrap5 Docs](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+- [Bookstrap5 Examples](https://getbootstrap.com/docs/5.0/examples/)
+- [Bootstrap 5 Crash Course | Website Build & Deploy](https://www.youtube.com/watch?v=4sosXZsdy-s)
+
+## Stripe
+
+- [Django Stripe Payments Simplified with Donation Page](https://www.youtube.com/watch?v=oZwyA9lUwRk)
+- [Accept a payment using Stripe Elements](https://stripe.com/docs/payments/accept-a-payment-charges)
+- [Basic Test Card Numbers](https://stripe.com/docs/testing)
+- [Accept a card payment with Stripe.js](https://www.youtube.com/watch?v=0oHjwz-WHcc)
+- [Accept a payment - Create a PaymentIntent with Python](https://www.youtube.com/watch?v=Tgjwx-38Dic&t=0s)
+- ![Stripe Payment Intent](docs\readme\stripePaymentIntent.png)
+- [Stripe.js and Stripe Elements](https://stripe.com/docs/stripe-js)
+- [Stripe Charges vs. Payment Intents APIs](https://stripe.com/docs/payments/payment-intents/migration/charges)
+- [Stripe Integration security guide -PCI](https://stripe.com/docs/security/guide)
+- [Stripe Development quickstart](https://stripe.com/docs/development/quicksta)
+- [Stripe API Reference](https://stripe.com/docs/api/authentication)
+- [Development Quick Start](https://stripe.com/docs/development/quickstart)
+- [Django Stripe Subscriptions](https://testdriven.io/blog/django-stripe-subscriptions/)
+- [Django Stripe Payments Simplified with Donation Page](https://www.youtube.com/watch?v=oZwyA9lUwRk)
+
+## Heroku Deployment
+
+- [Heroku & Django Deployment Guide](https://github.com/codingforentrepreneurs/Guides/blob/master/all/Heroku_Django_Deployment_Guide.md)
+
+## Visual Studio Code
+
+- [VS Code & Django - Tutorial](https://www.youtube.com/watch?v=IlmICfGQOv4)
+- [DJANGO PROJECTS IN VISUAL STUDIO CODE](https://automationpanda.com/2018/02/08/django-projects-in-visual-studio-code/)
+- [Visual Studio Code (Mac) - Setting up a Python Development Environment and Complete Overview](https://www.youtube.com/watch?v=06I63_p-2A4)
+- [Visual Studio Code (Windows) - Setting up a Python Development Environment and Complete Overview](https://www.youtube.com/watch?v=-nh9rCzPJ20)
+- [The VSCODE Checklist](https://dehlin.dev/blog/2019-07-25-the-vscode-checklist/)
+- [Enable Windows 10 WSL](https://www.youtube.com/watch?v=5RTSlby-l9w)
+- [Django Tutorial in Visual Studio Code](https://code.visualstudio.com/docs/python/tutorial-django)
+- [25 VS Code Productivity Tips and Speed Hacks](https://www.youtube.com/watch?v=ifTF3ags0XI)
+
+### VSCODE Extensions
+
+- [SQLite Explorer]()
+- [Postman API Test Alternative - Thunder Client](https://www.youtube.com/watch?v=L5GizgxMNQE)
+- [Generate diagrams from Django models](https://www.youtube.com/watch?v=yvf_J225iM8)
+- [Django Extensions for Visual Studio Code Setup](https://www.youtube.com/watch?v=PcvyZ3mIONM)
+
+## Tools
+
+- [Stack Overflow Developer Survey 2020](https://insights.stackoverflow.com/survey/2020)
+- [graphviz](https://graphviz.org/)
+- [django-extensions](https://django-extensions.readthedocs.io/en/latest/graph_models.html)
+- [pip install django-extensions](https://pypi.org/project/django-extensions/)
+
+## Markdown
+
+- [readme.so](https://readme.so/editor)
+
+## Git
+
+- [Using Git in a team: a cheatsheet](https://jameschambers.co.uk/git-team-workflow-cheatsheet)
+- [GitHub Wiki TOC generator](https://ecotrust-canada.github.io/markdown-toc/)
+- [Django Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/)
+
+## Technologies References
+
+- [Whitenoise](http://whitenoise.evans.io/en/stable/django.html) Serve static files
+- [django-allauth](https://django-allauth.readthedocs.io/en/latest/overview.html#supported-flows)
+Multiple authentication schemes and account verification
+- [Amazon S3](https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/
+) Storing Django Static and Media Files on Amazon S3
+
+## Media Sources
+
+- [icon-icons](https://icon-icons.com/icon-packs-recently-uploaded)
+- [Linea](https://linea.io/)
+- [Google Fonts](https://fonts.google.com/?query=lato)
+- [Font Awesome](https://fontawesome.com/kits/7d6112ed33/use)
+
+## UX/UI
+
+- [What Are Favicons: A Comprehensive Guide](https://sympli.io/blog/heres-everything-you-need-to-know-about-favicons-in-2020/)
+
+## Analytics Dashboard
+
+- [How to create an analytics dashboard in a Django app](https://www.freecodecamp.org/news/how-to-create-an-analytics-dashboard-in-django-app/)
+- [Django for Data Science](https://justdjango.com/blog/django-for-data-science/)
+
+## Learning how to learn (Chunking and Pomodoro Technique)
+
+- [Helping Students be Excellent Online Learners](https://www.youtube.com/watch?v=AnQHToj1exY)
+- [Learning how to learn](https://www.coursera.org/learn/learning-how-to-learn?)
+
+</details>
+
+For Education Purpose Only
