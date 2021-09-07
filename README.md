@@ -469,13 +469,24 @@ The respective Mobile wireframes version of each web page listed will be similar
 
 </details>
 
+
 ## Skeletal Plane
 
-The skeleton plane: How will our information be represented, and how will the user navigate to the information and the features?
+### Content
+
+Blog posts by a topic with the required fields
+- Title
+- Excerpt
+- Content
+- Comments(If available, will be displayed with the post)
 
 ### Navigation and Access
 
-Navigation links will be rendered base on user authentication and user privileges
+The navigation bar and links will be the primary mechanism for navigating to features.
+Page links to navigate to pages to perform functions and return to the home page or display posts pages.
+
+Navigation links will be rendered base on user authentication and user privileges.
+There are 
 
 #### All User
 
@@ -490,13 +501,40 @@ Navigation links will be rendered base on user authentication and user privilege
 - Create, Update and Delete Posts associated with the user
 - Create, Update and Delete user profile
 
-#### Authenticated user with super user privileges
+#### Authenticated user with superuser privileges
 
 - View Donation List
 
+#### Administrator
+
+- Full access via the Django Administration panel
+
 ## Surface Plane
 
-the surface plane: What will the finished product look like?
+### Color Scheme, Web Page Components
+
+The goal is to have a minimalist black and white page layout with a simple theme for a blog.
+Bootstrap5 standard colors, components, CSS, and built-in responsive-without Sass customization and used to develop the web pages.
+
+### Navigation
+
+Access to features is rendered based on the user's session authentication.
+
+#### Non Authenticated Users
+
+![NavNoAuthentication](docs/readme/navbarNoAuthenticationRequired.png)
+
+#### Authenticated Users
+
+![NavAuthenticatedRequired](docs/readme/navbarAuthenticationRequired.png)
+
+#### Administrator with Superuser Privileges
+
+![NavSuperUser](docs/readme/navbarSuperUser.png)
+
+#### Django Administration with Superuser Privileges
+
+![DjangoAdministrationPanel](docs/readme/djangoAdministration.png)
 
 ### Payments
 
@@ -514,7 +552,7 @@ Used by customers primarily in US/Canada not requiring SCA (Strong Customer Auth
 - [Basic Test Card Numbers](https://stripe.com/docs/testing)
 - [Accept a card payment with Stripe.js](https://www.youtube.com/watch?v=0oHjwz-WHcc)
 - [Accept a payment - Create a PaymentIntent with Python](https://www.youtube.com/watch?v=Tgjwx-38Dic&t=0s)
-- ![Stripe Payment Intent](docs/readme/stripePaymentIntent.png)
+![Stripe Payment Intent](docs/readme/stripePaymentIntent.png)
 
 ## Technologies Used
 
@@ -541,6 +579,8 @@ Used by customers primarily in US/Canada not requiring SCA (Strong Customer Auth
 - [django-allauth](https://django-allauth.readthedocs.io/en/latest/)
 
 ## Testing
+
+[Testing Documentation here.](TESTING.md)
 
 ## Known Issues
 
