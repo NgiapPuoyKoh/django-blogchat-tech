@@ -536,9 +536,7 @@ Access to features is rendered based on the user's session authentication.
 
 ![DjangoAdministrationPanel](docs/readme/djangoAdministration.png)
 
-### Payments
-
-Stripe
+### Donation Payments using Stripe
 
 Stripe ensures Payment Card Industry compliance and secure communications which means never have store credit card and is tokenized and handled by Stript
 
@@ -547,12 +545,105 @@ Used by customers primarily in US/Canada not requiring SCA (Strong Customer Auth
 
 #### Stripe
 
-- [Django Stripe Payments Simplified with Donation Page](https://www.youtube.com/watch?v=oZwyA9lUwRk)
-- [Accept a payment using Stripe Elements](https://stripe.com/docs/payments/accept-a-payment-charges)
-- [Basic Test Card Numbers](https://stripe.com/docs/testing)
-- [Accept a card payment with Stripe.js](https://www.youtube.com/watch?v=0oHjwz-WHcc)
-- [Accept a payment - Create a PaymentIntent with Python](https://www.youtube.com/watch?v=Tgjwx-38Dic&t=0s)
 ![Stripe Payment Intent](docs/readme/stripePaymentIntent.png)
+
+- [Django Stripe Payments Simplified with Donation Page](https://www.youtube.com/watch?v=oZwyA9lUwRk)
+
+![donateStripePayment](docs/readme/donateStripePayment.png)
+
+- [Accept a payment using Stripe Elements](https://stripe.com/docs/payments/accept-a-payment-charges)
+
+![Stripe Payments](docs/readme/stripePayments.png)
+
+![Stripe Customers](docs/readme/stripeCustomers.png)
+
+#### Stripe Test Payment
+
+- [Basic Test Card Numbers](https://stripe.com/docs/testing)
+
+![Stripe Test Payment](docs/readme/stripeTestPayment.png)
+
+![Pomodoro Donations](docs/readme/pomodoroDonationsReceived.png)
+
+
+- stripe.js
+[Accept a payment - Create a PaymentIntent with Python](https://www.youtube.com/watch?v=Tgjwx-38Dic&t=0s)
+
+
+[Accept a card payment with Stripe.js](https://www.youtube.com/watch?v=0oHjwz-WHcc)
+
+```
+// Set your publishable key: remember to change this to your live publishable key in production
+// See your keys here: https://dashboard.stripe.com/apikeys
+
+// Get Stripe publishable key
+fetch("/donate/config/")
+.then((result) => {
+  console.log("then result");
+  return result.json(); })
+.then((data) => {
+  // Initialize Stripe.js
+  const stripe = Stripe(data.publicKey);
+  console.log("then data");
+
+  var elements = stripe.elements();
+
+  // Custom styling can be passed to options when creating an Element.
+  var style = {
+      base: {
+        // Add your base input styles here. For example:
+        fontSize: '16px',
+        color: '#32325d',
+      },
+    };
+    
+  // Create an instance of the card Element.
+  var card = elements.create('card', {style: style});
+
+  // Add an instance of the card Element into the `card-element` <div>.
+  card.mount('#card-element');
+
+  // Handle real-time validation errors from the card Element.
+  card.addEventListener('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+      displayError.textContent = event.error.message;
+    } else {
+      displayError.textContent = '';
+    }
+  });
+
+  // Create a token or display an error when the form is submitted.
+  var form = document.getElementById('payment-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    stripe.createToken(card).then(function(result) {
+      if (result.error) {
+        // Inform the customer that there was an error.
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = result.error.message;
+      } else {
+        // Send the token to your server.
+        stripeTokenHandler(result.token);
+      }
+    });
+  });
+
+  function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var form = document.getElementById('payment-form');
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+
+    // Submit the form
+    form.submit();
+  }
+});
+```
 
 ## Technologies Used
 
