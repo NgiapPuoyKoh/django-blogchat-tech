@@ -1,6 +1,7 @@
 # Pomodoro Blog
 
 [Click here access Pomodoro Blog](https://django-blogchat-tech.herokuapp.com/)
+![pomodoroblog.png](docs/readme/pomodoroBlogResponsive.png)
 
 "Reading maketh a full man; conference a ready man; and writing an exact man." Francis Bacon
 
@@ -513,7 +514,7 @@ Used by customers primarily in US/Canada not requiring SCA (Strong Customer Auth
 - [Basic Test Card Numbers](https://stripe.com/docs/testing)
 - [Accept a card payment with Stripe.js](https://www.youtube.com/watch?v=0oHjwz-WHcc)
 - [Accept a payment - Create a PaymentIntent with Python](https://www.youtube.com/watch?v=Tgjwx-38Dic&t=0s)
-- ![Stripe Payment Intent](docs\readme\stripePaymentIntent.png)
+- ![Stripe Payment Intent](docs/readme/stripePaymentIntent.png)
 
 ## Technologies Used
 
@@ -632,7 +633,7 @@ You will need to mention unfixed bugs and why they were not fixed. This section 
 - [Basic Test Card Numbers](https://stripe.com/docs/testing)
 - [Accept a card payment with Stripe.js](https://www.youtube.com/watch?v=0oHjwz-WHcc)
 - [Accept a payment - Create a PaymentIntent with Python](https://www.youtube.com/watch?v=Tgjwx-38Dic&t=0s)
-- ![Stripe Payment Intent](docs\readme\stripePaymentIntent.png)
+- ![Stripe Payment Intent](docs/readme/stripePaymentIntent.png)
 - [Stripe.js and Stripe Elements](https://stripe.com/docs/stripe-js)
 - [Stripe Charges vs. Payment Intents APIs](https://stripe.com/docs/payments/payment-intents/migration/charges)
 - [Stripe Integration security guide -PCI](https://stripe.com/docs/security/guide)
