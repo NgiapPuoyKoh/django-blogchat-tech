@@ -486,7 +486,7 @@ The navigation bar and links will be the primary mechanism for navigating to fea
 Page links to navigate to pages to perform functions and return to the home page or display posts pages.
 
 Navigation links will be rendered base on user authentication and user privileges.
-There are 
+
 
 #### All User
 
@@ -644,6 +644,19 @@ fetch("/donate/config/")
   }
 });
 ```
+
+### Post CRUD
+
+Authors of post are authenticated in order to perform CRUD operations
+
+#### Create/Edit Post
+
+![Post Form Fields](docs/readme/createEditPost.png)
+
+#### Update and Delete
+
+![Authors of Posts](docs/readme/authorPostsUpdateDelete.png)
+
 
 ## Technologies Used
 
