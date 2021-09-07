@@ -2,6 +2,20 @@
 
 ## Functional Testing
 
+## Navigation access by user authentication profile
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+| 1.1 | As a user | I want to know the purpose and how to use the blog | Click on home link home page renders | Pass |
+| 1.2 | As a user | I want to view a list of features | Click on Topic dropdown post by topic renders | Pass |
+| 1.3 | As a user | I want to know how to use each feature | Click on home Page to view Feature Descriptions | Pass |
+| 1.4 | As a user | I want to navigate to each feature from the feature page | Click on each feature link navigate to feature action | Pass |
+| | | | |
+| 2.1 | As a non-authenticated user | I want to be able to view a list of blog posts | Click on Blog nav item link | Pass |
+| 2.2 | As a non-authenticated user | I want to be able to view blog details | Click on Blog nav item link to navigate to bog list | Pass |
+| 2.3 | As a non-authenticated user | I can make submit a comment on a post | Enter a comment save and comment renders below the post | Pass |
+| 2.4 | As an authenticated user | I want to be able to search for blogs| Enter keywords in the search form on the nav bar | Search Post resutls renders |Pass |
+
 ## Display Posts by Topic
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
@@ -223,9 +237,9 @@ Destroying test database for alias 'default'...
   - Add Customer
   - Payment Transacted
 
-  ![](docs\testing\stripePyamentUnitTest.png)
+  ![](docs\testing\stripePaymentUnitTest.png)
 
-  ![](docs\testing\stripePyamentUnitTestOutput.png)
+  ![](docs\testing\stripePaymentUnitTestOutput.png)
 
 - STRIPE Customer Created
 
@@ -584,3 +598,10 @@ Reference:
 - Make sure you have checked that no links result in an internal server error. 
 - If you have included a user type with higher access privileges, then you can include example login credentials at submission. 
 - Do not display links the user does not have the privileges to access.
+
+- [HTML Validator](https://validator.w3.org/)
+- [CSS Validator](https://jigsaw.w3.org/css-validator/)
+- [JavaScript Validator](https://jshint.com/)
+- [Python Validator](http://pep8online.com/)
+- [Documentation on using Developer Tools](Lighthouse9https://developers.google.com/web/tools/lighthouse)
+
