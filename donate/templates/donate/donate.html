@@ -9,7 +9,7 @@
 <div class="container header-container h-100 text-center">
     <hr>
     <div class="row">
-        <h1 class="display-4 text-success">Donate</h1>
+        <h1 class="display-4 fw-bold text-success text-center">Donate</h1>
     </div>
     <hr>
 </div>
@@ -21,7 +21,7 @@
 <h2>Your Support Counts</h2>
 </div>
 
-<main class="container">
+<div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-8 offset-md-2 text-center" id="form-styling">
             <h3>Support Us</h3>
@@ -62,12 +62,13 @@
     <br>
         
     <div class="form-row mb-2">
-        <button type="submit" class="btn btn-warning" id="submitBtn">Donate</button>
-        <button type="submit" class="btn cancelBtn" id="cancelBtn"><a href="{% url 'cancel' %}"> Cancel</a></button>
+        <button type="submit" class="btn btn-outline-secondary" id="submitBtn">Donate</button>
+        <a class="btn btn-outline-danger mt-2 mb-2" href="{% url 'cancel' %}">Cancel</a>
+        {% comment %} <a href="{% url 'cancel' %}" type="submit" class="btn cancelBtn" id="cancelBtn"> Cancel</a> {% endcomment %}
     </div>
     </form>
 
-</main>
+</div>
 
 {% endblock %}
 
