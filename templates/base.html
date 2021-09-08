@@ -95,13 +95,9 @@
     
           <div class="text-end">
             {% if request.user.is_authenticated %}
-            <button type="button" class="btn btn-secondary me-2">
-              <a class="text-decoration-none text-white " href="{% url 'account_logout' %}">Sign Out</a>
-            </button>
+              <a class="btn btn-secondary me-2 text-decoration-none text-white " href="{% url 'account_logout' %}">Sign Out</a>
             {% endif %}
-            <button type="button" class="btn btn-warning">
-                  <a class="text-decoration-none text-dark" href="{% url 'donate' %}">Donate</a>
-            </button>
+              <a class="btn btn-warning text-decoration-none text-dark" href="{% url 'donate' %}">Donate</a>
           </div>
         </div>
       </div>
