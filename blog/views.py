@@ -11,13 +11,15 @@ from blog.forms import NewCommentForm, PostSearchForm
 
 # Create your views here
 
+
 def blog(request):
     """ A view to return the Blog Page """
     return render(request, "blog/blog.html")
 
 
 def all_posts(request):
-    """ A view to show all posts, including sorting and search queries """
+    """ A view to show all posts"""
+    """ including sorting and search queries """
 
     posts = Post.objects.all()
 
@@ -29,7 +31,8 @@ def all_posts(request):
 
 
 def post_detail(request, slug):
-    """ A view to display individual post details with comments and comment form """
+    """ A view to display individual post details """
+    """ with comments and comment form """
 
     post = get_object_or_404(Post, slug=slug)
 
@@ -48,14 +51,13 @@ def post_detail(request, slug):
         comment_form = NewCommentForm()
 
         context = {
-            'post': post, 
-            'comments':  user_comment, 
-            'comments': comments, 
+            'post': post,
+            'comments':  user_comment,
+            'comments': comments,
             'comment_form': comment_form
         }
-    
-    return render(request, 'blog/post_detail.html', context )
- 
+    return render(request, 'blog/post_detail.html', context)
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     """ A view to create a blog post """
@@ -90,10 +92,9 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-
     def test_func(self):
         post = self.get_object()
-        if self.request.user  == post.author:
+        if self.request.user == post.author:
             return True
         return False
 
@@ -103,10 +104,9 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = '/'
 
-
     def test_func(self):
         post = self.get_object()
-        if self.request.user  == post.author:
+        if self.request.user == post.author:
             return True
         return False
 
@@ -120,7 +120,8 @@ class TopicListView(ListView):
     def get_queryset(self):
         content = {
             'topic': self.kwargs['topic'],
-            'posts': Post.objects.filter(topic__name=self.kwargs['topic'])
+            'posts': Post.objects.filter(
+                topic__name=self.kwargs['topic'])
         }
         return content
 
@@ -144,10 +145,10 @@ def posts_search(request):
         form = PostSearchForm(request.GET)
         if form.is_valid():
             q = form.cleaned_data['q']
-            results = (Post.objects.filter(title__icontains=q) | Post.objects.filter(content__icontains=q) | Post.objects.filter(excerpt__contains=q )) & Post.objects.filter(status = "published")
-        
-    return render(request, 'blog/search.html',
-        {'form': form,
-        'q': q,
-        'results': results })
-    
+            results = (
+                Post.objects.filter(title__icontains=q) |
+                Post.objects.filter(content__icontains=q) |
+                Post.objects.filter(excerpt__contains=q)
+                ) & Post.objects.filter(status="published")
+    return render(request, 'blog/search.html', {
+        'form': form, 'q': q, 'results': results})
