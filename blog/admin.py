@@ -3,6 +3,7 @@ from .models import Topic, Post, Comment
 
 # Register your models here.
 
+
 class TopicAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_name',
@@ -10,6 +11,7 @@ class TopicAdmin(admin.ModelAdmin):
     )
 
     ordering = ('friendly_name',)
+
 
 class PostAdmin(admin.ModelAdmin):
     list_display = (
@@ -23,8 +25,9 @@ class PostAdmin(admin.ModelAdmin):
         'slug',
     )
 
-    prepopulated_fields = {'slug':('title',)}
-    ordering = ('author','topic',)
+    prepopulated_fields = {'slug': ('title',)}
+    ordering = ('author', 'topic',)
+
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = (
@@ -36,7 +39,7 @@ class CommentAdmin(admin.ModelAdmin):
         'status'
     )
     list_filter = (
-        "status", 
+        "status",
         "publish"
     )
     search_fields = (
@@ -45,7 +48,7 @@ class CommentAdmin(admin.ModelAdmin):
         'content',
     )
 
-    ordering = ('post','publish',)
+    ordering = ('post', 'publish',)
 
 admin.site.register(Topic, TopicAdmin)
 admin.site.register(Post, PostAdmin)

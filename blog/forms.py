@@ -23,5 +23,3 @@ class PostSearchForm(forms.Form):
         self.fields['q'].label = 'Search For'
         self.fields['q'].widget.attrs.update(
             {'class': 'form-control'})
-        
-    
