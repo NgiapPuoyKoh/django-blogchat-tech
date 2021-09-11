@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate
 import datetime
 import stripe
 
-stripe.api_key = os.environ.get('STRIPE_SECRET_KEY') 
+stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 # stripe_public_key = os.environ.get('STRIPE_PUBLIC_KEY')
 
 
@@ -19,39 +19,40 @@ def donate(request):
     """ A view to return the donate page """
     return render(request, "donate/donate.html")
 
+
 @csrf_exempt
 def stripe_config(request):
     if request.method == 'GET':
-        stripe_config = {'publicKey': os.environ.get('STRIPE_PUBLIC_KEY') }
+        stripe_config = {'publicKey': os.environ.get('STRIPE_PUBLIC_KEY')}
         return JsonResponse(stripe_config, safe=False)
+
 
 @csrf_protect
 def charge(request):
     """ A view to process donation """
 
     if request.method == "POST":
-        
         amount = int(request.POST['amount'])
 
         donation = Donation.objects.create(
-            donor_name = request.POST['username'],
-            donor_email = request.POST['email'],
-            donate_date = datetime.date.today(),
-            amount = request.POST['amount'],
-            donated = True
+            donor_name=request.POST['username'],
+            donor_email=request.POST['email'],
+            donate_date=datetime.date.today(),
+            amount=request.POST['amount'],
+            donated=True
         )
 
         customer = stripe.Customer.create(
             email=request.POST['email'],
-	        name=request.POST['username'],
-	        source=request.POST['stripeToken']
-		)
+            name=request.POST['username'],
+            source=request.POST['stripeToken']
+        )
 
         charge = stripe.Charge.create(
             customer=customer,
             amount=amount*100,
             currency='usd',
-            description = 'Donation'
+            description='Donation'
         )
     return redirect(reverse('success', args=[amount]))
 
@@ -59,7 +60,7 @@ def charge(request):
 def successMsg(request, args):
     """A view to notify donation successful """
     amount = args
-    return render(request, 'donate/success.html', {'amount':amount})
+    return render(request, 'donate/success.html', {'amount': amount})
 
 
 def cancelMsg(request):
@@ -73,9 +74,6 @@ def donations(request):
     donations = Donation.objects.all()
 
     context = {
-        'donations' : donations
+        'donations': donations
     }
-
     return render(request, 'donate/donations.html', context)
-
-
