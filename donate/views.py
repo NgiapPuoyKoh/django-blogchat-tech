@@ -1,4 +1,5 @@
 import os
+from django.conf import settings
 from django_blogchat_tech.settings import STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -70,7 +71,12 @@ def cancelMsg(request):
 
 def donations(request):
     """ A view to list donations """
-    # Consider restricting by user
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
+    if not request.user.is_staff:
+        return redirect(reverse('user_profile', kwargs={'user': request.user}))
+
     donations = Donation.objects.all()
 
     context = {
