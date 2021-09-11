@@ -88,5 +88,10 @@ color: #fff;
 }
 
 .allauth-form-inner-content a {
-color: #17a2b8; /* text-info */
+  color: #17a2b8; /* text-info */
+}
+
+.place-bottom {
+  bottom: 0;
+  width: 100%;
 }
