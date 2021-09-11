@@ -534,7 +534,6 @@ The respective Mobile wireframes version of each web page listed will be similar
 
  ![Blog View Posts](docs/wireframes/blogViewPosts.png)
 
-
 - Blog Post Detail
 
 ![Blog Post Detail](docs/wireframes/blogViewPostDetail.png)
@@ -745,7 +744,7 @@ Authentication is not required to post comments.
 
 ### Authentication
 
-allauth form
+Customized allauth forms
 
 #### Sign In
 
@@ -766,15 +765,15 @@ allauth form
 #### My Profile
 
 Fields Values Inherit from Users
+
 - e-mail Address
-- User name 
+- User name
 
 ![my Profile](docs/readme/userProfile.png)
 
 #### User Profile Admin Panel
 
 ![User Profile Admin Panel](docs/readme/userProfileAdminPanel.png)
-
 
 #### View
 
@@ -903,7 +902,7 @@ Stripe References:
 
 - Post
 
-![Post Admin](docs/readme/PostAdmin.png)
+![Post Admin](docs/readme/PostsAdmin.png)
 
 - Topics
 
@@ -964,6 +963,7 @@ Stripe References:
 
 - Refactor code to replace function views with class base views for consistent development standards for code maintainability
 - Read-only profile name and email instead of duplicated fields associated with the user account
+- Footer is not sticky at the bottom for allauth html. Unable to figure out how to resolve the issue between account/base.html, allauth.html and project index.html
 
 ## Deployment
 
@@ -1159,7 +1159,6 @@ Post contents are created and may include link to online resources
 - [Basic Test Card Numbers](https://stripe.com/docs/testing)
 - [Accept a card payment with Stripe.js](https://www.youtube.com/watch?v=0oHjwz-WHcc)
 - [Accept a payment - Create a PaymentIntent with Python](https://www.youtube.com/watch?v=Tgjwx-38Dic&t=0s)
-- ![Stripe Payment Intent](docs/readme/stripePaymentIntent.png)
 - [Stripe.js and Stripe Elements](https://stripe.com/docs/stripe-js)
 - [Stripe Charges vs. Payment Intents APIs](https://stripe.com/docs/payments/payment-intents/migration/charges)
 - [Stripe Integration security guide -PCI](https://stripe.com/docs/security/guide)
