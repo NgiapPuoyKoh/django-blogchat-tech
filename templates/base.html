@@ -75,10 +75,10 @@
                 {% endfor %}
               </div> 
             </li>
-            {% if request.user.is_authenticated %}
+            {% if user.is_authenticated %}
               <li><a href="{% url 'post-create' %}" class="nav-link px-2 text-white">Create Post</a></li>
               <li><a href="{% url 'user_profile' user %}" class="nav-link px-2 text-white">My Profile</a></li>
-                {% if request.user.is_superuser %}
+                {% if user.is_staff %}
                 <li><a href="{% url 'donations' %}" class="nav-link px-2 text-white">Donations Received</a></li>
                 {% endif %}
             {% else %}
@@ -94,7 +94,7 @@
           </form>
     
           <div class="text-end">
-            {% if request.user.is_authenticated %}
+            {% if user.is_authenticated %}
               <a class="btn btn-secondary me-2 text-decoration-none text-white " href="{% url 'account_logout' %}">Sign Out</a>
             {% endif %}
               <a class="btn btn-warning text-decoration-none text-dark" href="{% url 'donate' %}">Donate</a>
