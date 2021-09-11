@@ -5,6 +5,7 @@ from django.dispatch import receiver
 
 # Create your models here.
 
+
 class UserProfile(models.Model):
     """
     A user profile model for maintaining user profiles
@@ -12,11 +13,13 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=80,
                             null=True, blank=True)
-    email = models.EmailField(max_length=70, blank=True, null=True, unique= True)
+    email = models.EmailField(
+        max_length=70, blank=True, null=True, unique=True)
 
     def __str__(self):
         return str(self.name)
-    
+
+
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """

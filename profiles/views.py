@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
+
 @login_required
 def user_profile(request, user):
     """ A view to return the profile page """
@@ -38,16 +39,6 @@ def user_profile(request, user):
 def edit_profile(request, user):
     """ A function to edit the users profile and render
     the edit_profile page """
-
-    # try:
-    #     profile = get_object_or_404(UserProfile, user=request.user)
-
-    # except Exception as e:
-    #     # Create empty User Profile if it doesn't exist
-    #     UserProfile.objects.create(
-    #         user=request.user, 
-    #         name='',
-    #         email='')
 
     get_user = get_object_or_404(User, username=user)
     profile = get_object_or_404(UserProfile, user=get_user)
