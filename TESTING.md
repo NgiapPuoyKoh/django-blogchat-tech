@@ -1,5 +1,57 @@
 # Pomodoro Blog Testing
 
+## Table of Content
+
+- [Functional Testing](#functional-testing)
+- [Navigation access by user authentication profile](#navigation-access-by-user-authentication-profile)
+- [Display Posts by Topic](#display-posts-by-topic)
+- [Post Detail Page](#post-detail-page)
+- [Create, Update, Delete Blog Posts only by author and Administrator](#create--update--delete-blog-posts-only-by-author-and-administrator)
+- [Comment on Post](#comment-on-post)
+- [View a Blog Posts](#view-a-blog-posts)
+- [Sign Up, Login, Sign Out, Profile](#sign-up--login--sign-out--profile)
+- [Donations](#donations)
+- [Stripe](#stripe)
+- [Admin Panel](#admin-panel)
+  * [Admin Panel - Users](#admin-panel---users)
+  * [Admin Panel - Posts](#admin-panel---posts)
+  * [Admin Donations](#admin-donations)
+  * [Authentication required](#authentication-required)
+- [Custom 404 and 500](#custom-404-and-500)
+- [URL CSRF](#url-csrf)
+- [Authentication as the author required to CRUD post](#authentication-as-the-author-required-to-crud-post)
+- [Mobile Device Responsive Testing](#mobile-device-responsive-testing)
+- [Web Page Chrome Ligthouse Validation](#web-page-chrome-ligthouse-validation)
+  * [Accessibility](#accessibility)
+  * [Best Practices](#best-practices)
+- [Browser](#browser)
+- [Automated Testing and Test Driven Development](#automated-testing-and-test-driven-development)
+  * [Coverage install and commands](#coverage-install-and-commands)
+- [Home View](#home-view)
+  * [test_home_page](#test-home-page)
+- [Profiles](#profiles)
+- [Blog](#blog)
+- [Covergae report](#covergae-report)
+- [Coverage](#coverage)
+- [Email](#email)
+- [Donation](#donation)
+  * [Stripe Payment](#stripe-payment)
+  * [Donation Captured](#donation-captured)
+- [Bugs](#bugs)
+  * [Deployment to Heroku with Whitenoise to serve static files does not recognize css files](#deployment-to-heroku-with-whitenoise-to-serve-static-files-does-not-recognize-css-files)
+  * [STRIPE Form input field values not displaying in terminal output](#stripe-form-input-field-values-not-displaying-in-terminal-output)
+  * [Stripe Forbidden (CSRF cookie not set.)](#stripe-forbidden--csrf-cookie-not-set-)
+  * [Django Model - TypeError: __str__ returned non-string](#django-model---typeerror----str---returned-non-string)
+  * [Django Model Test Foreign Key](#django-model-test-foreign-key)
+  * [Django 'str' object has no attribute 'get' - Stack Overflow](#django--str--object-has-no-attribute--get----stack-overflow)
+  * [Stripe Public Key Issue](#stripe-public-key-issue)
+  * [admin.py Post model AttributeError](#adminpy-post-model-attributeerror)
+  * [Donate model test warning timezone](#donate-model-test-warning-timezone)
+- [Reverse resolution of URLs template tag syntax error](#reverse-resolution-of-urls-template-tag-syntax-error)
+  * [error](#error)
+- [Final Check](#final-check)
+  * [HTML Validate](#html-validate)
+
 ## Functional Testing
 
 ## Navigation access by user authentication profile
@@ -7,128 +59,165 @@
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
 | 1.1 | As a user | I want to know the purpose and how to use the blog | Click on home link home page renders | Pass |
-| 1.2 | As a user | I want to view a list of features | Click on Topic dropdown post by topic renders | Pass |
+| 1.2 | As a user | I want to view a list of features | Click on Topic dropdown. Posts by topic rendered | Pass |
 | 1.3 | As a user | I want to know how to use each feature | Click on home Page to view Feature Descriptions | Pass |
-| 1.4 | As a user | I want to navigate to each feature from the feature page | Click on each feature link navigate to feature action | Pass |
+| 1.4 | As a user | I want to navigate to each feature page from the home page | Click on each feature link navigates to feature page | Pass |
 | | | | |
-| 2.1 | As a non-authenticated user | I want to be able to view a list of blog posts | Click on Blog nav item link | Pass |
-| 2.2 | As a non-authenticated user | I want to be able to view blog details | Click on Blog nav item link to navigate to bog list | Pass |
-| 2.3 | As a non-authenticated user | I can make submit a comment on a post | Enter a comment save and comment renders below the post | Pass |
-| 2.4 | As an authenticated user | I want to be able to search for blogs| Enter keywords in the search form on the nav bar | Search Post resutls renders |Pass |
+| 2.1 | As a non-authenticated user | I want to be able to view a list of blog posts | Click on Blog nav item link to display posts | Pass |
+| 2.2 | As a non-authenticated user | I want to be able to view blog details | Click on post title to navigate to post details | Pass |
+| 2.3 | As a non-authenticated user | I can submit a comment on a post | Enter a comment and click submit. The comment will display below the post | Pass |
+| 2.4 | As an authenticated user | I want to be able to search for blogs | Enter keyword(s) in the search form on the navbar. Search Post results rendered | Pass |
 
 ## Display Posts by Topic
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-| | As a user | I want to click on blog post view the detail | Click on post renders post detail page | Pass |
 | | As a user | I want to display blog post by topic | Render published post by topic | Pass |
-| | As a non authenticated user | I want to display blog post excerpt by topic | Render published post excerpt by topic | Pass |
-| | As an authenticated user | I want to display blog post by topic | Render post by topic  includes posts in published and draft status with delete and update buttons| Pass |
+| | As a non authenticated user | I want to view a list of post excerpts by topic | Renders the list of published posts' excerpt by topic | Pass |
+| | As an authenticated user | I want to display blog post by topic | Render post by topic includes posts in published and draft status with delete and update buttons created by the user | Pass |
+| | As a user | I want to see a message when there is no post for a topic | Select a topic with no posts. A message "There are no available posts' will render | Pass|
 
 ## Post Detail Page
+
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-| | As a user | I want to view the post detail | The post Title and content is rendered | Pass |
+| | As a user | I want to view the post detail | The post title and content will render | Pass |
+| | As a user | I want to click on the button to return to post page | Click on Return to Posts button renders blog post page | Pass |
+
+## Create, Update, Delete Blog Posts only by author and Administrator
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-| | As a user | I want to click on button to return to post page | Click on Return to Posts button renders blog post page | Pass |
+| 3.1 | As an authenticated user | I want to be able to create a blog post | Click on Create Post nav item,  create page renders, enter fields values, select topic, and status values. A post is created with the values entered | Pass |
+| 3.2 | As an authenticated user | I want to be able to update my blog post | Update to content | Pass |
+| 3.3 | As an authenticated user | I want to be able to delete my blog post | Author of the post will have access to the delete button.  Click on the button to delete the post | Pass |
+| 3.4 | As an authenticated user | I want to be able to set the status of my blog post | Select a status. The post status is changed successfully | Pass |
 
-## Automated Unit Testing
+## Comment on Post
 
-## Testing views
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+| 4.1 | As an authenticated user | I can make submit a comment on a post | Login as a user to select a post created by the user and enter a comment. The comment is saved | Pass|
+| 4.2 | As an authenticated user | I want to be able to comment on a blog post created by someone else | Select a post created by someone else and enter a comment| Pass |
+| 4.7 | As a non-authenticated user | I can comment on a post | Click on the title of a Post to render the detail page, enter a comment and submit. The comment will be rendered with the post | Pass |
 
-```
-from django.test import TestCase
-​
-# Create your tests here.
-class TestViews(TestCase):
-    def test_home_page(self):
-        """ Test home page renders correct page """
-        response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)
-        self. assertTemplateUsed(response, 'home/index.html')
-```
+## View a Blog Posts
 
-```
-check redirects the same way, only you'll be looking for a 302 status code to say you've been directed away from the original route
-```
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+| 4.3 | As an authenticated user | I want to be able to view a blog list | Click on Blogs and list of all published posts are rendered | Pass|
+| 4.4  | As an authenticated user | I want to be view blog list by topic| Click on Topics and select a topic blogs for that topic will render | Pass |
+| 4.5 | As a non-authenticated user | I want to be able able to view blog details | Do not login click on Blogs and list of all published posts will be rendered | Pass|
+| 4.6 | As an authenticated user | I want to be able to search for blogs| Enter keyword on search item form on the navbar. Blogs for the topic will be rendered | Pass |
 
-## Coverage
+## Sign Up, Login, Sign Out, Profile
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+|  | As a non-authenticated user | I want to be able to Sign Up for an account | Click on the signup link on the login page.  Enter user credentials. An email verification confirmation page rendered| Pass |
+| 5.1 | As an authenticated user | I want to be able to login | Click on login nav item, Enter credentials, Create Post, My Profile nav items will display on Navbar | Pass |
+| 5.2 | As an authenticated user | I Want to be able to create my profile information | Future Enhancement| N/A |
+| 5.3 | As an authenticated user | I want to be able to edit my profile information | Future Enhancement | N/A |
+|  | As an authenticated user | I Want to be able to view my profile information | Click on My Profile Nav item to render profile information | Pass |
+
+## Donations
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+| 6.1 | As a user | I want to be able to make voluntary donations of any amount using a credit card | Click on the donation button. Enter user information and credit card details and the donation amount. Click on the Donate button. A Success message will be rendered | Pass |
+|  | As a user | I want to cancel a donation before processing | Click on the cancel button. A cancel confirmation message will be displayed to confirm donation was not processed the user| Pass |
+
+## Stripe
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+| 6.2 | As a user I want to be able to make secure payments | The donate button will trigger processing of donation as a secure transaction via Stripe | Transaction will be processed by Stripe | Pass |
+|  | As a user, I want to enter credit card info to make a donation | The credit card information will be validated | Pass |
+
+## Admin Panel
+
+### Admin Panel - Users
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+| 7.1 | As an administrator | I want to be able to create a user account |
+| 7.2 | As an administrator | I want to be able to update a user |
+| 7.3 | As an administrator | I want to be able to delete a user |
+| 7.4 | As an administrator | I want to be able to manage the topic list |
+
+### Admin Panel - Posts
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+| 7.5 | As an administrator | I want to be able to have CRUD privileges to curate blog posts | Able to perform CRUD operations for posts successfully | Pass |
+| 7.6 | As an administrator | I want to be able to have CRUD privileges to curate comments | Able to perform CRUD operations for comments successfully | Pass |
+
+### Admin Donations
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+| 8.1 | As a site owner | I want to accept donations to maintain the site | No authentication is required for users donate using credit cards | Pass |
+| 8.2 | As a site owner | I want to be able to review information on donors and donation amounts | Login with superuser credentials. Click on Donations received nav item. A table listing the donations will be displayed | Pass |
+
+### Authentication required
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+| 9.1 | As a non-authenticated user | I cannot bypass the site's mechanisms to create and edit a blog | Pass |
+| 9.2 | As a non-authenticated user | I cannot bypass site mechanisms to view donation information | Pass |
+
+## Custom 404 and 500
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+
+## URL CSRF
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+
+*** What to test and how to test ***
+
+## Authentication as the author required to CRUD post
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+| | Only author of post have privileges to update post | Enter https://django-blogchat-tech.herokuapp.com/accounts/login/?next=/blog/add-post-via-form-heroku-1/update/ | User is asked to sign in. If user is not the author no update and delete buttons will be rendered for the post | Pass |
+
+## Mobile Device Responsive Testing
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+
+## Web Page Chrome Ligthouse Validation
+
+![](docs/testing/mobileHomeLightHouse.png)
+
+### Accessibility
+
+![](docs/testing/mobileAccessibilityLighthouse.png)
+
+### Best Practices
+
+![](docs/testing/mobileBestPracticesLighthouse.png)
+
+## Browser
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+
+## Automated Testing and Test Driven Development
+
+### Coverage install and commands
 
 - pip install coverage
 - coverage run --source=profiles  manage.py test
 - coverage report
+- coverage html will htmlcov folder
+- navigate to folder with windows explorere
+- open index.html using a browser 
 
-## Validate Modified Allauth templates
-
-- accounts/signup/
-- accounts/login/
-- accounts/logout/
-- accounts/password/change/
-- accounts/password/set/
-- accounts/inactive/
-- accounts/email/
-- accounts/confirm-email/
-- accounts/^confirm-email/(?P<key>[-:\w]+)/$ 
-- accounts/password/reset/
-- accounts/password/reset/done/
-- accounts/^password/reset/key/(?P<uidb36>[0-9A-Za-z]+)-(?P<key>.+)/$ 
-- accounts/password/reset/key/done/
-- accounts/social/
-
-## Home
+## Home View
 
 ### test_home_page
-
-python manage.py test home.test_views
-
-- TDD fail test
-
-```
-(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test home.test_views
-Creating test database for alias 'default'...
-System check identified no issues (0 silenced).
-E
-======================================================================
-ERROR: test_home_page (home.test_views.TestViews)
-Test home page renders correct page
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\home\test_views.py", line 7, in test_home_page
-    response = self.client.get('/')
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\venv\lib\site-packages\django\test\client.py", line 742, in get
-    response = super().get(path, data=data, secure=secure, **extra)
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\venv\lib\site-packages\django\test\client.py", line 396, in get
-    return self.generic('GET', path, secure=secure, **{
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\venv\lib\site-packages\django\test\client.py", line 473, in generic
-    return self.request(**r)
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\venv\lib\site-packages\django\test\client.py", line 719, in request
-    self.check_exception(response)
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\venv\lib\site-packages\django\test\client.py", line 580, in check_exception
-    raise exc_value
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\venv\lib\site-packages\django\core\handlers\exception.py", 
-line 47, in inner
-    response = get_response(request)
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\venv\lib\site-packages\django\core\handlers\base.py", line 
-181, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\home\views.py", line 7, in index
-    return render(request, "home/index1.html")
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\venv\lib\site-packages\django\shortcuts.py", line 19, in render
-    content = loader.render_to_string(template_name, context, request, using=using)
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\venv\lib\site-packages\django\template\loader.py", line 61, in render_to_string
-    template = get_template(template_name, using=using)
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\venv\lib\site-packages\django\template\loader.py", line 19, in get_template
-    raise TemplateDoesNotExist(template_name, chain=chain)
-django.template.exceptions.TemplateDoesNotExist: home/index1.html
-
-----------------------------------------------------------------------
-Ran 1 test in 1.259s
-
-FAILED (errors=1)
-Destroying test database for alias 'default'...
-```
-
-- Pass test
 
 ```
 (venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test home.test_views
@@ -136,92 +225,113 @@ Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
 .
 ----------------------------------------------------------------------
-Ran 1 test in 0.041s
+Ran 1 test in 0.111s
 
 OK
 Destroying test database for alias 'default'...
 ```
 
-### Test_donate_page
+## Profiles
 
-- TDD Create fail test donate page
 
-  python manage.py test donate/
-
-```
+(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test profiles.test_forms 
 Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
-F
-======================================================================
-FAIL: test_fail_donate_page (donate.test_views.TestViews)
-Test donate page renders when user click on donate button
+...
 ----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\donate\test_views.py", line 8, in test_fail_donate_page
-    self.assertEqual(response.status_code, 302)
-AssertionError: 200 != 302
+Ran 3 tests in 0.015s
 
-----------------------------------------------------------------------
-Ran 1 test in 0.033s
-
-FAILED (failures=1)
+OK
 Destroying test database for alias 'default'...
-```
 
-- Add Render Donate Page
-
-  python manage.py test donate/
-
-```
+(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test profiles.test_models
 Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
-.F
-======================================================================
-FAIL: test_fail_donate_page (donate.test_views.TestViews)
-Test donate page renders when user click on donate button
+....
 ----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\donate\test_views.py", line 8, in test_fail_donate_page
-    self.assertEqual(response.status_code, 302)
-AssertionError: 200 != 302
+Ran 4 tests in 0.003s
 
-----------------------------------------------------------------------
-Ran 2 tests in 0.038s
-
-FAILED (failures=1)
+OK
 Destroying test database for alias 'default'...
-```
 
-- Modify test_donate_page(self):
-  render donate/donate.html
-
-- Add def test_successMsg(self):
- render donate/success.html', {'amount':amount}
-
-- __TO BE ADDED__ Add def charge
-redirect donate/success/5/
-
-- python manage.py test donate.test_views
-
-```
+(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test profiles.test_views 
 Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
-.F.
-======================================================================
-FAIL: test_fail_donate_page (donate.test_views.TestViews)
-TDD Fail Render Donate Page
+......
 ----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech\donate\test_views.py", line 8, in test_fail_donate_page
-    self.assertEqual(response.status_code, 302)
-AssertionError: 200 != 302
+Ran 6 tests in 3.457s
 
-----------------------------------------------------------------------
-Ran 3 tests in 0.067s
-
-FAILED (failures=1)
+OK
 Destroying test database for alias 'default'...
-```
+
+## Blog
+
+
+(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test profiles.test_forms 
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.015s
+
+OK
+Destroying test database for alias 'default'...
+
+(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test profiles.test_models
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+OK
+Destroying test database for alias 'default'...
+
+(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test profiles.test_views 
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+......
+----------------------------------------------------------------------
+Ran 6 tests in 3.457s
+
+OK
+Destroying test database for alias 'default'...
+
+## Covergae report
+
+(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>coverage report  
+Name                                         Stmts   Miss  Cover
+----------------------------------------------------------------
+blog\admin.py                                   17      8    53%
+blog\apps.py                                     4      0   100%
+blog\forms.py                                   13      6    54%
+blog\models.py                                  59     32    46%
+blog\test_forms.py                              18      8    56%
+blog\test_models.py                             63     19    70%
+blog\test_views.py                              30     11    63%
+blog\tests.py                                    1      0   100%
+blog\urls.py                                     4      0   100%
+blog\views.py                                   73     45    38%
+----------------------------------------------------------------
+TOTAL                                          376    189    50%
+
+
+
+
+
+
+
+
+
+***********************************
+
+## Coverage
+
+- pip install coverage
+- coverage run --source=profiles  manage.py test
+- coverage report
+
+
 ## Email
 
 - Create new account using Temp Email
@@ -590,6 +700,41 @@ Reference:
 []()
 
 ## Final Check
+
+### HTML Validate
+
+- Blog Post
+![Blog Post](docs/testing/postsValidateHTML.png)
+
+- Topic
+![Topic](docs/testing/topicValidateHTML.png)
+
+- Post Delete
+![Post Delete](docs/testing/postdeleteValidateHTML.png)
+
+- User Profile
+![User Profile](docs/testing/profileValidateHTML.png)
+
+- Create Edit Post
+![Create Edit Post](docs/testing/createEditPostValidateHTML.png)
+
+- Email Confirmation
+![Email Confirmation](docs/testing/emailConfirmationValidateHTML.png)
+
+- Sign Up
+![Sign Up](docs/testing/signupValidateHTML.png)
+
+- Confirm Email
+![Confirm Email](docs/testing/confirmEmailValidateHTML.png)
+
+- Sign In
+![Sign In](docs/testing/signinValidateHTML.png)
+
+- Sign Out
+![Sign Out](docs/testing/signoutValidateHTML.png)
+
+- Password Reset
+![Sign In](docs/testing/signinValidateHTML.png)
 
 - Debug Off
 - credentials and passwwords not pushed to github
