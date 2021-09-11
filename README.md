@@ -11,6 +11,115 @@ The brain operates in two fundamental modes focus diffuse mode. Work with focus 
 
 The inspiration for this application came from Francis Bacon's quote and  [Barbara Oakley: Learning How to Learn](https://tedsummaries.com/2015/03/04/barbara-oakley-learning-how-to-learn/).
 
+## Table of Content
+
+- [User Experience Design (UX)](#user-experience-design--ux-)
+- [Strategy Plane](#strategy-plane)
+  * [Purpose](#purpose)
+  * [Site Goals](#site-goals)
+    + [Business Goals](#business-goals)
+    + [User Goals](#user-goals)
+    + [Blog Content](#blog-content)
+  * [User Stories](#user-stories)
+    + [Personas](#personas)
+- [Scope Plane](#scope-plane)
+  * [Planned Features](#planned-features)
+    + [Mobile First responsive on all device sizes](#mobile-first-responsive-on-all-device-sizes)
+    + [Overview Feature Page](#overview-feature-page)
+    + [Blog Posts Display](#blog-posts-display)
+    + [Blog Post Management CRUD](#blog-post-management-crud)
+    + [Blog Posts Search](#blog-posts-search)
+    + [Blog Post Comments](#blog-post-comments)
+    + [User Authentication](#user-authentication)
+    + [User Profile](#user-profile)
+  * [Blog Application Administration](#blog-application-administration)
+  * [Donation](#donation)
+- [Future Features](#future-features)
+  * [Live Chat Conversations](#live-chat-conversations)
+  * [Contact Form](#contact-form)
+  * [Donation Enhancements](#donation-enhancements)
+  * [Blog Post Enhancements](#blog-post-enhancements)
+  * [Blog Application Configuration, Administration and Data Management](#blog-application-configuration--administration-and-data-management)
+- [Structure Plane](#structure-plane)
+  * [Database Schema](#database-schema)
+  * [Donate Apps](#donate-apps)
+  * [Blog App](#blog-app)
+  * [Profile App](#profile-app)
+- [Security and Access Management](#security-and-access-management)
+  * [Django Contrib and Allauth](#django-contrib-and-allauth)
+- [Wireframes](#wireframes)
+- [Views](#views)
+- [Skeletal Plane](#skeletal-plane)
+  * [Post Content](#post-content)
+  * [Navigation and Access](#navigation-and-access)
+    + [All User](#all-user)
+    + [Authenticated user](#authenticated-user)
+    + [Authenticated user with superuser privileges](#authenticated-user-with-superuser-privileges)
+    + [Administrator](#administrator)
+- [Surface Plane](#surface-plane)
+  * [Color Scheme, Web Page Components](#color-scheme--web-page-components)
+  * [Navigation](#navigation)
+    + [Non Authenticated Users](#non-authenticated-users)
+    + [Authenticated Users](#authenticated-users)
+    + [Administrator with Superuser Privileges](#administrator-with-superuser-privileges)
+    + [Django Administration with Superuser Privileges](#django-administration-with-superuser-privileges)
+  * [Footer](#footer)
+  * [Home Page](#home-page)
+    + [Welcome Hero](#welcome-hero)
+    + [Features](#features)
+  * [Blog Posts](#blog-posts)
+    + [Published Blog Posts](#published-blog-posts)
+    + [Posts by Topic](#posts-by-topic)
+    + [Post Details](#post-details)
+  * [Post CRUD](#post-crud)
+    + [Create/Edit Post](#create-edit-post)
+  * [Create Post](#create-post)
+  * [Edit Post](#edit-post)
+    + [Update and Delete](#update-and-delete)
+  * [Comments](#comments)
+  * [Search](#search)
+  * [Authentication](#authentication)
+    + [Sign In](#sign-in)
+    + [Sign Out](#sign-out)
+    + [Sign Up](#sign-up)
+    + [Verify Email](#verify-email)
+    + [My Profile](#my-profile)
+    + [User Profile Admin Panel](#user-profile-admin-panel)
+    + [View](#view)
+  * [Donation Payments using Stripe](#donation-payments-using-stripe)
+    + [Stripe](#stripe)
+    + [Stripe Test Payment](#stripe-test-payment)
+  * [Admin Panel](#admin-panel)
+    + [Blog](#blog)
+    + [Donate](#donate)
+    + [Profiles](#profiles)
+  * [Features for Future Consideration](#features-for-future-consideration)
+- [Technologies Used](#technologies-used)
+  * [Languages Used](#languages-used)
+- [Frameworks, Libraries & Programs Used](#frameworks--libraries---programs-used)
+- [Testing](#testing)
+- [Known Issues](#known-issues)
+- [Deployment](#deployment)
+- [Heroku Deployment](#heroku-deployment)
+  * [Create Heroku Account and New App](#create-heroku-account-and-new-app)
+  * [Set up Environment Variables](#set-up-environment-variables)
+  * [Enable Automatic deployment](#enable-automatic-deployment)
+  * [Local IDE In GitPod](#local-ide-in-gitpod)
+    + [Gitpod Environment Setting](#gitpod-environment-setting)
+    + [Git clone repo](#git-clone-repo)
+    + [PIP Install](#pip-install)
+    + [Run migration to create db.sqlite3 on VSCode](#run-migration-to-create-dbsqlite3-on-vscode)
+  * [Run Server](#run-server)
+  * [Login to Heroku](#login-to-heroku)
+  * [Push and migrate database to Heroku](#push-and-migrate-database-to-heroku)
+  * [Heroku or SQLite3 Seed Data](#heroku-or-sqlite3-seed-data)
+- [Code](#code)
+- [Content](#content)
+- [References](#references)
+
+- [Acknowledgments](#acknowledgments)
+- [Disclaimer](#disclaimer)
+
 ## User Experience Design (UX)
 
 ## Strategy Plane
@@ -224,8 +333,6 @@ The application administrator with superuser privileges have full access to all 
 
 ## Structure Plane
 
-The structure plane: How is the information structured and how is it logically grouped
-
 ### Database Schema
 
 ![Pomodoro Blog Database Schema](docs/readme/pomodoroBlogDBSchema.png)
@@ -380,9 +487,9 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 ## Security and Access Management
 
-### Django Contrib and Alluth
+### Django Contrib and Allauth
 
-Django alluth is implemented to handle account management and authentication.
+Django allauth is implemented to handle account management and authentication.
 
 ```
 Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication
@@ -460,14 +567,14 @@ The respective Mobile wireframes version of each web page listed will be similar
 
 ## Views
 
-The views for the application consisted of a combination of function and Generic Class-Based views.  The following guide was the basis for making the decision where feasible.
+The views consist of a combination of function and Generic Class-Based views.  The following guide was the basis for making the decision where feasible.
 
 Source:
 ![Function and Class Base Generic Views](docs/readme/viewsFunctionOrClassBased.png)
 
 ## Skeletal Plane
 
-### Content
+### Post Content
 
 Blog posts by a topic with the required fields
 
@@ -536,7 +643,7 @@ Access to features is rendered based on the user's session authentication.
 
 ### Footer
 
-A footer with a scroll to top of the page link
+A footer with a scroll to the top of the page link
 
 ![FooterScrollToTop](docs/readme/footerScrollToTop.png)
 
@@ -557,7 +664,9 @@ A footer with a scroll to top of the page link
   - Search for Post using keywords
 
 - Instructions and Link to Features
-Brief description with links for each feature
+
+  - Brief description of each feature and links
+
 ![Features](docs/readme/featuresHome.png)
 
 ### Blog Posts
@@ -590,7 +699,7 @@ Brief description with links for each feature
 
 ### Post CRUD
 
-Authors of post are authenticated in order to perform CRUD operations
+Authors of posts require authentication to perform CRUD operations.
 
 #### Create/Edit Post
 
@@ -656,11 +765,11 @@ allauth form
 
 #### My Profile
 
-![my Profile](docs/readme/userProfile.png)
-
-Value Inherit from Users
+Fields Values Inherit from Users
 - e-mail Address
 - User name 
+
+![my Profile](docs/readme/userProfile.png)
 
 #### User Profile Admin Panel
 
@@ -673,7 +782,7 @@ Value Inherit from Users
 
 ### Donation Payments using Stripe
 
-Stripe ensures Payment Card Industry compliance and secure communications which means never have store credit card and is tokenized and handled by Stript
+Stripe ensures Payment Card Industry compliance and secure communications that mean never have store credit card information and tokenized and handled by Stripe.
 
 Utilize Charges API since donations are a simple charge not requiring custom payment flows and experiences.
 Used by customers primarily in US/Canada not requiring SCA (Strong Customer Authentication)
@@ -778,9 +887,9 @@ fetch("/donate/config/")
 ```
 
 Stripe References:
+
 - [Accept a card payment with Stripe.js](https://www.youtube.com/watch?v=0oHjwz-WHcc)
 - [Accept a payment - Create a PaymentIntent with Python](https://www.youtube.com/watch?v=Tgjwx-38Dic&t=0s)
-
 
 ### Admin Panel
 
@@ -794,7 +903,7 @@ Stripe References:
 
 - Post
 
-![Post Admin](docs/readme/PostsAdmin.png)
+![Post Admin](docs/readme/PostAdmin.png)
 
 - Topics
 
@@ -812,14 +921,10 @@ Stripe References:
 
 ![User Profile Admin Panel](docs/readme/userProfileAdminPanel.png)
 
-
-signal
-
 ### Features for Future Consideration
 
 - Implement a sort and filter function for post display
-- User profile update form
-
+- Implement User profile update function
 
 ## Technologies Used
 
@@ -833,6 +938,8 @@ signal
 ## Frameworks, Libraries & Programs Used
 
 - Django
+- SQLite3
+- PostGres
 - Bootstrap5
 - Git
 - GitHub
@@ -841,12 +948,13 @@ signal
 - VSCode
 - Stripe
 - Balsamiq
-
 - [Whitenoise with Django](http://whitenoise.evans.io/en/stable/django.html)
 - [django-allauth](https://django-allauth.readthedocs.io/en/latest/)
 - [django crispy forms](https://django-crispy-forms.readthedocs.io/en/latest/#)
 - [django-bootstrap-v5](https://django-bootstrap-v5.readthedocs.io/en/latest/)
 - [django OAuth signals](https://django-oauth-toolkit.readthedocs.io/en/latest/tutorial/tutorial_01.html)
+- [Django Graphviz](https://django-extensions.readthedocs.io/en/latest/graph_models.html)
+- [GitHub Wiki TOC generator](https://ecotrust-canada.github.io/markdown-toc/)
 
 ## Testing
 
@@ -855,128 +963,120 @@ signal
 ## Known Issues
 
 - Refactor code to replace function views with class base views for consistent development standards for code maintainability
-- Read only profile name and email instead of duplicated fields associated with with user account
-
-You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed.
+- Read-only profile name and email instead of duplicated fields associated with the user account
 
 ## Deployment
 
-# Pre-seed data
-
-![Topic Admin](docs/readme/topicsAdmin.png)
-
-# LOG
-
-IMPORTANT: Heroku deployment was performed vua gitpod workspace
-
 ## Heroku Deployment
 
-### login to Heroku
+### Create Heroku Account and New App
+
+- Setup a Heroku Account and Log In to Heroku
+- Click on the New button on the Apps Page
+
+![](docs/readme/herokuNewApp.png)
+
+- Enter an app name that is available and choose the region closest to you
+- Click Create app
+
+![](docs/readme/herokuAppNameRegion.png)
+
+- Click on Resource tab Add-On Heroku Progres database
+- Select a Development plan
+
+### Set up Environment Variables
+
+- DATABASE_URL
+- EMAIL_HOST_PASS
+- EMAIL_HOST_USER
+- HEROKU_HOSTNAME
+- SECRET_KEY
+- STRIPE_PUBLIC_KEY
+- STRIPE_SECRET_KEY
+
+### Enable Automatic deployment
+
+- Navigate to Deploy Tab
+- Automatic Deployment section
+- Choose target branch for deployment
+- Enable automatic deployment
+
+### Local IDE In GitPod
+
+#### Gitpod Environment Setting
+
+- Navigate to Gitpod Account Settings
+- Click on Variable
+- Create Environment Variables and populate using your values
+
+```
+DATABASE_UTL
+DEVELOPMENT
+SECRET_KEY
+STRIPE_PUBLIC_KEY
+STRIPE_SECRET_KEY
+```
+
+#### Git clone repo
+
+```
+git clone https://github.com/NgiapPuoyKoh/django-blogchat-tech.git repo
+```
+- In the terminal navigate to the project folder
+
+#### PIP Install
+
+- pip install -r requirements.txt
+
+#### Run migration to create db.sqlite3 on VSCode
+
+- python3 manage.py makemigrations --dry-run
+- python3 manage.py showmigrations
+- python3 manage.py migrate --plan  
+- python3 manage.py migrate
+- python manage.py createsuperuser
+
+### Run Server
+
+- python manage.py runserver
+
+### Login to Heroku
 
 - heroku login -i
 - heroku apps:create django-blogchat-tech
 - heroku apps
 - git remote -v
 
-### Push to Heroku
+### Push and migrate database to Heroku
 
-- git push heroku master
-- heroku logs --tail
-- heroku local web
-- heroku run python manage.py makemigrations --dry-run
-- heroku run python manage.py migrate --plan
-- heroku run python manage.py migrate
-- heroku run python manage.py createsuperuser
-- heroku run python manage.py showmigrations
-
-### Subsequent Deploy with WhiteNoise to handle Static Files
-heroku login -i
-heroku logs
-heroku logs -tail
-heroku run python manage.py collectstatic --noinput --dry-run 
-heroku run python manage.py collectstatic --noinput
-heroku run python manage.py migrate --plan
+```
+git push heroku master
+heroku logs --tail
+heroku local web
+heroku run python manage.py makemigrations --dry-run
+heroku run python manage.py collectstatic --noinput heroku run python manage.py migrate --plan
 heroku run python manage.py migrate
-
-heroku run python manage.py migrate --plan --app django-blogchat-tech
-heroku run python manage.py migrate --app django-blogchat-tech
-
-### Django Shell
-heroku run python manage.py shell --app django-blogchat-tech
-from blog.models import Post
-Post.objects.all() 
-exit()
-
-
-
-
-python  manage.py sqlmigrate blog 0005_auto_20210805_1547
-python manage.py migrate blog 0001
-
-
-## Git clone repo
-
-- git clone https://github.com/github repo
-- select folder MS4PomodoroBlogChat
-
-## Create and activate venv
-
-- python -m venv venv
-
-- venv\Scripts\activate
-
-## cd to django project
-
--  cd django-blogchat-tech
-
-- pip install -r requirements.txt
-
-## Create env.py in Django project root variables from GitPod account Environment variables and values
-
-```
-import os
-os.environ.setdefault('SECRET_KEY', 'KEYHERE')
-os.environ.setdefault('DEVELOPMENT', 'True')
+heroku run python manage.py createsuperuser
+heroku run python manage.py showmigrations
 ```
 
-## Modify gitignore Add excludes
-```
-*.sqlite3
-*.pyc
-.vscode
-venv
+### Heroku or SQLite3 Seed Data
 
-README_secretinfo_donotpushtogithub.md
-LOGS.md
-```
+- Topics
 
-## Run migration to create db.sqlite3 on VSCode
+As superuser navigate to the Django Admin panel and create the topics
 
-- cd django-blogchat-tech
+![Topic Admin](docs/readme/topicsAdmin.png)
 
-- View > Command Palette > Python: Select Interpreter > Python 3.8.3 64-bit (venv:venv)
+## Code
 
-- python manage.py runserver
-- python3 manage.py makemigrations --dry-run
-- python manage.py makemigrations --dry-run 
-- python manage.py showmigrations
-- python manage.py migrate --plan  
-- python manage.py migrate
-- python manage.py showmigrations
-- python manage.py createsuperuser
+Code modified and utilized where applicable from sources cited in the reference section.
 
+## Content
 
+Post contents are created and may include link to online resources
 
-
-## Credits
-
-### Code
-
-### Content
-
-### Acknowledgements
-
-### References
+## References
 
 <details>
     <summary> Click to expand!</summary>
@@ -994,11 +1094,11 @@ LOGS.md
 - [Django Model Inheritance Options Introduction - ORM Part-9](https://www.youtube.com/watch?v=4Xag2FzmN60&list=PLOLrQ9Pn6cayWzj2P3eQvnLxuPz1Q4R84&index=2)
 - [Learn Django - Build a Custom User Model with Extended Fields](https://www.youtube.com/watch?v=Ae7nc1EGv-A&list=PLOLrQ9Pn6cayWzj2P3eQvnLxuPz1Q4R84)
 
-#### Django Function and Generic Class Based Views
+#### Django Function and Generic Class-Based Views
 
 - [Classy Class-Based Views](https://ccbv.co.uk/)
 - [Class-Based Views vs. Function-Based Views](https://simpleisbetterthancomplex.com/article/2017/03/21/class-based-views-vs-function-based-views.html)
-- [Django : Class Based Views vs Function Based Views](https://medium.com/@ksarthak4ever/django-class-based-views-vs-function-based-view-e74b47b2e41b)
+- [Django : Class-Based Views vs Function Based Views](https://medium.com/@ksarthak4ever/django-class-based-views-vs-function-based-view-e74b47b2e41b)
 
 #### Django Packages
 
@@ -1139,4 +1239,10 @@ Multiple authentication schemes and account verification
 
 </details>
 
-For Education Purpose Only
+## Acknowledgments
+
+Thank you to my mentor Guido Cecilio for his guidance for this project. Thank you to the slack members who supported me as I persevere and navigate and overcome the obstacles of my Full Stack Software development journey.
+
+## Disclaimer
+
+The content of this website is for education purposes only.
