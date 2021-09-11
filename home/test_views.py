@@ -1,6 +1,8 @@
 from django.test import TestCase
 
 # Create your tests here.
+
+
 class TestViews(TestCase):
     def test_home_page(self):
         """ Test home page renders correct page """
