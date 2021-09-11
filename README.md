@@ -197,7 +197,6 @@ The application administrator with superuser privileges have full access to all 
 - As an author, I want to be able to have a conversation with readers via live chat
 - As a user, I want to be able to have group conversations with other readers and authors
 
-
 ### Contact Form
 
 - Users can submit questions to the site owner
@@ -304,10 +303,8 @@ class Post(models.Model):
     status = models.CharField(max_length=10, choices=options, default='draft')
     topic = models.ForeignKey('Topic', null=True, blank=True, on_delete=models.SET_NULL)
 
-
     def get_absolute_url(self):
         return reverse('post_detail', kwargs={'slug': self.slug})
-
 
     def __str__(self):
         return self.title
@@ -323,7 +320,6 @@ def create_slug(instance, new_slug=None):
         new_slug = "%s-%s" %(slug, qs.first().id)
         return create_slug(instance, new_slug=new_slug)
     return slug
-
 
 def pre_save_post_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
@@ -386,18 +382,11 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 ### Django Contrib and Alluth
 
+Django alluth is implemented to handle account management and authentication.
+
 ```
 Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication
 ```
-
-- allauth socialaccount
-- auth
-- admin
-- sites
-- contenttype
-- sessions
-- Abstract BaseUser
-- Abstract PermmissionsMixin
 
 ## Wireframes
 
@@ -469,16 +458,24 @@ The respective Mobile wireframes version of each web page listed will be similar
 
 </details>
 
+## Views
+
+The views for the application consisted of a combination of function and Generic Class-Based views.  The following guide was the basis for making the decision where feasible.
+
+Source:
+![Function and Class Base Generic Views](docs/readme/viewsFunctionOrClassBased.png)
 
 ## Skeletal Plane
 
 ### Content
 
 Blog posts by a topic with the required fields
+
 - Title
 - Excerpt
 - Content
 - Comments(If available, will be displayed with the post)
+- Comment form is rendered
 
 ### Navigation and Access
 
@@ -486,7 +483,6 @@ The navigation bar and links will be the primary mechanism for navigating to fea
 Page links to navigate to pages to perform functions and return to the home page or display posts pages.
 
 Navigation links will be rendered base on user authentication and user privileges.
-
 
 #### All User
 
@@ -511,9 +507,11 @@ Navigation links will be rendered base on user authentication and user privilege
 
 ## Surface Plane
 
+The goal is to design the page layout and include page elements and links that are familiar. The user can figure out how to navigate the application and access featured intuitively with minimal instructions.
+
 ### Color Scheme, Web Page Components
 
-The goal is to have a minimalist black and white page layout with a simple theme for a blog.
+A minimalist black and white page layout with a simple theme for a blog is the intent.
 Bootstrap5 standard colors, components, CSS, and built-in responsive-without Sass customization and used to develop the web pages.
 
 ### Navigation
@@ -530,11 +528,148 @@ Access to features is rendered based on the user's session authentication.
 
 #### Administrator with Superuser Privileges
 
-![NavSuperUser](docs/readme/navbarSuperUser.png)
+![NavSuperUser](docs/readme/navbarSuperuser.png)
 
 #### Django Administration with Superuser Privileges
 
 ![DjangoAdministrationPanel](docs/readme/djangoAdministration.png)
+
+### Footer
+
+A footer with a scroll to top of the page link
+
+![FooterScrollToTop](docs/readme/footerScrollToTop.png)
+
+### Home Page
+
+#### Welcome Hero
+
+- The hero section describes the unique purpose of a blog post that focuses on a single concept or task
+- A button will render an example of a post with a series of related posts
+
+![Hero Home Page](docs/readme/heroHome.png)
+
+#### Features
+
+- Features accessible without authentication
+  - View Blog Posts
+  - Comment on a Post
+  - Search for Post using keywords
+
+- Instructions and Link to Features
+Brief description with links for each feature
+![Features](docs/readme/featuresHome.png)
+
+### Blog Posts
+
+#### Published Blog Posts
+
+- Post Titles and Excerpts with published status will be rendered sorted by published date
+- Click on Post titles to view the post details
+- Update or delete buttons will render for authenticated authors
+
+![Author Only Posts](docs/readme/authorOnlyEditedDeletePost.png)
+
+#### Posts by Topic
+
+- Select Topic to display posts
+- Post Titles and Excerpts with published status will be rendered sorted by published date
+- Click on Post titles to view the post details
+- Update or delete buttons will render for authenticated authors
+
+![Post Topics](docs/readme/postTopics.png)
+
+#### Post Details
+
+- Post Detail page will render when the user click on post titles
+- Post title, Content, and comments are displayed
+- Button is available to navigate back to the Blog Posts page
+- Comment form is available
+
+![Post Detail](docs/readme/postDetail.png)
+
+### Post CRUD
+
+Authors of post are authenticated in order to perform CRUD operations
+
+#### Create/Edit Post
+
+![Post Form Fields](docs/readme/createEditPost.png)
+
+### Create Post
+
+![Create Post](docs/readme/createPost.png)
+
+### Edit Post
+
+![Edit Post](docs/readme/editPost.png)
+
+#### Update and Delete
+
+![Authors of Posts](docs/readme/authorPostsUpdateDelete.png)
+
+### Comments
+
+Authentication is not required to post comments.
+
+- Click on the post title to render to post detail.
+- View comments
+- Enter comments
+
+![Comments](docs/readme/commentForm.png)
+
+![Comments on Post](docs/readme/commentsPost.png)
+
+### Search
+
+- Search Item on Navbar
+
+![Search Navbar](docs/readme/searchNavbar.png)
+
+- Search Post Results
+
+![Search Post](docs/readme/searchPostResults.png)
+
+- New Search
+
+![New Search](docs/readme/newSearch.png)
+
+### Authentication
+
+allauth form
+
+#### Sign In
+
+![Sign In](docs/readme/signIn.png)
+
+#### Sign Out
+
+![Sign Out](docs/readme/signOut.png)
+
+#### Sign Up
+
+![Sign Up](docs/readme/signUp.png)
+
+#### Verify Email
+
+![Verify Email](docs/readme/verifyEmail.png)
+
+#### My Profile
+
+![my Profile](docs/readme/userProfile.png)
+
+Value Inherit from Users
+- e-mail Address
+- User name 
+
+#### User Profile Admin Panel
+
+![User Profile Admin Panel](docs/readme/userProfileAdminPanel.png)
+
+
+#### View
+
+- Functions
 
 ### Donation Payments using Stripe
 
@@ -565,12 +700,9 @@ Used by customers primarily in US/Canada not requiring SCA (Strong Customer Auth
 
 ![Pomodoro Donations](docs/readme/pomodoroDonationsReceived.png)
 
+- Payment Card Element Utilize Stripe API
 
-- stripe.js
-[Accept a payment - Create a PaymentIntent with Python](https://www.youtube.com/watch?v=Tgjwx-38Dic&t=0s)
-
-
-[Accept a card payment with Stripe.js](https://www.youtube.com/watch?v=0oHjwz-WHcc)
+stripe.js
 
 ```
 // Set your publishable key: remember to change this to your live publishable key in production
@@ -645,17 +777,48 @@ fetch("/donate/config/")
 });
 ```
 
-### Post CRUD
+Stripe References:
+- [Accept a card payment with Stripe.js](https://www.youtube.com/watch?v=0oHjwz-WHcc)
+- [Accept a payment - Create a PaymentIntent with Python](https://www.youtube.com/watch?v=Tgjwx-38Dic&t=0s)
 
-Authors of post are authenticated in order to perform CRUD operations
 
-#### Create/Edit Post
+### Admin Panel
 
-![Post Form Fields](docs/readme/createEditPost.png)
+![Admin Panel](docs/readme/adminPanel.png)
 
-#### Update and Delete
+#### Blog
 
-![Authors of Posts](docs/readme/authorPostsUpdateDelete.png)
+- Comments
+
+![Topic Admin](docs/readme/commentsAdmin.png)
+
+- Post
+
+![Post Admin](docs/readme/PostsAdmin.png)
+
+- Topics
+
+![Topic Admin](docs/readme/topicsAdmin.png)
+
+#### Donate
+
+- Donations
+
+![Donations Admin](docs/readme/donationsAdmin.png)
+
+#### Profiles
+
+- User Profiles
+
+![User Profile Admin Panel](docs/readme/userProfileAdminPanel.png)
+
+
+signal
+
+### Features for Future Consideration
+
+- Implement a sort and filter function for post display
+- User profile update form
 
 
 ## Technologies Used
@@ -674,13 +837,16 @@ Authors of post are authenticated in order to perform CRUD operations
 - Git
 - GitHub
 - Heroku
-- Whitenoise
 - Gitpod
 - VSCode
 - Stripe
 - Balsamiq
 
+- [Whitenoise with Django](http://whitenoise.evans.io/en/stable/django.html)
 - [django-allauth](https://django-allauth.readthedocs.io/en/latest/)
+- [django crispy forms](https://django-crispy-forms.readthedocs.io/en/latest/#)
+- [django-bootstrap-v5](https://django-bootstrap-v5.readthedocs.io/en/latest/)
+- [django OAuth signals](https://django-oauth-toolkit.readthedocs.io/en/latest/tutorial/tutorial_01.html)
 
 ## Testing
 
@@ -688,9 +854,119 @@ Authors of post are authenticated in order to perform CRUD operations
 
 ## Known Issues
 
+- Refactor code to replace function views with class base views for consistent development standards for code maintainability
+- Read only profile name and email instead of duplicated fields associated with with user account
+
 You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed.
 
 ## Deployment
+
+# Pre-seed data
+
+![Topic Admin](docs/readme/topicsAdmin.png)
+
+# LOG
+
+IMPORTANT: Heroku deployment was performed vua gitpod workspace
+
+## Heroku Deployment
+
+### login to Heroku
+
+- heroku login -i
+- heroku apps:create django-blogchat-tech
+- heroku apps
+- git remote -v
+
+### Push to Heroku
+
+- git push heroku master
+- heroku logs --tail
+- heroku local web
+- heroku run python manage.py makemigrations --dry-run
+- heroku run python manage.py migrate --plan
+- heroku run python manage.py migrate
+- heroku run python manage.py createsuperuser
+- heroku run python manage.py showmigrations
+
+### Subsequent Deploy with WhiteNoise to handle Static Files
+heroku login -i
+heroku logs
+heroku logs -tail
+heroku run python manage.py collectstatic --noinput --dry-run 
+heroku run python manage.py collectstatic --noinput
+heroku run python manage.py migrate --plan
+heroku run python manage.py migrate
+
+heroku run python manage.py migrate --plan --app django-blogchat-tech
+heroku run python manage.py migrate --app django-blogchat-tech
+
+### Django Shell
+heroku run python manage.py shell --app django-blogchat-tech
+from blog.models import Post
+Post.objects.all() 
+exit()
+
+
+
+
+python  manage.py sqlmigrate blog 0005_auto_20210805_1547
+python manage.py migrate blog 0001
+
+
+## Git clone repo
+
+- git clone https://github.com/github repo
+- select folder MS4PomodoroBlogChat
+
+## Create and activate venv
+
+- python -m venv venv
+
+- venv\Scripts\activate
+
+## cd to django project
+
+-  cd django-blogchat-tech
+
+- pip install -r requirements.txt
+
+## Create env.py in Django project root variables from GitPod account Environment variables and values
+
+```
+import os
+os.environ.setdefault('SECRET_KEY', 'KEYHERE')
+os.environ.setdefault('DEVELOPMENT', 'True')
+```
+
+## Modify gitignore Add excludes
+```
+*.sqlite3
+*.pyc
+.vscode
+venv
+
+README_secretinfo_donotpushtogithub.md
+LOGS.md
+```
+
+## Run migration to create db.sqlite3 on VSCode
+
+- cd django-blogchat-tech
+
+- View > Command Palette > Python: Select Interpreter > Python 3.8.3 64-bit (venv:venv)
+
+- python manage.py runserver
+- python3 manage.py makemigrations --dry-run
+- python manage.py makemigrations --dry-run 
+- python manage.py showmigrations
+- python manage.py migrate --plan  
+- python manage.py migrate
+- python manage.py showmigrations
+- python manage.py createsuperuser
+
+
+
 
 ## Credits
 
@@ -717,6 +993,12 @@ You will need to mention unfixed bugs and why they were not fixed. This section 
 
 - [Django Model Inheritance Options Introduction - ORM Part-9](https://www.youtube.com/watch?v=4Xag2FzmN60&list=PLOLrQ9Pn6cayWzj2P3eQvnLxuPz1Q4R84&index=2)
 - [Learn Django - Build a Custom User Model with Extended Fields](https://www.youtube.com/watch?v=Ae7nc1EGv-A&list=PLOLrQ9Pn6cayWzj2P3eQvnLxuPz1Q4R84)
+
+#### Django Function and Generic Class Based Views
+
+- [Classy Class-Based Views](https://ccbv.co.uk/)
+- [Class-Based Views vs. Function-Based Views](https://simpleisbetterthancomplex.com/article/2017/03/21/class-based-views-vs-function-based-views.html)
+- [Django : Class Based Views vs Function Based Views](https://medium.com/@ksarthak4ever/django-class-based-views-vs-function-based-view-e74b47b2e41b)
 
 #### Django Packages
 
