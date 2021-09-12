@@ -98,7 +98,6 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
   * [Languages Used](#languages-used)
 - [Frameworks, Libraries & Programs Used](#frameworks-libraries-&-programs-used)
 - [Testing](#testing)
-- [Known Issues](#known-issues)
 - [Deployment](#deployment)
 - [Heroku Deployment](#heroku-deployment)
   * [Create Heroku Account and New App](#create-heroku-account-and-new-app)
@@ -185,7 +184,7 @@ Readers can ask the blog post author questions and participate in a discussion v
 | 4.1 | As a authenticated user | I can make submit a comment on a post |
 | 4.2 | As an authenticated user | I want to be able to comment on a blog post |
 | 4.3 | As an authenticated user | I want to be able to view a blog list
-| 4.4  | As an authenticated user | I want to be view blog list by topic|
+| 4.4 | As an authenticated user | I want to be view blog list by topic|
 | 4.5 | As a non-authenticated user | I want to be able able to view blog details|
 | 4.6 | As an authenticated user | I want to be able to search for blogs|
 | 4.7 | As a non-authenticated user | I can comment on a post |
@@ -957,13 +956,14 @@ Stripe References:
 
 ## Testing
 
+Testing includes:
+
+- Automated testing using Coverage
+- Manual functional testing of features and user stories.
+
 [Testing Documentation here.](TESTING.md)
 
-## Known Issues
 
-- Refactor code to replace function views with class base views for consistent development standards for code maintainability
-- Read-only profile name and email instead of duplicated fields associated with the user account
-- Footer is not sticky at the bottom for allauth html. Unable to figure out how to resolve the issue between account/base.html, allauth.html and project index.html
 
 ## Deployment
 
