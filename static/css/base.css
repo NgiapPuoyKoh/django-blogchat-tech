@@ -90,3 +90,7 @@ color: #fff;
 .allauth-form-inner-content a {
   color: #17a2b8; /* text-info */
 }
+
+.main-container-margin {
+  margin-bottom: 5rem;
+}
