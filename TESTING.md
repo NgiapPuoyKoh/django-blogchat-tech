@@ -228,7 +228,7 @@ A total of 86% coverage was achieved.
 
 #### Forms
 
-![](docs/testing/coverageForms.png)
+![](docs/testing/coverageforms.png)
 
 ### Automated Test
 
@@ -273,24 +273,23 @@ Destroying test database for alias 'default'...
 - Add Customer
 - Payment Transacted
 
-![](docs\testing\donationStripe.png)
+![](docs/testing/donationStripe.png)
 
-![](docs\testing\donateSuccess.png)
+![](docs/testing/donateSuccess.png)
 
-![](docs\testing\donateSuccess.png)
+![](docs/testing/donateSuccess.png)
 
 - STRIPE Payment Created
 
-![](docs\testing\stripePayment.png)
+![](docs/testing/stripePayment.png)
 
 - STRIPE Customer Transaction
 
-![](docs\testing\stripeCustomer.png)
+![](docs/testing/stripeCustomer.png)
 
 - STRIPE Customer
 
-![](docs\testing\stripeCustomerCreate.png)
-
+![](docs/testing/stripeCustomerCreate.png)
 
 ### Donation Captured
 
@@ -302,9 +301,9 @@ Destroying test database for alias 'default'...
 
 ### Cancel Donation Prior to Submit
 
-![](docs\testing\donateCancel.png)
+![](docs/testing/donateCancel.png)
 
-![](docs\testing\donationNotProcessed.png)
+![](docs/testing/donationNotProcessed.png)
 
 ## Development Bugs and Resolutions
 
