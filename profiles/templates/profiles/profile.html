@@ -27,16 +27,12 @@
     <p class="main-text">{{ user_profile.name }}</p>
     <hr>
     <h3>Email: </h3>
-    <p class="main-text">{{ user_profile.email}}</p>
+    <p class="main-text">{{ user.email}}</p>
 </div>
 
 <div class="text-center mb-2">
-    <a href="{% url 'home' %}">
-        <button class="btn btn-outline-black rounded-0 submit-btn" type="submit">Home
-    </button></a>
-    <a href="{% url 'edit_profile' request.user %}">
-        <button class="btn btn-outline-black rounded-0 submit-btn" type="submit">Edit
-    </button></a>
+    <a href="{% url 'home' %}" class="btn btn-outline-primary submit-btn">Home</a>
+    <a href="{% url 'edit_profile' request.user %}" class="btn btn-outline-black submit-btn">Edit</a>
 </div>
 
 {% endblock %}
