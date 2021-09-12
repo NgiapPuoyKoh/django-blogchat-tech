@@ -23,7 +23,7 @@ class TestViews(TestCase):
 
     def test_fields_are_explicit_in_form_metaclass(self):
         form = EditProfileForm()
-        self.assertEqual(form.Meta.fields, ['name', 'email'])
+        self.assertEqual(form.Meta.fields, ['name'])
 
 # profile url and html if logged in else redirect to home
 
