@@ -13,7 +13,7 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
 
 ## Table of Content
 
-- [User Experience Design (UX)](#user-experience-design--ux-)
+- [User Experience Design (UX)](#user-experience-design-ux-)
 - [Strategy Plane](#strategy-plane)
   * [Purpose](#purpose)
   * [Site Goals](#site-goals)
@@ -39,7 +39,7 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
   * [Contact Form](#contact-form)
   * [Donation Enhancements](#donation-enhancements)
   * [Blog Post Enhancements](#blog-post-enhancements)
-  * [Blog Application Configuration, Administration and Data Management](#blog-application-configuration--administration-and-data-management)
+  * [Blog Application Configuration, Administration and Data Management](#blog-application-configuration-administration-and-data-management)
 - [Structure Plane](#structure-plane)
   * [Database Schema](#database-schema)
   * [Donate Apps](#donate-apps)
@@ -57,7 +57,7 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
     + [Authenticated user with superuser privileges](#authenticated-user-with-superuser-privileges)
     + [Administrator](#administrator)
 - [Surface Plane](#surface-plane)
-  * [Color Scheme, Web Page Components](#color-scheme--web-page-components)
+  * [Color Scheme, Web Page Components](#color-scheme-web-page-components)
   * [Navigation](#navigation)
     + [Non Authenticated Users](#non-authenticated-users)
     + [Authenticated Users](#authenticated-users)
@@ -96,7 +96,7 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
   * [Features for Future Consideration](#features-for-future-consideration)
 - [Technologies Used](#technologies-used)
   * [Languages Used](#languages-used)
-- [Frameworks, Libraries & Programs Used](#frameworks--libraries---programs-used)
+- [Frameworks, Libraries & Programs Used](#frameworks-libraries-&-programs-used)
 - [Testing](#testing)
 - [Known Issues](#known-issues)
 - [Deployment](#deployment)
@@ -902,7 +902,7 @@ Stripe References:
 
 - Post
 
-![Post Admin](docs/readme/PostsAdmin.png)
+![Post Admin](docs/readme/postsAdmin.png)
 
 - Topics
 
