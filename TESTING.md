@@ -1,43 +1,49 @@
 # Pomodoro Blog Testing
 
+## Testing Notes
+
+### Donation Stripe Testing
+
+- Credit Card Number - 4242 4242 4242 4242
+- MM/YY must be a future date
+- CVC must be any 3-digits
+- ZIP any valid 5-digit US Zip Code e.g. 02180
+
 ## Table of Content
 
 - [Functional Testing](#functional-testing)
 - [Navigation access by user authentication profile](#navigation-access-by-user-authentication-profile)
 - [Display Posts by Topic](#display-posts-by-topic)
 - [Post Detail Page](#post-detail-page)
-- [Create, Update, Delete Blog Posts only by author and Administrator](#create--update--delete-blog-posts-only-by-author-and-administrator)
+- [Create, Update, Delete Blog Posts only by author and Administrator](#create-update-delete-blog-posts-only-by-author-and-administrator)
 - [Comment on Post](#comment-on-post)
 - [View a Blog Posts](#view-a-blog-posts)
-- [Sign Up, Login, Sign Out, Profile](#sign-up--login--sign-out--profile)
+- [Sign Up, Login, Sign Out, Profile](#sign-up-login-sign-out-profile)
 - [Donations](#donations)
 - [Stripe](#stripe)
 - [Admin Panel](#admin-panel)
-  * [Admin Panel - Users](#admin-panel---users)
-  * [Admin Panel - Posts](#admin-panel---posts)
+  * [Users](#users)
+  * [Posts](#posts)
   * [Admin Donations](#admin-donations)
   * [Authentication required](#authentication-required)
-- [Custom 404 and 500](#custom-404-and-500)
-- [URL CSRF](#url-csrf)
+- [Custom 404](#custom-404)
 - [Authentication as the author required to CRUD post](#authentication-as-the-author-required-to-crud-post)
 - [Mobile Device Responsive Testing](#mobile-device-responsive-testing)
-- [Web Page Chrome Ligthouse Validation](#web-page-chrome-ligthouse-validation)
-  * [Accessibility](#accessibility)
-  * [Best Practices](#best-practices)
 - [Browser](#browser)
 - [Automated Testing and Test Driven Development](#automated-testing-and-test-driven-development)
-  * [Coverage install and commands](#coverage-install-and-commands)
-- [Home View](#home-view)
-  * [test_home_page](#test-home-page)
-- [Profiles](#profiles)
-- [Blog](#blog)
-- [Covergae report](#covergae-report)
-- [Coverage](#coverage)
-- [Email](#email)
-- [Donation](#donation)
-  * [Stripe Payment](#stripe-payment)
+- [Coverage Report](#coverage-report)
+    + [Views](#views)
+    + [Models](#models)
+    + [Forms](#forms)
+  * [Automated Test](#automated-test)
+  * [Coverage Install and Commands](#coverage-install-and-commands)
+  * [Donation Workflow](#donation-workflow)
+    + [Stripe Payment](#stripe-payment)
+    + [Donation Workflow Steps](#donation-workflow-steps)
+    + [Donation Form](#donation-form)
   * [Donation Captured](#donation-captured)
-- [Bugs](#bugs)
+  * [Cancel Donation Prior to Submit](#cancel-donation-prior-to-submit)
+- [Development Bugs and Resolutions](#development-bugs-and-resolutions)
   * [Deployment to Heroku with Whitenoise to serve static files does not recognize css files](#deployment-to-heroku-with-whitenoise-to-serve-static-files-does-not-recognize-css-files)
   * [STRIPE Form input field values not displaying in terminal output](#stripe-form-input-field-values-not-displaying-in-terminal-output)
   * [Stripe Forbidden (CSRF cookie not set.)](#stripe-forbidden--csrf-cookie-not-set-)
@@ -48,9 +54,11 @@
   * [admin.py Post model AttributeError](#adminpy-post-model-attributeerror)
   * [Donate model test warning timezone](#donate-model-test-warning-timezone)
 - [Reverse resolution of URLs template tag syntax error](#reverse-resolution-of-urls-template-tag-syntax-error)
-  * [error](#error)
 - [Final Check](#final-check)
-  * [HTML Validate](#html-validate)
+  * [Web Page Chrome Lighthouse Validation](#web-page-chrome-lighthouse-validation)
+  * [CSS Validator](#css-validator)
+  * [JavaScript Validator](#javascript-validator)
+  * [Python Validator](#python-validator)
 
 ## Functional Testing
 
@@ -136,7 +144,7 @@
 
 ## Admin Panel
 
-### Admin Panel - Users
+### Users
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
@@ -145,7 +153,7 @@
 | 7.3 | As an administrator | I want to be able to delete a user |
 | 7.4 | As an administrator | I want to be able to manage the topic list |
 
-### Admin Panel - Posts
+### Posts
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
@@ -166,17 +174,13 @@
 | 9.1 | As a non-authenticated user | I cannot bypass the site's mechanisms to create and edit a blog | Pass |
 | 9.2 | As a non-authenticated user | I cannot bypass site mechanisms to view donation information | Pass |
 
-## Custom 404 and 500
+## Custom 404
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
+| | As a user | I want to be notified when accessing a resource that does not exist| Enter a URL for a post that does not exist https://django-blogchat-tech.herokuapp.com/blog/1/. A custom 404 page will render with a link to return to the home page | Pass |
 
-## URL CSRF
-
-| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
-| --- | --- | --- | ---| --- |
-
-*** What to test and how to test ***
+![Custom 404](docs/testing/custom404Validation.png)
 
 ## Authentication as the author required to CRUD post
 
@@ -188,178 +192,93 @@
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
 
-## Web Page Chrome Ligthouse Validation
-
-![](docs/testing/mobileHomeLightHouse.png)
-
-### Accessibility
-
-![](docs/testing/mobileAccessibilityLighthouse.png)
-
-### Best Practices
-
-![](docs/testing/mobileBestPracticesLighthouse.png)
-
 ## Browser
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
 
 ## Automated Testing and Test Driven Development
 
-### Coverage install and commands
+The workflow used is to write tests during code development. Limited by current knowledge the focus was on simple tests.
 
-- pip install coverage
-- coverage run --source=profiles  manage.py test
-- coverage report
-- coverage html will htmlcov folder
-- navigate to folder with windows explorere
-- open index.html using a browser 
+A total of 86% coverage was achieved.
 
-## Home View
+![](docs\testing\coverageReport.png)
 
-### test_home_page
+## Coverage Report
+
+#### Views
+
+![](docs\testing\coverageViews.png)
+
+#### Models
+
+![](docs\testing\coverageModels.png)
+
+#### Forms
+
+![](docs\testing\coverageForms.png)
+
+### Automated Test
+
+- coverage run manage.py test
 
 ```
-(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test home.test_views
 Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
-.
+.......................................
 ----------------------------------------------------------------------
-Ran 1 test in 0.111s
+Ran 39 tests in 4.003s
 
 OK
 Destroying test database for alias 'default'...
 ```
 
-## Profiles
-
-
-(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test profiles.test_forms 
-Creating test database for alias 'default'...
-System check identified no issues (0 silenced).
-...
-----------------------------------------------------------------------
-Ran 3 tests in 0.015s
-
-OK
-Destroying test database for alias 'default'...
-
-(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test profiles.test_models
-Creating test database for alias 'default'...
-System check identified no issues (0 silenced).
-....
-----------------------------------------------------------------------
-Ran 4 tests in 0.003s
-
-OK
-Destroying test database for alias 'default'...
-
-(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test profiles.test_views 
-Creating test database for alias 'default'...
-System check identified no issues (0 silenced).
-......
-----------------------------------------------------------------------
-Ran 6 tests in 3.457s
-
-OK
-Destroying test database for alias 'default'...
-
-## Blog
-
-
-(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test profiles.test_forms 
-Creating test database for alias 'default'...
-System check identified no issues (0 silenced).
-...
-----------------------------------------------------------------------
-Ran 3 tests in 0.015s
-
-OK
-Destroying test database for alias 'default'...
-
-(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test profiles.test_models
-Creating test database for alias 'default'...
-System check identified no issues (0 silenced).
-....
-----------------------------------------------------------------------
-Ran 4 tests in 0.003s
-
-OK
-Destroying test database for alias 'default'...
-
-(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>python manage.py test profiles.test_views 
-Creating test database for alias 'default'...
-System check identified no issues (0 silenced).
-......
-----------------------------------------------------------------------
-Ran 6 tests in 3.457s
-
-OK
-Destroying test database for alias 'default'...
-
-## Covergae report
-
-(venv) C:\Users\user\Downloads\MS4PomodoroBlogChat\django-blogchat-tech>coverage report  
-Name                                         Stmts   Miss  Cover
-----------------------------------------------------------------
-blog\admin.py                                   17      8    53%
-blog\apps.py                                     4      0   100%
-blog\forms.py                                   13      6    54%
-blog\models.py                                  59     32    46%
-blog\test_forms.py                              18      8    56%
-blog\test_models.py                             63     19    70%
-blog\test_views.py                              30     11    63%
-blog\tests.py                                    1      0   100%
-blog\urls.py                                     4      0   100%
-blog\views.py                                   73     45    38%
-----------------------------------------------------------------
-TOTAL                                          376    189    50%
-
-
-
-
-
-
-
-
-
-***********************************
-
-## Coverage
+### Coverage Install and Commands
 
 - pip install coverage
-- coverage run --source=profiles  manage.py test
+- coverage run --source=blog,donate,home,profiles manage.py test
 - coverage report
+- coverage html
+- generates htmlcov folder
+- navigate to htmlconv with windows explorer
+- open index.html using a browser
 
+### Donation Workflow
 
-## Email
+#### Stripe Payment
 
-- Create new account using Temp Email
-
-
-## Donation
-
-### Stripe Payment
-
-- Validate Form input values and Stripe Payment Token
-
-  - Form Input values matches values terminal output
-  - Add Customer
-  - Payment Transacted
-
-  ![](docs\testing\stripePaymentUnitTest.png)
-
-  ![](docs\testing\stripePaymentUnitTestOutput.png)
-
-- STRIPE Customer Created
-
-- STRIPE Payment Created
-
+#### Donation Workflow Steps
 
 - Navbar Donate Button renders Donate Page
 - Redirect to Success Page
 - Redirect to Error Page
 - Cancel redirect to Donate Page
+
+#### Donation Form 
+
+- Validate Form input values and Stripe Payment Token
+- Form Input values matches values terminal output
+- Add Customer
+- Payment Transacted
+
+![](docs\testing\donationStripe.png)
+
+![](docs\testing\donateSuccess.png)
+
+![](docs\testing\donateSuccess.png)
+
+- STRIPE Payment Created
+
+![](docs\testing\stripePayment.png)
+
+- STRIPE Customer Transaction
+
+![](docs\testing\stripeCustomer.png)
+
+- STRIPE Customer
+
+![](docs\testing\stripeCustomerCreate.png)
+
 
 ### Donation Captured
 
@@ -369,8 +288,13 @@ TOTAL                                          376    189    50%
 - Display message when no donations
 - Execute donation model and views tests
 
+### Cancel Donation Prior to Submit
 
-## Bugs
+![](docs\testing\donateCancel.png)
+
+![](docs\testing\donationNotProcessed.png)
+
+## Development Bugs and Resolutions
 
 ### Deployment to Heroku with Whitenoise to serve static files does not recognize css files
 
@@ -380,9 +304,8 @@ TOTAL                                          376    189    50%
 Refused to apply style from 'https://django-blogchat-tech.herokuapp.com/static/css/base.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
 ```
 - Root Cause: Static file not copied during deployment to Heroku
-- Resolution: Install, configure Whitenoise and deploy to heroku
-
-  Solution: After 3 days of AGONY
+- Fix: Install, configure Whitenoise and deploy to heroku
+  - Solution: After 3 days of AGONY
 Resolution:
   - DISABLE_COLLECTSTATIC = 1 needs to be removed from heroku dashboard for static files to be copied and then replaced it after (probably need to do this when deploying to heroku each time)
   ![](docs\testing\staticfilesNotFound.png)
@@ -403,7 +326,8 @@ added to urls.py
   ```
 
 - References: 
-
+  <details>
+    <summary> Click to expand!</summary>
   - [Django staticfiles not found on Heroku (with whitenoise)](https://stackoverflow.com/questions/35507140/django-staticfiles-not-found-on-heroku-with-whitenoise)
 
   - [Django and Static Assets](https://devcenter.heroku.com/articles/django-assets)
@@ -422,8 +346,9 @@ added to urls.py
   - [Serve Static Files with Whitenoise](https://www.youtube.com/watch?v=qSrJt3UD9xk)
   - [Managing static files (e.g. images, JavaScript, CSS)](https://docs.djangoproject.com/en/3.2/howto/static-files/)
   - [Django Static Files Settings](https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-STATICFILES_FINDERS)
+</details>
 
-  ### STRIPE Form input field values not displaying in terminal output
+### STRIPE Form input field values not displaying in terminal output
 
 - Error: Only Stripe variables values are displaying in output
 
@@ -452,8 +377,7 @@ added to urls.py
   <input required type="text" id = "nickname"  placeholder="Your Name">
   ```
   
-
-- Fix include input element name attribute
+- Fix: include input element name attribute
   ```
   <input required type="text" id = "nickname" name = "nickname" placeholder="Your Name">
   ```
@@ -469,9 +393,8 @@ added to urls.py
   [05/Jul/2021 06:12:10] "GET /donate/success/5/ HTTP/1.1" 200 3954
   ```
 
-
-References:
-- [django MultiValueDictKeyError error, how do I deal with it](https://stackoverflow.com/questions/5895588/django-multivaluedictkeyerror-error-how-do-i-deal-with-it)
+- References:
+  - [Django MultiValueDictKeyError error, how do I deal with it](https://stackoverflow.com/questions/5895588/django-multivaluedictkeyerror-error-how-do-i-deal-with-it)
 
 ### Stripe Forbidden (CSRF cookie not set.)
 
@@ -500,7 +423,7 @@ References:
 
 - Root Cause: CSRF decorator required for Stripe view
 
-- Fix include input element name attribute
+- Fix: include input element name attribute
 
   ```
   @csrf_protect
@@ -527,7 +450,7 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.name
 ```
-- Fix - str type needs to be explicit for self.name
+- Fix: str type needs to be explicit for self.name
 
 ```
     def __str__(self):
@@ -556,7 +479,7 @@ AttributeError: module 'profile' has no attribute 'test_models'
         UserProfile.objects.create( user= user, name='testuser',email='testemail@example.com' )
 ```
 
-- Fix 
+- Fix:  
 ```
     @classmethod
     def setup(cls):
@@ -583,7 +506,7 @@ Reverse for 'user_profile' with no arguments not found. 1 pattern(s) tried: ['pr
 path('<str:user>/', views.user_profile, name='user_profile'),
 ```
 
-- Fix
+- Fix :
 
 ```
 response = self.client.get(reverse('edit_profile', kwargs = {'user': self.user}))
@@ -599,8 +522,7 @@ Reference:
 
 - Error: Integration Error: Missing value for Stript(): apikey should be a string.
 
-![Stripe Integration Error](docs\testing\stripeIntegrationError.png)
-
+![Stripe Integration Error](docs/testing/stripeIntegrationError.png)
 
 - Root Cause: 
 
@@ -638,11 +560,11 @@ AttributeError: 'Post' object has no attribute 'publish'
 
 - Root Cause: 
 
-The field name publish_date is not the same as referenced by slug unique_for_date='publish'
+  The field name publish_date is not the same as referenced by slug unique_for_date='publish'
 
-- Fix
+- Fix:
 
-Change the field name publish_date to publish in model.y and admin.py
+  Change the field name publish_date to publish in model.y and admin.py
 
 ### Donate model test warning timezone
 
@@ -663,10 +585,10 @@ Destroying test database for alias 'default'...
 ```
 
 - Root Cause:
-Introduced timezone for the blog app model need to update for donate test 
+  Introduced timezone for the blog app model need to update for donate test 
 
-- Fix 
-Modify test import timezone and replace datetime.date.today() with timezone.now()
+- Fix:
+  Modify test import timezone and replace datetime.date.today() with timezone.now()
 
 ## Reverse resolution of URLs template tag syntax error
 
@@ -675,31 +597,30 @@ Modify test import timezone and replace datetime.date.today() with timezone.now(
 - Root Cause: Syntax error passing url paramet
 - Fix: 
 
-```
-              <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                {% for topic in topic_list %}
-                  <a href="{% url 'topic' topic.name %}" class="dropdown-item">
-                  {{ topic.name|title }}
-                  </a>
-                {% endfor %}
-              </div> 
-```
+  ```
+  <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+    {% for topic in topic_list %}
+      <a href="{% url 'topic' topic.name %}" class="dropdown-item">
+      {{ topic.name|title }}
+      </a>
+    {% endfor %}
+  </div> 
+  ```
 
 Reference:
 [Reverse resolution of URLs](https://docs.djangoproject.com/en/3.2/topics/http/urls/)
 
-### error
-
-- Error:
-
-- Root Cause: 
-
-- Fix 
-
-Reference:
-[]()
-
 ## Final Check
+
+### Web Page Chrome Lighthouse Validation
+
+![](docs/testing/mobileHomeLightHouse.png)
+
+- Accessibility
+![](docs/testing/mobileAccessibilityLighthouse.png)
+
+- Best Practices
+  ![](docs/testing/mobileBestPracticesLighthouse.png)
 
 ### HTML Validate
 
@@ -710,7 +631,7 @@ Reference:
 ![Topic](docs/testing/topicValidateHTML.png)
 
 - Post Delete
-![Post Delete](docs/testing/postdeleteValidateHTML.png)
+![Post Delete](docs/testing/postDeleteValidateHTML.png)
 
 - User Profile
 ![User Profile](docs/testing/profileValidateHTML.png)
@@ -718,14 +639,11 @@ Reference:
 - Create Edit Post
 ![Create Edit Post](docs/testing/createEditPostValidateHTML.png)
 
+- Sign Up
+![Sign Up](docs/testing/signUpHTMLValidation.png)
+
 - Email Confirmation
 ![Email Confirmation](docs/testing/emailConfirmationValidateHTML.png)
-
-- Sign Up
-![Sign Up](docs/testing/signupValidateHTML.png)
-
-- Confirm Email
-![Confirm Email](docs/testing/confirmEmailValidateHTML.png)
 
 - Sign In
 ![Sign In](docs/testing/signinValidateHTML.png)
@@ -734,19 +652,16 @@ Reference:
 ![Sign Out](docs/testing/signoutValidateHTML.png)
 
 - Password Reset
-![Sign In](docs/testing/signinValidateHTML.png)
+![Sign In](docs/testing/passwordResetValidateHTML.png)
 
-- Debug Off
-- credentials and passwwords not pushed to github
-- Ensure that users not logged in are redirected to the login page. 
-- Check that authentication cannot be bypassed by typing the URL into the browser bar -  consider creating custom 403/404 pages to deal with this. 
-- Make sure you have checked that no links result in an internal server error. 
-- If you have included a user type with higher access privileges, then you can include example login credentials at submission. 
-- Do not display links the user does not have the privileges to access.
+### CSS Validator
 
-- [HTML Validator](https://validator.w3.org/)
-- [CSS Validator](https://jigsaw.w3.org/css-validator/)
-- [JavaScript Validator](https://jshint.com/)
-- [Python Validator](http://pep8online.com/)
-- [Documentation on using Developer Tools](Lighthouse9https://developers.google.com/web/tools/lighthouse)
+- Validated CSS file refer to github repo history
 
+### JavaScript Validator
+
+- Validated js file refer to github repo history
+
+### Python Validator
+
+- Validated python files refer to github repo history
