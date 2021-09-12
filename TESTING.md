@@ -9,9 +9,20 @@
 - CVC must be any 3-digits
 - ZIP any valid 5-digit US Zip Code e.g. 02180
 
+## Known Issues and Future Enhancements
+
+### 403 renders when a user attempts to update a post not created by the user
+
+- Handle by redirecting to the profile page
+
+### User Profile generated when creating a user
+
+- Rename user profile email to preferred email and prepopulate with user account email at the time of user account creation
+- Enable profile update to include preferred email
+
 ## Table of Content
 
-- [Functional Testing](#functional-testing)
+[Functional Feature and User Stories Testing](#functional-feature-and-user-stories-testing)
 - [Navigation access by user authentication profile](#navigation-access-by-user-authentication-profile)
 - [Display Posts by Topic](#display-posts-by-topic)
 - [Post Detail Page](#post-detail-page)
@@ -60,7 +71,7 @@
   * [JavaScript Validator](#javascript-validator)
   * [Python Validator](#python-validator)
 
-## Functional Testing
+## Functional Feature and User Stories Testing
 
 ## Navigation access by user authentication profile
 
@@ -97,7 +108,7 @@
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
 | 3.1 | As an authenticated user | I want to be able to create a blog post | Click on Create Post nav item,  create page renders, enter fields values, select topic, and status values. A post is created with the values entered | Pass |
-| 3.2 | As an authenticated user | I want to be able to update my blog post | Update to content | Pass |
+| 3.2 | As an authenticated user | I want to be able to update my blog post | Update content submit and post renders updated content | Pass |
 | 3.3 | As an authenticated user | I want to be able to delete my blog post | Author of the post will have access to the delete button.  Click on the button to delete the post | Pass |
 | 3.4 | As an authenticated user | I want to be able to set the status of my blog post | Select a status. The post status is changed successfully | Pass |
 
@@ -140,7 +151,7 @@
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
 | 6.2 | As a user I want to be able to make secure payments | The donate button will trigger processing of donation as a secure transaction via Stripe | Transaction will be processed by Stripe | Pass |
-|  | As a user, I want to enter credit card info to make a donation | The credit card information will be validated | Pass |
+|  | As a user | I want to enter credit card info to make a donation | The credit card information will be validated and processed by Stripe. Check donations list to view transaction | Pass |
 
 ## Admin Panel
 
@@ -148,10 +159,10 @@
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-| 7.1 | As an administrator | I want to be able to create a user account |
-| 7.2 | As an administrator | I want to be able to update a user |
-| 7.3 | As an administrator | I want to be able to delete a user |
-| 7.4 | As an administrator | I want to be able to manage the topic list |
+| 7.1 | As an administrator | I want to be able to create a user account | Add user via Django Adminstration. User is created and signal triggers creation of user profile record | Pass |
+| 7.2 | As an administrator | I want to be able to update a user | Update profile name and email of user successfully | Pass |
+| 7.3 | As an administrator | I want to be able to delete a user | Delete user successfully | Pass | 
+| 7.4 | As an administrator | I want to be able to manage the topic list | Add seeded topic defined topic database table | Pass |
 
 ### Posts
 
@@ -171,8 +182,9 @@
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-| 9.1 | As a non-authenticated user | I cannot bypass the site's mechanisms to create and edit a blog | Pass |
+| 9.1 | As a non-authenticated user | I cannot bypass the site's mechanisms to create and edit a blog | Enter url for edit post. Redirected to sign in page | Pass |
 | 9.2 | As a non-authenticated user | I cannot bypass site mechanisms to view donation information | Pass |
+| | As an authenticated user | I cannot bypass site mechanisms to view donation information|  Redirected to user profile page | Pass |
 
 ## Custom 404
 
@@ -202,21 +214,21 @@ The workflow used is to write tests during code development. Limited by current 
 
 A total of 86% coverage was achieved.
 
-![](docs\testing\coverageReport.png)
+![](docs/testing/coverageReport.png)
 
 ## Coverage Report
 
 #### Views
 
-![](docs\testing\coverageViews.png)
+![](docs/testing/coverageViews.png)
 
 #### Models
 
-![](docs\testing\coverageModels.png)
+![](docs/testing/coverageModels.png)
 
 #### Forms
 
-![](docs\testing\coverageForms.png)
+![](docs/testing/coverageForms.png)
 
 ### Automated Test
 
