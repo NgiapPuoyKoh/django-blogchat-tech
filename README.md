@@ -84,6 +84,7 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
     + [Verify Email](#verify-email)
   * [User Profile](#user-profile)
     + [My Profile](#my-profile)
+    + [Edit My Profile](#edit-my-profile)
     + [User Profile Admin Panel](#user-profile-admin-panel)
   * [Donation Payments using Stripe](#donation-payments-using-stripe)
     + [Stripe](#stripe)
@@ -775,6 +776,12 @@ Fields Values Inherit from Users
 - User name
 
 ![my Profile](docs/readme/userProfile.png)
+
+#### Edit My Profile
+
+- Name
+
+![my Profile](docs/readme/editUserProfile.png)
 
 #### User Profile Admin Panel
 
