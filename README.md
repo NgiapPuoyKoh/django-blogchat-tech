@@ -71,9 +71,9 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
     + [Posts by Topic](#posts-by-topic)
     + [Post Details](#post-details)
   * [Post CRUD](#post-crud)
-    + [Create/Edit Post](#create-edit-post)
-  * [Create Post](#create-post)
-  * [Edit Post](#edit-post)
+    + [Create/Edit Post](#create/edit-post)
+    + [Create Post](#create-post)
+    + [Edit Post](#edit-post)
     + [Update and Delete](#update-and-delete)
   * [Comments](#comments)
   * [Search](#search)
@@ -82,6 +82,7 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
     + [Sign Out](#sign-out)
     + [Sign Up](#sign-up)
     + [Verify Email](#verify-email)
+  * [User Profile](#user-profile)
     + [My Profile](#my-profile)
     + [User Profile Admin Panel](#user-profile-admin-panel)
   * [Donation Payments using Stripe](#donation-payments-using-stripe)
@@ -706,11 +707,11 @@ Authors of posts require authentication to perform CRUD operations.
 
 ![Post Form Fields](docs/readme/createEditPost.png)
 
-### Create Post
+#### Create Post
 
 ![Create Post](docs/readme/createPost.png)
 
-### Edit Post
+#### Edit Post
 
 ![Edit Post](docs/readme/editPost.png)
 
@@ -763,6 +764,8 @@ Customized allauth forms
 #### Verify Email
 
 ![Verify Email](docs/readme/verifyEmail.png)
+
+### User Profile
 
 #### My Profile
 
