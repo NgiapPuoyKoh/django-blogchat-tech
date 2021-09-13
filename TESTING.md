@@ -66,7 +66,7 @@
   * [Stripe Public Key Issue](#stripe-public-key-issue)
   * [admin.py Post model AttributeError](#adminpy-post-model-attributeerror)
   * [Donate model test warning timezone](#donate-model-test-warning-timezone)
-- [Reverse resolution of URLs template tag syntax error](#reverse-resolution-of-urls-template-tag-syntax-error)
+  * [Reverse resolution of URLs template tag syntax error](#reverse-resolution-of-urls-template-tag-syntax-error)
 - [Final Check](#final-check)
   * [Web Page Chrome Lighthouse Validation](#web-page-chrome-lighthouse-validation)
   * [CSS Validator](#css-validator)
@@ -624,7 +624,7 @@ Destroying test database for alias 'default'...
 - Fix:
   Modify test import timezone and replace datetime.date.today() with timezone.now()
 
-## Reverse resolution of URLs template tag syntax error
+### Reverse resolution of URLs template tag syntax error
 
 - Error: TemplateSyntaxError at /blog/topic/javascript/ Could not parse the remainder: '=' from '='
 
