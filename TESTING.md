@@ -22,7 +22,7 @@
 
 ## Table of Content
 
-[Functional Feature and User Stories Testing](#functional-feature-and-user-stories-testing)
+[Functional Features and User Stories Testing](#functional-features-and-user-stories-testing)
 - [Navigation access by user authentication profile](#navigation-access-by-user-authentication-profile)
 - [Display Posts by Topic](#display-posts-by-topic)
 - [Post Detail Page](#post-detail-page)
@@ -30,17 +30,19 @@
 - [Comment on Post](#comment-on-post)
 - [View a Blog Posts](#view-a-blog-posts)
 - [Sign Up, Login, Sign Out, Profile](#sign-up-login-sign-out-profile)
+- [Authentication Not required](#authentication-not-required)
+- [Authentication as the author required to CRUD post](#authentication-as-the-author-required-to-crud-post)
 - [Donations](#donations)
 - [Stripe](#stripe)
-- [Admin Panel](#admin-panel)
+- [Admin Panel Django Apps Models](#admin-panel-django-apps-models)
   * [Users](#users)
   * [Posts](#posts)
+  * [Comments](#comments)
+  * [User Profiles](#user-profiles)
   * [Admin Donations](#admin-donations)
-  * [Authentication required](#authentication-required)
 - [Custom 404](#custom-404)
-- [Authentication as the author required to CRUD post](#authentication-as-the-author-required-to-crud-post)
-- [Mobile Device Responsive Testing](#mobile-device-responsive-testing)
-- [Browser](#browser)
+- [Mobile First Friendly](#mobile-first-friendly)
+- [Mobile Device Responsive Pages](#Mobile-Device-Responsive-Pages)
 - [Automated Testing and Test Driven Development](#automated-testing-and-test-driven-development)
 - [Coverage Report](#coverage-report)
     + [Views](#views)
@@ -48,7 +50,7 @@
     + [Forms](#forms)
   * [Automated Test](#automated-test)
   * [Coverage Install and Commands](#coverage-install-and-commands)
-  * [Donation Workflow](#donation-workflow)
+  * [Donation Process](#donation-process-flow)
     + [Stripe Payment](#stripe-payment)
     + [Donation Workflow Steps](#donation-workflow-steps)
     + [Donation Form](#donation-form)
@@ -72,6 +74,10 @@
   * [Python Validator](#python-validator)
 
 ## Functional Feature and User Stories Testing
+
+Manual tests are organized in sections to cover user stories, Django apps features, application navigation, web pages and application workflow.
+
+The use case numbers of the user stories documented in the [README.md](https://github.com/NgiapPuoyKoh/django-blogchat-tech/blob/master/README.md) are listed to test all user stories.
 
 ## Navigation access by user authentication profile
 
@@ -138,6 +144,21 @@
 | 5.2 | As an authenticated user | I Want to be able to create my profile information | Future Enhancement| N/A |
 | 5.3 | As an authenticated user | I want to be able to edit my profile information | Future Enhancement | N/A |
 |  | As an authenticated user | I Want to be able to view my profile information | Click on My Profile Nav item to render profile information | Pass |
+| |As a user | I want to receive to confirm email address when I sign up for an account | email with to confirm email generated and sent to the user | Pass |
+
+## Authentication Not required
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+| 9.1 | As a non-authenticated user | I cannot by-pass the site's mechanisms to create and edit a blog | Enter URL for edit post. Redirected to sign-in page | Pass |
+| 9.2 | As a non-authenticated user | I cannot by-pass site mechanisms to view donation information | Pass |
+| | As an authenticated user | I cannot by-pass site mechanisms to view donation information|  Redirected to user profile page | Pass |
+
+## Authentication as the author required to CRUD post
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+| | Only author of the post has privileges to update post | Enter https://django-blogchat-tech.herokuapp.com/accounts/login/?next=/blog/add-post-via-form-heroku-1/update/ | User is re-directed to sign-in. If the did not create the post no update and delete buttons render with the post | Pass |
 
 ## Donations
 
@@ -153,7 +174,7 @@
 | 6.2 | As a user I want to be able to make secure payments | The donate button will trigger processing of donation as a secure transaction via Stripe | Transaction will be processed by Stripe | Pass |
 |  | As a user | I want to enter credit card info to make a donation | The credit card information will be validated and processed by Stripe. Check donations list to view transaction | Pass |
 
-## Admin Panel
+## Admin Panel Django Apps Models
 
 ### Users
 
@@ -161,7 +182,7 @@
 | --- | --- | --- | ---| --- |
 | 7.1 | As an administrator | I want to be able to create a user account | Add user via Django Adminstration. User is created and signal triggers creation of user profile record | Pass |
 | 7.2 | As an administrator | I want to be able to update a user | Update profile name and email of user successfully | Pass |
-| 7.3 | As an administrator | I want to be able to delete a user | Delete user successfully | Pass | 
+| 7.3 | As an administrator | I want to be able to delete a user | Delete user successfully | Pass |
 | 7.4 | As an administrator | I want to be able to manage the topic list | Add seeded topic defined topic database table | Pass |
 
 ### Posts
@@ -171,6 +192,12 @@
 | 7.5 | As an administrator | I want to be able to have CRUD privileges to curate blog posts | Able to perform CRUD operations for posts successfully | Pass |
 | 7.6 | As an administrator | I want to be able to have CRUD privileges to curate comments | Able to perform CRUD operations for comments successfully | Pass |
 
+### Comments
+
+| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
+| --- | --- | --- | ---| --- |
+|    | As an administrator| I want to curate post comments via the Django Adminstration Panel. I can perform CRUD operations on comments | Pass |
+
 ### Admin Donations
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
@@ -178,13 +205,11 @@
 | 8.1 | As a site owner | I want to accept donations to maintain the site | No authentication is required for users donate using credit cards | Pass |
 | 8.2 | As a site owner | I want to be able to review information on donors and donation amounts | Login with superuser credentials. Click on Donations received nav item. A table listing the donations will be displayed | Pass |
 
-### Authentication required
+### User Profiles
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-| 9.1 | As a non-authenticated user | I cannot bypass the site's mechanisms to create and edit a blog | Enter url for edit post. Redirected to sign in page | Pass |
-| 9.2 | As a non-authenticated user | I cannot bypass site mechanisms to view donation information | Pass |
-| | As an authenticated user | I cannot bypass site mechanisms to view donation information|  Redirected to user profile page | Pass |
+|    | As an administrator| I want to manage user profiles the Django Adminstration Panel. I can perform CRUD operations on user profiles | Pass |
 
 ## Custom 404
 
@@ -194,19 +219,17 @@
 
 ![Custom 404](docs/testing/custom404Validation.png)
 
-## Authentication as the author required to CRUD post
+## Mobile First Friendly
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-| | Only author of post have privileges to update post | Enter https://django-blogchat-tech.herokuapp.com/accounts/login/?next=/blog/add-post-via-form-heroku-1/update/ | User is asked to sign in. If user is not the author no update and delete buttons will be rendered for the post | Pass |
+|  | As a user | I want to be able to navigate and access functions on a mobile device | User is able t navigate and operate all features | Pass |
 
-## Mobile Device Responsive Testing
+## Mobile Device Responsive Pages
+
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-
-## Browser
-| Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
-| --- | --- | --- | ---| --- |
+|  | As a user | I want to be able to use an mobile device to be able to access all features with responsive pages | Perform all operations on an iPhone6 without issues | Pass |
 
 ## Automated Testing and Test Driven Development
 
@@ -255,7 +278,7 @@ Destroying test database for alias 'default'...
 - navigate to htmlconv with windows explorer
 - open index.html using a browser
 
-### Donation Workflow
+### Donation Process Flow
 
 #### Stripe Payment
 
@@ -266,7 +289,7 @@ Destroying test database for alias 'default'...
 - Redirect to Error Page
 - Cancel redirect to Donate Page
 
-#### Donation Form 
+#### Donation Form
 
 - Validate Form input values and Stripe Payment Token
 - Form Input values matches values terminal output
@@ -664,6 +687,9 @@ Reference:
 
 - Password Reset
 ![Sign In](docs/testing/passwordResetValidateHTML.png)
+
+- Email Confirmation
+![](docs/testing/confirmEmailHTMLValidate.png)
 
 ### CSS Validator
 
