@@ -34,12 +34,12 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
     + [User Profile](#user-profile)
   * [Blog Application Administration](#blog-application-administration)
   * [Donation](#donation)
-- [Future Features](#future-features)
-  * [Live Chat Conversations](#live-chat-conversations)
-  * [Contact Form](#contact-form)
-  * [Donation Enhancements](#donation-enhancements)
-  * [Blog Post Enhancements](#blog-post-enhancements)
-  * [Blog Application Configuration, Administration and Data Management](#blog-application-configuration-administration-and-data-management)
+  * [Future Features](#future-features)
+    + [Live Chat Conversations](#live-chat-conversations)
+    + [Contact Form](#contact-form)
+    + [Donation Enhancements](#donation-enhancements)
+    + [Blog Post Enhancements](#blog-post-enhancements)
+    + [Blog Application Configuration, Administration and Data Management](#blog-application-configuration-administration-and-data-management)
 - [Structure Plane](#structure-plane)
   * [Database Schema](#database-schema)
   * [Donate Apps](#donate-apps)
@@ -85,7 +85,6 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
     + [Verify Email](#verify-email)
     + [My Profile](#my-profile)
     + [User Profile Admin Panel](#user-profile-admin-panel)
-    + [View](#view)
   * [Donation Payments using Stripe](#donation-payments-using-stripe)
     + [Stripe](#stripe)
     + [Stripe Test Payment](#stripe-test-payment)
@@ -298,25 +297,25 @@ The application administrator with superuser privileges have full access to all 
 - Simple Accept payment of any amount available only in the US and Canada
 - Record donor name, email, and amount of donations received
 
-## Future Features
+### Future Features
 
-### Live Chat Conversations
+#### Live Chat Conversations
 
 - As an author, I want to be able to have a conversation with readers via live chat
 - As a user, I want to be able to have group conversations with other readers and authors
 
-### Contact Form
+#### Contact Form
 
 - Users can submit questions to the site owner
 - Administrator can respond to questions submitted
 
-### Donation Enhancements
+#### Donation Enhancements
 
 - Automated email generation Thank You for Donations
 - Dashboard to track and report donations received
 - Donor Information Management
 
-### Blog Post Enhancements
+#### Blog Post Enhancements
 
 - Blog Topic Category Management
 - Rating and reviews
@@ -324,13 +323,15 @@ The application administrator with superuser privileges have full access to all 
 - Blog series playlist generation
 - Blog Metrics Dashboard for author number of blogs and blog ratings by topic
 
-### Blog Application Configuration, Administration and Data Management
+#### Blog Application Configuration, Administration and Data Management
 
 - Application configuration dashboard
 - Donation Management
 - Data management dashboard
 
 ## Structure Plane
+
+The information is structured and logically groups using Django MVC Apps, Models, and Views. Each app represents a set of features. The data representing the informaton for the apps are in the RDMS tables and associated entity relationships by designing a database schema.
 
 ### Database Schema
 
@@ -572,9 +573,11 @@ Source:
 
 ## Skeletal Plane
 
+The user navigates to information by using Django URL and routing. Authentication logic will control access to information and features.
+
 ### Post Content
 
-Blog posts by a topic with the required fields
+A blog page will render Blog posts associated with a topic with the required fields.
 
 - Title
 - Excerpt
@@ -774,10 +777,6 @@ Fields Values Inherit from Users
 
 ![User Profile Admin Panel](docs/readme/userProfileAdminPanel.png)
 
-#### View
-
-- Functions
-
 ### Donation Payments using Stripe
 
 Stripe ensures Payment Card Industry compliance and secure communications that mean never have store credit card information and tokenized and handled by Stripe.
@@ -962,8 +961,6 @@ Testing includes:
 - Manual functional testing of features and user stories.
 
 [Testing Documentation here.](TESTING.md)
-
-
 
 ## Deployment
 

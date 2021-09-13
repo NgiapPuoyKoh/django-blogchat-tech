@@ -223,13 +223,13 @@ The use case numbers of the user stories documented in the [README.md](https://g
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-|  | As a user | I want to be able to navigate and access functions on a mobile device | User is able t navigate and operate all features | Pass |
+|  | As a user | I want to be able to navigate and access functions on a mobile device | User can navigate and operate all features intuitively| Pass |
 
 ## Mobile Device Responsive Pages
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-|  | As a user | I want to be able to use an mobile device to be able to access all features with responsive pages | Perform all operations on an iPhone6 without issues | Pass |
+|  | As a user | I want to be able to use use the app on a mobile device to be able to access all features with responsive pages | Perform all operations on an iPhone6 without issues | Pass |
 
 ## Automated Testing and Test Driven Development
 
