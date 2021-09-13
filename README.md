@@ -111,12 +111,12 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
   * [Login to Heroku](#login-to-heroku)
   * [Push and migrate database to Heroku](#push-and-migrate-database-to-heroku)
   * [Heroku or SQLite3 Seed Data](#heroku-or-sqlite3-seed-data)
-- [Code](#code)
-- [Content](#content)
-- [References](#references)
-
-- [Acknowledgments](#acknowledgments)
-- [Disclaimer](#disclaimer)
+- [Credits](#credits)
+  + [Code](#code)
+  + [Content](#content)
+  + [References](#references)
+  + [Acknowledgments](#acknowledgments)
+  + [Disclaimer](#disclaimer)
 
 ## User Experience Design (UX)
 
@@ -1065,20 +1065,22 @@ As superuser navigate to the Django Admin panel and create the topics
 
 ![Topic Admin](docs/readme/topicsAdmin.png)
 
-## Code
+## Credits
+
+### Code
 
 Code modified and utilized where applicable from sources cited in the reference section.
 
-## Content
+### Content
 
 Post contents are created and may include link to online resources
 
-## References
+### References
 
 <details>
     <summary> Click to expand!</summary>
 
-## Django
+### Django
 
 #### Django Framework
 
@@ -1139,17 +1141,17 @@ Post contents are created and may include link to online resources
 
 - [Building a REST API With Django REST Framework](https://www.digitalocean.com/community/tech_talks/building-a-rest-api-with-django-rest-framework?utm_medium=email&utm_source=webinar&utm_campaign=invite&mkt_tok=MTEzLURUTi0yNjYAAAF85bZZ8wSNtFocbKR05IVX1Bl8nXIYtU6og4yJUgFPeitI5vSTDpD0TxQ5jDkv_gXL-dDmi5l-0_HQ-AZEX90Xj1SRZqAAEg4VIosWW0Nu)
 
-## Python
+### Python
 
 - [PEP 8 -- Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/#indentation)
 
-## Bootstrap5
+### Bootstrap5
 
 - [Bootstrap5 Docs](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 - [Bookstrap5 Examples](https://getbootstrap.com/docs/5.0/examples/)
 - [Bootstrap 5 Crash Course | Website Build & Deploy](https://www.youtube.com/watch?v=4sosXZsdy-s)
 
-## Stripe
+### Stripe
 
 - [Django Stripe Payments Simplified with Donation Page](https://www.youtube.com/watch?v=oZwyA9lUwRk)
 - [Accept a payment using Stripe Elements](https://stripe.com/docs/payments/accept-a-payment-charges)
@@ -1165,11 +1167,11 @@ Post contents are created and may include link to online resources
 - [Django Stripe Subscriptions](https://testdriven.io/blog/django-stripe-subscriptions/)
 - [Django Stripe Payments Simplified with Donation Page](https://www.youtube.com/watch?v=oZwyA9lUwRk)
 
-## Heroku Deployment
+### Heroku Deployment
 
 - [Heroku & Django Deployment Guide](https://github.com/codingforentrepreneurs/Guides/blob/master/all/Heroku_Django_Deployment_Guide.md)
 
-## Visual Studio Code
+### Visual Studio Code
 
 - [VS Code & Django - Tutorial](https://www.youtube.com/watch?v=IlmICfGQOv4)
 - [DJANGO PROJECTS IN VISUAL STUDIO CODE](https://automationpanda.com/2018/02/08/django-projects-in-visual-studio-code/)
@@ -1187,24 +1189,24 @@ Post contents are created and may include link to online resources
 - [Generate diagrams from Django models](https://www.youtube.com/watch?v=yvf_J225iM8)
 - [Django Extensions for Visual Studio Code Setup](https://www.youtube.com/watch?v=PcvyZ3mIONM)
 
-## Tools
+### Tools
 
 - [Stack Overflow Developer Survey 2020](https://insights.stackoverflow.com/survey/2020)
 - [graphviz](https://graphviz.org/)
 - [django-extensions](https://django-extensions.readthedocs.io/en/latest/graph_models.html)
 - [pip install django-extensions](https://pypi.org/project/django-extensions/)
 
-## Markdown
+### Markdown
 
 - [readme.so](https://readme.so/editor)
 
-## Git
+### Git
 
 - [Using Git in a team: a cheatsheet](https://jameschambers.co.uk/git-team-workflow-cheatsheet)
 - [GitHub Wiki TOC generator](https://ecotrust-canada.github.io/markdown-toc/)
 - [Django Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/)
 
-## Technologies References
+### Technologies References
 
 - [Whitenoise](http://whitenoise.evans.io/en/stable/django.html) Serve static files
 - [django-allauth](https://django-allauth.readthedocs.io/en/latest/overview.html#supported-flows)
@@ -1212,33 +1214,33 @@ Multiple authentication schemes and account verification
 - [Amazon S3](https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/
 ) Storing Django Static and Media Files on Amazon S3
 
-## Media Sources
+### Media Sources
 
 - [icon-icons](https://icon-icons.com/icon-packs-recently-uploaded)
 - [Linea](https://linea.io/)
 - [Google Fonts](https://fonts.google.com/?query=lato)
 - [Font Awesome](https://fontawesome.com/kits/7d6112ed33/use)
 
-## UX/UI
+### UX/UI
 
 - [What Are Favicons: A Comprehensive Guide](https://sympli.io/blog/heres-everything-you-need-to-know-about-favicons-in-2020/)
 
-## Analytics Dashboard
+### Analytics Dashboard
 
 - [How to create an analytics dashboard in a Django app](https://www.freecodecamp.org/news/how-to-create-an-analytics-dashboard-in-django-app/)
 - [Django for Data Science](https://justdjango.com/blog/django-for-data-science/)
 
-## Learning how to learn (Chunking and Pomodoro Technique)
+### Learning how to learn (Chunking and Pomodoro Technique)
 
 - [Helping Students be Excellent Online Learners](https://www.youtube.com/watch?v=AnQHToj1exY)
 - [Learning how to learn](https://www.coursera.org/learn/learning-how-to-learn?)
 
 </details>
 
-## Acknowledgments
+### Acknowledgments
 
 Thank you to my mentor Guido Cecilio for his guidance for this project. Thank you to the slack members who supported me as I persevere and navigate and overcome the obstacles of my Full Stack Software development journey.
 
-## Disclaimer
+### Disclaimer
 
 The content of this website is for education purposes only.
