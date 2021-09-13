@@ -32,8 +32,8 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
     + [Blog Post Comments](#blog-post-comments)
     + [User Authentication](#user-authentication)
     + [User Profile](#user-profile)
-  * [Blog Application Administration](#blog-application-administration)
-  * [Donation](#donation)
+    + [Blog Application Administration](#blog-application-administration)
+    + [Donation](#donation)
   * [Future Features](#future-features)
     + [Live Chat Conversations](#live-chat-conversations)
     + [Contact Form](#contact-form)
@@ -45,10 +45,9 @@ The inspiration for this application came from Francis Bacon's quote and  [Barba
   * [Donate Apps](#donate-apps)
   * [Blog App](#blog-app)
   * [Profile App](#profile-app)
-- [Security and Access Management](#security-and-access-management)
-  * [Django Contrib and Allauth](#django-contrib-and-allauth)
-- [Wireframes](#wireframes)
-- [Views](#views)
+  * [Security and Access Management](#security-and-access-management)
+  * [Wireframes](#wireframes)
+  * [Views](#views)
 - [Skeletal Plane](#skeletal-plane)
   * [Post Content](#post-content)
   * [Navigation and Access](#navigation-and-access)
@@ -282,7 +281,7 @@ This information can be utilized in future enhancements as the user's preferred 
 - Create a profile
 - Update a profiles
 
-### Blog Application Administration
+#### Blog Application Administration
 
 The application administrator with superuser privileges have full access to all the data using the Django Administrator panel.
 
@@ -291,7 +290,7 @@ The application administrator with superuser privileges have full access to all 
 - Curate comments
 - Access details of donations received
   
-### Donation
+#### Donation
 
 - Accept donation using stripe payment
 - Simple Accept payment of any amount available only in the US and Canada
@@ -485,17 +484,17 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 ```
 
-## Security and Access Management
+#### Security and Access Management
 
-### Django Contrib and Allauth
+- Django Contrib and Allauth
+  
+  Django allauth is implemented to handle account management and authentication.
 
-Django allauth is implemented to handle account management and authentication.
+  ```
+  Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication
+  ```
 
-```
-Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication
-```
-
-## Wireframes
+### Wireframes
 
 <details>
     <summary> Click to expand!</summary>
@@ -564,11 +563,12 @@ The respective Mobile wireframes version of each web page listed will be similar
 
 </details>
 
-## Views
+### Views
 
 The views consist of a combination of function and Generic Class-Based views.  The following guide was the basis for making the decision where feasible.
 
-Source:
+- Reference: Function and Class Base Generic Views
+
 ![Function and Class Base Generic Views](docs/readme/viewsFunctionOrClassBased.png)
 
 ## Skeletal Plane
