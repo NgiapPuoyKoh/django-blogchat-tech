@@ -97,16 +97,16 @@ The use case numbers of the user stories documented in the [README.md](https://g
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-| | As a user | I want to display blog post by topic | Render published post by topic | Pass |
-| | As a non authenticated user | I want to view a list of post excerpts by topic | Renders the list of published posts' excerpt by topic | Pass |
-| | As an authenticated user | I want to display blog post by topic | Render post by topic includes posts in published and draft status with delete and update buttons created by the user | Pass |
+| | As a user | I want to display blog post by topic | Click on the Topic Nav item and select a topic from the list. Render published post by topic | Pass |
+| | As a non-authenticated user | I want to view a list of post excerpts by topic | Click on the Topic Nav item and select a topic from the list. Renders the list of published posts' excerpt by topic | Pass |
+| | As an authenticated user | I want to display blog post by topic | Click on the Topic Nav item and select a topic from the list. Render post by topic includes posts in published and draft status with delete and update buttons created by the user | Pass |
 | | As a user | I want to see a message when there is no post for a topic | Select a topic with no posts. A message "There are no available posts' will render | Pass|
 
 ## Post Detail Page
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-| | As a user | I want to view the post detail | The post title and content will render | Pass |
+| | As a user | I want to view the post detail | Click on the post title and content will render | Pass |
 | | As a user | I want to click on the button to return to post page | Click on Return to Posts button renders blog post page | Pass |
 
 ## Create, Update, Delete Blog Posts only by author and Administrator
@@ -114,9 +114,9 @@ The use case numbers of the user stories documented in the [README.md](https://g
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
 | 3.1 | As an authenticated user | I want to be able to create a blog post | Click on Create Post nav item,  create page renders, enter fields values, select topic, and status values. A post is created with the values entered | Pass |
-| 3.2 | As an authenticated user | I want to be able to update my blog post | Update content submit and post renders updated content | Pass |
+| 3.2 | As an authenticated user | I want to be able to update my blog post | Update content, click submit and post renders updated content | Pass |
 | 3.3 | As an authenticated user | I want to be able to delete my blog post | Author of the post will have access to the delete button.  Click on the button to delete the post | Pass |
-| 3.4 | As an authenticated user | I want to be able to set the status of my blog post | Select a status. The post status is changed successfully | Pass |
+| 3.4 | As an authenticated user | I want to be able to set the status of my blog post | Select a status from the field list. The post status is changed successfully | Pass |
 
 ## Comment on Post
 
@@ -141,9 +141,9 @@ The use case numbers of the user stories documented in the [README.md](https://g
 | --- | --- | --- | ---| --- |
 |  | As a non-authenticated user | I want to be able to Sign Up for an account | Click on the signup link on the login page.  Enter user credentials. An email verification confirmation page rendered| Pass |
 | 5.1 | As an authenticated user | I want to be able to login | Click on login nav item, Enter credentials, Create Post, My Profile nav items will display on Navbar | Pass |
-| 5.2 | As an authenticated user | I Want to be able to create my profile information | Future Enhancement| N/A |
-| 5.3 | As an authenticated user | I want to be able to edit my profile information | Future Enhancement | N/A |
-|  | As an authenticated user | I Want to be able to view my profile information | Click on My Profile Nav item to render profile information | Pass |
+| 5.2 | As an authenticated user | I want to be able to create my profile information | User can enter name. Future Enhancement to allow updating additional profile fields| Pass |
+| 5.3 | As an authenticated user | I want to be able to edit my profile information |  User can edit name. Future Enhancement to allow updating additional profile fields| Pass |
+|  | As an authenticated user | I want to be able to view my profile information | Click on My Profile Nav item to render profile information | Pass |
 | |As a user | I want to receive to confirm email address when I sign up for an account | email with to confirm email generated and sent to the user | Pass |
 
 ## Authentication Not required
@@ -151,7 +151,7 @@ The use case numbers of the user stories documented in the [README.md](https://g
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
 | 9.1 | As a non-authenticated user | I cannot by-pass the site's mechanisms to create and edit a blog | Enter URL for edit post. Redirected to sign-in page | Pass |
-| 9.2 | As a non-authenticated user | I cannot by-pass site mechanisms to view donation information | Pass |
+| 9.2 | As a non-authenticated user | I cannot by-pass site mechanisms to view donation information | Enter url for donation list. Redirected to sign-in page | Pass |
 | | As an authenticated user | I cannot by-pass site mechanisms to view donation information|  Redirected to user profile page | Pass |
 
 ## Authentication as the author required to CRUD post
@@ -196,20 +196,20 @@ The use case numbers of the user stories documented in the [README.md](https://g
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-|    | As an administrator| I want to curate post comments via the Django Adminstration Panel. I can perform CRUD operations on comments | Pass |
+|    | As an administrator| I want to curate post comments via the Django Administration Panel. I can perform CRUD operations on comments | Able to perform CRUD operations for comments successfully |Pass |
 
 ### Admin Donations
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-| 8.1 | As a site owner | I want to accept donations to maintain the site | No authentication is required for users donate using credit cards | Pass |
+| 8.1 | As a site owner | I want to accept donations to maintain the site | No authentication is required for users to donate using credit cards | Pass |
 | 8.2 | As a site owner | I want to be able to review information on donors and donation amounts | Login with superuser credentials. Click on Donations received nav item. A table listing the donations will be displayed | Pass |
 
 ### User Profiles
 
 | Use Case # | As Persona | Want to | Expected Results | Pass/Fail |
 | --- | --- | --- | ---| --- |
-|    | As an administrator| I want to manage user profiles the Django Adminstration Panel. I can perform CRUD operations on user profiles | Pass |
+|    | As an administrator| I want to manage user profiles in the Django Administration Panel. I can perform CRUD operations on user profiles | Able to perform CRUD operations for user profiles successfully |Pass |
 
 ## Custom 404
 
